@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{article} 
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\geometry{
+  left=3cm,
+  right=3cm,
+  top=3cm,
+  bottom=3cm,
+  bindingoffset=5mm
+}
+\usepackage{enumerate}
+\usepackage[T1]{fontenc} 
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+
+\newcommand {\Q}	{\mathbb{Q}}
+\newcommand {\R}	{\mathbb{R}}
+\newcommand {\C}	{\mathbb{C}}
+\newcommand {\Rn}	{\mathbb{R}^n}
+\newcommand {\Rzwei}	{\mathbb{R}^2}
+\newcommand {\Rnxn}	{\mathbb{R}^{n \times n}}
+\newcommand {\Rmxn}	{\mathbb{R}^{m \times n}}
+\newcommand {\Rmxm}	{\mathbb{R}^{m \times m}}
+\newcommand {\Cn}	{\mathbb{C}^n}
+\newcommand {\Cnxn}	{\mathbb{C}^{n \times n}}
+\newcommand {\N}	{\mathbb{N}}
+\newcommand{\1}    	{\mathbbm{1}}
+\newcommand{\Onot}		{\mathcal{O}}
+\newcommand{\diag}	{\textrm{diag}}
+
+\author{Ruedi Lüthi}
+\title{Blatt 2}
+
+\begin{document}
+
+	\maketitle
+	
+	\section*{5}
+	\begin{align*}
+		&\lim_{h \rightarrow 0} \frac{f(x_0 + h r) - f(x_0)}{h} =\\
+		&\lim_{h \rightarrow 0} \frac{4 \cos\left( \frac{\pi}{4} + h \sqrt{14} \right) \arctan \left( (1+h) e^{-(0+h)^2} \right) - 4 \cos\left( \frac{\pi}{4} \right) \arctan \left( 1 e^{-0^2} \right) }{h} = \\
+		&\lim_{h \rightarrow 0}
+		\frac{4 \cos\left( \frac{\pi}{4} + h \sqrt{14} \right)
+		\arctan \left( (1+h) e^{-h^2}\right) - 4 \frac{1}{\sqrt{2}} \frac{\pi}{4} }{h} \stackrel{\textrm{Regel von de l'Hospital}}{=} \\
+		&\lim_{h \rightarrow 0}
+		\frac{
+			-4\sin\left( \frac{\pi}{4} + h \sqrt{14} \right) \sqrt{14}  \arctan\left( (1+h)e^{-h^2} \right)
+			+4\cos\left( \frac{\pi}{4} + h \sqrt{14} \right) \frac{e^{h^2}(1-2h-2h^2)}{e^{2h^2}+(1+h)^2}
+		}{1} \\
+		&-4 \frac{1}{\sqrt{2}}\sqrt{14}\frac{\pi}{4}
+		+ 4 \frac{1}{\sqrt{2}}\frac{1}{2} = -\sqrt{7}\pi + \sqrt{2}
+	\end{align*}
+	
+\end{document}

@@ -1,0 +1,167 @@
+\documentclass[11pt,a4paper]{book} 
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\geometry{
+  left=3cm,
+  right=3cm,
+  top=3cm,
+  bottom=3cm,
+  bindingoffset=5mm
+}
+\usepackage{enumerate}
+\usepackage[T1]{fontenc} 
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+
+\newcommand {\Q}	{\mathbb{Q}}
+\newcommand {\R}	{\mathbb{R}}
+\newcommand {\C}	{\mathbb{C}}
+\newcommand {\Rn}	{\mathbb{R}^n}
+\newcommand {\Rzwei}	{\mathbb{R}^2}
+\newcommand {\Rnxn}	{\mathbb{R}^{n \times n}}
+\newcommand {\Rmxn}	{\mathbb{R}^{m \times n}}
+\newcommand {\Rmxm}	{\mathbb{R}^{m \times m}}
+\newcommand {\Cn}	{\mathbb{C}^n}
+\newcommand {\Cnxn}	{\mathbb{C}^{n \times n}}
+\newcommand {\N}	{\mathbb{N}}
+\newcommand{\1}    	{\mathbbm{1}}
+\newcommand{\Onot}		{\mathcal{O}}
+\newcommand{\diag}	{\textrm{diag}}
+
+\begin{document}
+
+\tableofcontents 
+
+\chapter*{Einführung}
+\section{Stetigkeit in einer Dimension}
+\begin{align*}
+	f \textrm{ ist stetig in } x_0 & \\
+	&\quad \Leftrightarrow \quad
+	\lim_{x \rightarrow x_0} f(x) = f(x_0) \\
+	&\quad \Leftrightarrow \quad
+	\forall \left(x_n\right) \textrm{ mit } \lim_{n \rightarrow \infty} x_n = x_0
+	\textrm{ gilt }  \lim_{n \rightarrow \infty} f(x_n) = f(x_0) \\
+	&\quad \Leftrightarrow \quad \forall~ \varepsilon > 0 \quad \exists~ \delta \quad \textrm{mit} \quad \vert f(x) - f(x_0) \vert < \varepsilon \quad \forall~ x \in \left( x_0 - \delta, x_0 + \delta \right)
+\end{align*}
+\textit{Bemerkung}: Der Grenzwert von Funktionen ist über den Grenzwert von Folgen definiert und kann auch nur so überprüft werden.
+
+\section{Zwei Sonderfälle}
+\subsection*{Skalarfeld}
+Sei \( f : \Rzwei \rightarrow \R \) \\
+Visualisierung durch Höhenlinien: \( H_c := \left\{ x \in \Rn : f(x) = c \right\} \) \\
+Beispiel: \( f(x,y) = x^2 + y^2 \)
+
+\subsection*{Vektorfeld}
+Sei \( f : \Rzwei \rightarrow \Rzwei \) \\
+Beispiel: \(f(x,y) = \left(\begin{array}{c} x \\ y \end{array} \right)\)
+
+\chapter{Differentialrechnung in höheren Dimensionen}
+
+\section{}
+
+\subsubsection*{Skalarprodukt}
+Definition: \( \left< x,y \right> := x^\top y = \sum_{k=1}^n x_k y_k \) für \(x,y \in \Rn\)
+
+\subsubsection*{Euklidische Norm}
+Definition: \( \Vert x \Vert_2 := \sqrt{\left< x,x \right>} = \sqrt{\sum_{k=1}^n x_k^2} \)
+
+\subsection{Korollar}
+Sei \(x \in \Rn\) mit \(x = \left(\begin{array}{c} x_1 \\ \vdots \\ x_n \end{array}\right)\)
+\begin{enumerate}[1.~]
+	\item \begin{align*}
+		\max_{1 \leqslant k \leqslant n} \vert x_k \vert \leqslant \Vert x \Vert \leqslant \sqrt{n} \max_{1 \leqslant k \leqslant n} \vert x_k \vert
+	\end{align*}
+	\item Cauchy-Schwarz-Ungleichung:
+	\begin{align*}
+		\forall~ x,y \in \Rn \quad : \quad \vert \left< x,y \right> \vert \leqslant \Vert x \Vert \cdot \Vert y \Vert
+	\end{align*}
+	Begründung (nicht Beweis!) durch alternative Definition: \( \left< x,y \right> = \Vert x \Vert \cdot \Vert y \Vert \underbrace{\cos \alpha}_{\leqslant 1} \) \\
+	Dabei ist \(\alpha\) der Winkel der zwischen \(x\) und \(y\) eingeschlossen wird. \\
+	Daraus folgt:
+	\begin{align*}
+		\vert \left< x,y \right> \vert = \Vert x \Vert \cdot \Vert y \Vert
+		\Leftrightarrow
+		x,y \textrm{ sind lin. unabhängig} : x = \lambda y \textrm{ oder } y = \lambda x \textrm{ für } \lambda \in \R
+	\end{align*}
+	\item \(\Vert \cdot \Vert\) ist eine Norm. Eine Norm hat folgende Eigenschaften:
+	\begin{enumerate}[(i)]
+		\item \( \Vert x \Vert \geqslant 0 \) und \( \Vert x \Vert = 0 \Leftrightarrow x = 0 \)
+		\item \( \Vert \lambda x \Vert = \vert \lambda \vert \cdot \Vert x \Vert  \)
+		\item \( \Vert x + y \Vert \leqslant \Vert x \Vert  + \Vert y \Vert \) Dreiecksungleichung
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Konvention}
+Für \(A \subset \Rn\) gilt für das Komplement \(A^c = \Rn \setminus A\)
+
+\subsection{Definition der \(\varepsilon\)-Umgebung}
+Sei \(x_0 \in \Rn\) und \(\varepsilon > 0\), dann gilt für die \(\varepsilon\)-Umgebung \(U_\varepsilon(x_0)\) von \(x_0\):
+\begin{align*}
+	U_\varepsilon(x_0) := \left\{ x \in \Rn : \Vert x - x_0 \Vert < \varepsilon \right\}
+\end{align*}
+
+\subsection{Topologische Grundbegriffe}
+Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
+\begin{enumerate}[(i)]
+	\item ein \textbf{innerer Punkt}, wenn gilt \(\exists~ \varepsilon > 0\) mit \(U_\varepsilon(x_0) \subset A\) \\
+	Menge aller inneren Punkte: \( \mathring{A} = \left\{ x \in \Rn : \exists~ \varepsilon > 0 \textrm{ mit } U_\varepsilon(x) \subset A \right\} \)
+	\item ein \textbf{Berührungspunkt}, wenn \(\forall~ \varepsilon > 0\) gilt \(U_\varepsilon (x_0) \cap A \neq \varnothing \) \\
+	\textbf{abgeschlossene Hülle}: \(\overline{A} = \left\{ x \in \Rn : \forall~ \varepsilon > 0 \textrm{ gilt } U_\varepsilon(x_0) \neq \varnothing \right\} \)
+	\item ein \textbf{Häufungspunkt}, wenn \(\forall~ \varepsilon > 0\) gilt \( \left( U_\varepsilon(x_0) \setminus \left\{ x_0 \right\} \right) \cap A \neq \varnothing \) \\
+	Die Menge aller Häufungspunkte wird mit \(A'\) bezeichnet.
+	\item ein \textbf{Randpunkt}, wenn \(\forall~ \varepsilon > 0\) gilt \( U_\varepsilon(x_0) \cap A \neq \varnothing\) und \( U_\varepsilon(x_0) \cap A^c \neq \varnothing\) \\
+	Menge aller Randpunkte oder auch \textbf{Rand} von \(A\) wird mit \(\partial A \) bezeichnet.
+\end{enumerate}
+\subsubsection*{Korollar}
+\begin{enumerate}[(i)]
+	\item \(\mathring{A} \subset A\)
+	\item \(\mathring{A} \subset \overline{A}\)
+	\item \(\partial A \subset \overline{A}\)
+	\item \(\overline{A} = \mathring{A} \cup \partial A \)
+	\item \(\overline{A} = A \cup \partial A \) (schwächere Aussage als (iv))
+\end{enumerate}
+
+\subsection{Definition}
+Eine Menge \(A \subset \Rn\) heißt
+\begin{enumerate}[(i)]
+	\item \textbf{offen}, wenn \(A = \mathring{A} \) gilt (\(A\) besteht nur aus inneren Punkten)
+	\item \textbf{abgeschlossen}, wenn \(\partial A \subset A \) gilt (wenn der Rand in der Menge enthalten ist)
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[1.~]
+	\item Jede \(\varepsilon\)-Umgebung \(U_\varepsilon(x_0 \in \Rn)\) ist offen
+	\item Sei \(I \subset \R\), dann gilt
+	\begin{enumerate}[(i)]
+		\item \(I\) ist offen, wenn \(I = (a,b)\) mit \( -\infty \leqslant a \leqslant b \leqslant \infty \) \\
+		für \(a = b\) gilt \(I = \varnothing\) mit \(I\) offen \\
+		und für \(a = -\infty, b = \infty\) ist \(I\) auch offen
+		\item \(I\) ist abgeschlossen, wenn \(I = [a,b]\) mit \(a,b \in \R\) \\
+		oder \(I = (-\infty, b]\) oder \(I = [a, \infty) \) oder \(I = (-\infty, \infty) = \R\)
+	\end{enumerate}
+	(die reellen Zahlen sind offen und abgeschlossen zugleich)
+\end{enumerate}
+
+\subsection{Satz}
+für \(A \subset \Rn\) sind folgenden Aussagen äquivalent:
+\begin{enumerate}[(i)]
+	\item \(A\) ist abgeschlossen \(A = \overline{A}\)
+	\item \(A\) enthält alle Häufungspunkte, \(A' \subset A\)
+	\item \(A\) enthält alle Randpunkte, \(\partial A \subset A\)
+	\item \(A^c\) ist offen
+\end{enumerate}
+
+\subsection{Satz}
+\begin{enumerate}[(i)]
+	\item \(\varnothing\) und \(\Rn\) sind offen
+	\item Die Vereinigung beliebig vieler offene Mengen \(O_j\) mit \(j \in J\) ist stets offen
+	\item Der Durchschnitt \underline{endlich} vieler offener Mengen \(O_1, ..., O_r\) ist stets offen
+\end{enumerate}
+
+\end{document}
