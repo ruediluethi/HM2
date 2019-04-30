@@ -57,15 +57,17 @@
 			\frac{x^2}{2} + \frac{y^2}{9} \leqslant 1 \right\} \\
 			\partial A_1 &= \left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left.
 			\frac{x^2}{2} + \frac{y^2}{9} = 1 \right\} \\
-			A_1' &= \textrm{???} \\
+			A_1' &= \overline{A} \\
 			\mathring{A}_2 &= \left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left. x < y^2 ~\land~ \vert y \vert < 1 \right\} \\
 			\overline{A}_2 &= \left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left. x \leqslant y^2 ~\land~ \vert y \vert \leqslant 1 \right\} \\
-			\partial A_2 &= \left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left. x = y^2 ~\land~ \vert y \vert = 1 \right\} \\
-			A_2' &= \textrm{???} 
+			\partial A_2 &= 
+			\left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left. x = y^2 ~\land~ \vert y \vert \leqslant 1 \right\} \cup 
+			\left\{ \left( \begin{array}{c} x \\ y\end{array} \right) \in \Rzwei ~\right\vert \left. \vert y \vert = 1 ~\land~ x \leqslant 1 \right\} \\
+			A_2' &= \overline{A}
 		\end{align*}
 		\item \(A_1\) ist offen, \(A_2\) nicht
 		\item \(A_1, A_2\) sind nicht abgeschlossen
-		\item \(A_1, A_2\) sind beschränkt
+		\item \(A_1\) ist beschränkt, \(A_2\) nicht
 	\end{enumerate}
 	
 	\section*{2.}	
@@ -100,6 +102,25 @@
 	Da \(\lim_{r \rightarrow 0} f \left( r,\frac{\pi}{4} \right) = \frac{1}{2} \neq 0 = \lim_{r \rightarrow 0} f( r, \pi ) \) kann die Funktion \underline{nicht stetig} sein.
 	
 	\subsection*{b)}
+	Mit \textbf{\(\varepsilon\)-\(\delta\)-Kriterium} (nach \underline{Musterlösung}): \\
+	\textit{Bemerkung}: Seien \((M_1,d_1)\) und \((M_2,d_2)\) zwei metrische Räume und \(D \subset M_1\). So ist eine Funktion \(f: D \rightarrow M_2\) genau dann stetig in \(a \in D\), wenn zu jedem \(\varepsilon > 0\) ein \(\delta_\varepsilon > 0\) existiert, so dass für \(x \in D\) gilt \(d_1(x,a) < \delta_\varepsilon \rightarrow d_2(f(x), f(a)) < \varepsilon\).
+	\begin{align*}
+		\forall~ \varepsilon > 0 \quad \exists~ \delta_\varepsilon > 0 \quad:\quad d_1(x,a) < \delta_\varepsilon \rightarrow d_2(f(x), f(a)) < \varepsilon \quad \forall~ x \in D
+	\end{align*}
+	Sei \(\varepsilon > 0\) beliebig und \(\delta_\varepsilon = \frac{\varepsilon}{2}\) sowie \(x = \left( \begin{array}{c} x \\ y \end{array} \right) \in U_{\delta_\varepsilon}( 0 )\). Dann gilt für \(g(x)\) stetig:
+	\begin{align*}
+		\left\Vert \left( \begin{array}{c} x \\ y \end{array}\right)\right\Vert < \delta_\varepsilon
+		\quad&\Rightarrow\quad \left\{ \begin{array}{c}
+			\vert x \vert < \delta_\varepsilon \\
+			\vert y \vert < \delta_\varepsilon
+		\end{array} \right. \\
+		\left\vert f(x,y) - f(0,0) \right\vert &= 
+		\left\vert \frac{x^5 - y^5}{x^4 + y^4} - 0 \right\vert \stackrel{\Delta\textrm{-Ungleichung}}{\leqslant} \frac{\vert x \vert ^5}{x^4 + y^4} + \frac{\vert y \vert ^5}{x^4 + y^4} \\
+		&\stackrel{\substack{x \neq 0 \\ y \neq 0}}{=} \vert x \vert \frac{1}{1 + \frac{y^4}{\vert x \vert^4}} + \vert y \vert \frac{1}{\frac{x^4}{\vert y \vert^4} + 1} \leqslant \underbrace{\vert x \vert}_{< \delta_\varepsilon} +  \underbrace{\vert y \vert}_{< \delta_\varepsilon} < 2 \delta_\varepsilon = \epsilon
+	\end{align*}
+	
+	\noindent	
+	Mit \textbf{Folgenkriterium} (entspricht \underline{nicht} der Musterlösung): \\
 	Dasselbe
 	\begin{align*}
 		f(x,y) = \frac{x^5 - y^5}{x^4 + y^4} = \frac{r^5 ( \cos^5 \phi - \sin^5 \phi )}{r^4 ( \cos^4 \phi + \sin^4 \phi) } = r \frac{\cos^5 \phi - \sin^5 \phi}{\cos^4 \phi + \sin^4 \phi} = f(r,\phi)
@@ -131,12 +152,14 @@
   	\caption{Die Höhenlinien der Funktion \(f(x,y)\) }
 	\end{figure}
 	
-	\newpage
 	\subsection*{b)}
 	
 	Partiell ableiten:
 	\begin{align*}
-		\nabla f(x,y) = \left( \frac{\partial}{\partial x} 4x^2 - 9y^2 = 8x, \frac{\partial}{\partial y}  4x^2 - 9y^2 = -18y \right)^\top
+		\nabla f(x,y) = \left( \begin{array}{ccc}
+			frac{\partial}{\partial x} 4x^2 - 9y^2 & = & 8x \\
+			\frac{\partial}{\partial y}  4x^2 - 9y^2 & = & -18y
+		\end{array} \right)
 	\end{align*}
 	
 	\begin{figure}[!h]
