@@ -23,6 +23,7 @@
 \newcommand {\R}	{\mathbb{R}}
 \newcommand {\C}	{\mathbb{C}}
 \newcommand {\Rn}	{\mathbb{R}^n}
+\newcommand {\Rm}	{\mathbb{R}^m}
 \newcommand {\Rzwei}	{\mathbb{R}^2}
 \newcommand {\Rnxn}	{\mathbb{R}^{n \times n}}
 \newcommand {\Rmxn}	{\mathbb{R}^{m \times n}}
@@ -63,7 +64,7 @@ Beispiel: \(f(x,y) = \left(\begin{array}{c} x \\ y \end{array} \right)\)
 
 \chapter{Differentialrechnung in höheren Dimensionen}
 
-\section{}
+\section{Topologie}
 
 \subsubsection*{Skalarprodukt}
 Definition: \( \left< x,y \right> := x^\top y = \sum_{k=1}^n x_k y_k \) für \(x,y \in \Rn\)
@@ -105,6 +106,7 @@ Sei \(x_0 \in \Rn\) und \(\varepsilon > 0\), dann gilt für die \(\varepsilon\)-
 \begin{align*}
 	U_\varepsilon(x_0) := \left\{ x \in \Rn : \Vert x - x_0 \Vert < \varepsilon \right\}
 \end{align*}
+\textit{Bemerkung}: Die punktierte \(\varepsilon\)-Umgebung ist definiert als: \( \dot{U}_\varepsilon = U_\varepsilon (a) \setminus \left\{ a \right\} \)
 
 \subsection{Topologische Grundbegriffe}
 Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
@@ -127,7 +129,7 @@ Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
 	\item \(\overline{A} = A \cup \partial A \) (schwächere Aussage als (iv))
 \end{enumerate}
 
-\subsection{Definition}
+\subsection{Definition von offen und abgeschlossen}
 Eine Menge \(A \subset \Rn\) heißt
 \begin{enumerate}[(i)]
 	\item \textbf{offen}, wenn \(A = \mathring{A} \) gilt (\(A\) besteht nur aus inneren Punkten)
@@ -159,9 +161,120 @@ für \(A \subset \Rn\) sind folgenden Aussagen äquivalent:
 
 \subsection{Satz}
 \begin{enumerate}[(i)]
-	\item \(\varnothing\) und \(\Rn\) sind offen
-	\item Die Vereinigung beliebig vieler offene Mengen \(O_j\) mit \(j \in J\) ist stets offen
-	\item Der Durchschnitt \underline{endlich} vieler offener Mengen \(O_1, ..., O_r\) ist stets offen
+	\item \(\varnothing\) und \(\Rn\) sind offen.
+	\item Die Vereinigung beliebig vieler offene Mengen ist offen:
+	\begin{align*}
+		\bigcup_{j \in J} \left( O_j \textrm{ offen} \right) = O \textrm{ offen}
+	\end{align*}
+	\item Der Durchschnitt \underline{endlich} vieler offener Mengen ist offen:
+	\begin{align*}
+		\bigcap_{j = 1}^{n} \left( O_j \textrm{ offen} \right) = O \textrm{ offen}
+	\end{align*}
+	\textit{Bemerkung}: Für unendlich viele offene Mengen gilt dies nicht immer:
+	\begin{align*}
+		\bigcap_{k = 1}^{\infty} \left( -\frac{1}{k}, \frac{1}{k} \right) = \left( -1, 1 \right) \cap \left( -\frac{1}{2}, \frac{1}{2} \right) \cap \left( -\frac{1}{3}, \frac{1}{3} \right) \cap ... = \left\{ 0 \right\} \textrm{ abgeschlossen}
+	\end{align*}
 \end{enumerate}
 
+\subsection{Satz}
+\begin{enumerate}[(i)]
+	\item \(\varnothing\) und \(\Rn\) sind abgeschlossen.
+	\item Der Durchschnitt beliebig vieler abgeschlossener Mengen ist abgeschlossen:
+	\begin{align*}
+		\bigcap_{j \in J} \left( A_j \textrm{ abgeschlossen} \right) = A \textrm{ abgeschlossen}
+	\end{align*}
+	\item Die Vereinigung \underline{endlich} vieler abgeschlossenen Mengen ist abgeschlossen:
+	\begin{align*}
+		\bigcup_{j = 1}^{n} \left( A_j \textrm{ abgeschlossen} \right) = A \textrm{ abgeschlossen}
+	\end{align*}
+	\textit{Bemerkung}: Für unendlich viele abgeschlossene Mengen gilt dies nicht immer:
+	\begin{align*}
+		\bigcup_{k = 1}^{\infty} \left[ -1 + \frac{1}{n}, 1 - \frac{1}{n} \right] = \left\{ 0 \right\} \cup \left[ -\frac{1}{2}, \frac{1}{2} \right] \cup \left[ -\frac{2}{3}, \frac{2}{3} \right] \cup ... = \left( -1, 1 \right) \textrm{ offen}
+	\end{align*}	 
+\end{enumerate}
+
+\subsection{Definition von beschränkt und kompakt}
+Eine Menge \(A \subset \Rn\) heißt:
+\begin{enumerate}[(i)]
+	\item \textbf{beschränkt} wenn \(\exists~ c > 0 \) mit \( \Vert x \Vert < c \quad \forall~ x \in A\)
+	\item \textbf{kompakt}, wenn \(A\) abgeschlossen und beschränkt ist.
+\end{enumerate}
+
+\section{Folgen}
+
+\subsection{Definition von Konvergenz und Beschränktheit}
+
+Eine Folge \((a_k)_{k=1}^\infty \) heißt
+\begin{enumerate}[(i)]
+	\item \textbf{konvergent}, wenn gilt
+	\begin{align*}
+		\exists~ a \in \Rn \quad \textrm{mit} \quad \forall~ \varepsilon > 0 \quad \exists~ N(\varepsilon) : \quad \Vert a_k - a \Vert \quad \forall~ k \geqslant N(\varepsilon)
+	\end{align*}
+	Dann ist \(a\) der Grenzwert der Folge:
+	\begin{align*}
+		a = \lim_{k \rightarrow \infty} a_k \quad \textrm{oder} \quad a_k \stackrel{k \rightarrow \infty}{\rightarrow} a
+	\end{align*}
+	\item \textbf{beschränkt}, wenn \(\exists~ c > 0 \) mit \(\Vert a_k \Vert < c \quad \forall~ k \)
+\end{enumerate}
+
+\subsection{Bemerkung}
+
+Wenn eine Folge \((a_k) = \left( \begin{array}{c} \left( a_1^{(k)} \right) \\ \vdots \\ \left( a_n^{(k)} \right)	\end{array} \right) \in \Rn\) konvergiert, so gilt
+\begin{enumerate}[(i)]
+	\item  \(\Leftrightarrow\) jede Komponente \( \left( a_1^{(k)}\right), ..., \left( a_n^{(k)} \right) \) konvergiert:
+	\begin{align*}
+		\lim_{k \rightarrow \infty} a_k = a \quad \Leftrightarrow \quad \lim_{k \rightarrow \infty} a_i^{(k)} = a_i \quad \textrm{für } i = 1, ..., n
+	\end{align*}
+	\item \(\Leftrightarrow (a_k) \) erfüllt das \textbf{Cauchy-Kriterium}:
+	\begin{align*}
+		\forall~ \varepsilon > 0 \quad \exists~ N(\varepsilon) : \quad \Vert a_k - a_l \Vert < \varepsilon \quad \forall~ k,l \geqslant N(\varepsilon)
+	\end{align*}
+	\item \(\Leftrightarrow\) jede Teilfolge von \((a_k)\) konvergiert gegen \(a\): \( a_{l_k} \stackrel{k \rightarrow \infty}{\rightarrow} a \) für \( l_1 \geqslant 1, l_2 \geqslant 2, ...\)
+	\item der Grenzwert \(a\) ist eindeutig.
+\end{enumerate}
+
+\subsection{Satz von Bolzano Weierstraß}
+Jede beschränkte Folge im \(\Rn\) besitzt einen konvergente Teilfolge. \\
+
+\noindent
+\textit{Beispiel}: Sei \((a_k) = \left( \begin{array}{c} (x_k) \\ (y_k) \end{array} \right) \) eine beschränkte Folge im \(\R^2\) \\
+\(\Rightarrow\) \((x_k), (y_k)\) sind beschränkte Folgen \\
+\(\stackrel{\substack{\textrm{Satz von}\\\textrm{Bolzano}\\\textrm{Wierstraß}}}{\Rightarrow} \exists~ (x_k), (y_k)\) sind konvergent
+
+\subsection{Abschließende Bemerkungen}
+\begin{enumerate}[(i)]
+	\item Grenzwert Rechenregeln können aus dem \(\R\) für \(\Rn\) übernommen werden. \\
+	\textit{z.b.} \( a_k \stackrel{k \rightarrow \infty}{\rightarrow} a, \quad b_k \stackrel{k \rightarrow \infty}{\rightarrow} b 
+	\quad \Rightarrow \quad a_k^\top b_k \stackrel{k \rightarrow \infty}{\rightarrow} a^\top b \)
+	\item Es gibt viele Zusammenhänge zwischen den Eigenschaften von Folgen und den topologischen Eigenschaften von Mengen. \\
+	\textit{z.b.} Sei \(A \subset \Rn\) und \(a \in \Rn\) ein Häufungspunkt \\
+	\(\Leftrightarrow \quad \exists (a_k)_{k=1}^\infty \) mit \( a_k \in A \setminus \left\{ a \right\} \forall~ k \quad \) und \( \quad a_k \stackrel{k \rightarrow \infty}{\rightarrow} a\)
+\end{enumerate}
+
+\section{Funktionsgrenzwerte und Stetigkeit}
+
+\subsection{Definition}
+Eine Funktion \(f : A \subset \Rn \rightarrow \Rm \) nennt man eine Funktion mit \(n\)-Veränderlichen.
+\begin{align*}
+	f(x_1, ..., x_n) = f( \left( \begin{array}{c} x_1 \\ \vdots \\ x_n \end{array} \right) ) = \left( \begin{array}{c}
+		f_1(x_1, ..., x_n) \\
+		\vdots \\
+		f_m(x_1, ..., x_n) \\
+	\end{array} \right) \quad \textrm{mit} \quad f_1, ..., f_m : \Rn \rightarrow \R
+\end{align*}
+
+\subsection{Definition Grenzwert/Limes}
+Sei \(f : A \subset \Rn \rightarrow \Rm \) und \(a \in \overline{A}\). Ein \(b \in \Rm\) heißt Grenzwert von \(f\) für \(x \rightarrow a\), wenn gilt:
+\begin{align*}
+	\forall \varepsilon > 0 \quad \exists~ \delta(\varepsilon) > 0 : \quad \Vert f(x) - b \Vert < \varepsilon \quad \forall~ x \in \dot{U}_{\delta(\varepsilon)} \cap A
+\end{align*}
+
 \end{document}
+
+
+
+
+
+
+
+
