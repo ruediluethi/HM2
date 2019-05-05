@@ -34,6 +34,7 @@
 \newcommand{\1}    	{\mathbbm{1}}
 \newcommand{\Onot}		{\mathcal{O}}
 \newcommand{\diag}	{\textrm{diag}}
+\newcommand{\mitt}	{\textrm{ mit }}
 
 \begin{document}
 
@@ -266,8 +267,193 @@ Eine Funktion \(f : A \subset \Rn \rightarrow \Rm \) nennt man eine Funktion mit
 \subsection{Definition Grenzwert/Limes}
 Sei \(f : A \subset \Rn \rightarrow \Rm \) und \(a \in \overline{A}\). Ein \(b \in \Rm\) heißt Grenzwert von \(f\) für \(x \rightarrow a\), wenn gilt:
 \begin{align*}
-	\forall \varepsilon > 0 \quad \exists~ \delta(\varepsilon) > 0 : \quad \Vert f(x) - b \Vert < \varepsilon \quad \forall~ x \in \dot{U}_{\delta(\varepsilon)} \cap A
+	\forall \varepsilon > 0 \quad \exists~ \delta(\varepsilon) > 0 : \quad \Vert f(x) - b \Vert < \varepsilon \quad \forall~ x \in \dot{U}_{\delta(\varepsilon)}(a) \cap A
 \end{align*}
+\textit{Bemerkung}: Die Funktion \(f\) muss in \(a\) nicht stetig sein, so kann z.b. gelten: \\
+\( \lim_{x \rightarrow a} f(x) = b \neq f(a) \)
+
+\subsection{Bemerkung}
+Sei \(f : A \subset \Rn \rightarrow \Rm, a \in \overline{A}, b \in \Rm\) dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[(i)]
+	\item \( f(x) \stackrel{x \rightarrow a} b \)
+	\item \( \Vert f(x) - b \Vert \stackrel{x \rightarrow a} 0 \in \R^1 \) (Eine Norm bildet immer auf ein Skalar ab)
+	\item \( f_1(x) \stackrel{x \rightarrow a}{\rightarrow} b_1, ..., f_m(x) \stackrel{x \rightarrow a}{\rightarrow} b_m \)
+\end{enumerate}
+Zusätzlich gilt das \textbf{Cauchy-Kriterium}:
+\begin{align*}
+	\lim_{x \rightarrow a} f(x) = b \quad \Leftrightarrow \quad \forall~ \varepsilon > 0 ~ \exists~ \delta(\varepsilon) > 0: \quad 
+	\Vert f(x), f(y) \Vert < \varepsilon \quad \forall~ x,y \in \dot{U}_{\delta(\varepsilon)}(a) \cap A
+\end{align*}
+
+\subsection{Beispiel}
+Sei \( f(x,y) = \frac{xy}{x^2 + y^2} \)
+\begin{align*}
+	a_k &= \left( \begin{array}{c} x_k \\ y_k \end{array} \right) = \left( \begin{array}{c} \frac{1}{k} \\ \frac{1}{k} \end{array} \right), \quad 
+	f(a_k) = \frac{\frac{1}{k^2}}{\frac{1}{k^2} + \frac{1}{k^2}} = \frac{1}{2} \quad \forall~ k \\
+	b_k &= \left( \begin{array}{c} x_k \\ 0 \end{array} \right) \mitt x_k \stackrel{k \rightarrow \infty}{\rightarrow} 0, \quad
+	f(b_k) = \frac{0}{x_k^2} \quad \forall~ k \\
+	&\textrm{Da } \lim_{k \rightarrow \infty} f(a_k) = \frac{1}{2} \neq 0 = \lim_{k \rightarrow \infty} f(b_k) \textrm{ kann der Grenzwert nicht existieren.}
+\end{align*}
+
+\subsection{Lemma Folgenkriterium}
+Sei \(f : A \subset \Rn \rightarrow \Rm, a \in \overline{A} \)
+\begin{align*}
+	\underbrace{\exists b \in \Rm \mitt \lim_{x \rightarrow a} f(x) = b}_{\textrm{der Grenzwert } b \textrm{ existiert}} \quad &\Leftrightarrow \quad
+	\underbrace{
+		\begin{array}{l}
+			\textrm{jede Folge } (x_k)_{k=1}^\infty \subset A \mitt x_k \neq a ~ \forall~ k \textrm{ und } x_k \stackrel{k \rightarrow \infty}{\rightarrow} a \\
+			\Rightarrow  \quad f(x_k) \stackrel{k \rightarrow \infty}{\rightarrow} b
+		\end{array}
+	}_{\textrm{jede beliebige Folge konvergiert gegen } b}
+\end{align*}
+
+\subsection{Satz zu Grenzwerte verketteter Funktionen}
+Sei \(A \subset \Rn, B \subset \Rm, a \in \overline{A}, f: A \rightarrow B, g: \overline{B} \rightarrow \R^l \)
+\begin{align*}
+	\exists~ b \in \overline{B} \mitt \lim_{x \rightarrow a} f(x) = b, \quad
+	\exists~ c \in \R^l \mitt \lim_{y \rightarrow b} g(y) = c \quad \Rightarrow \quad
+	\lim_{x \rightarrow a} \underbrace{g\left(f(x)\right)}_{(g \circ f)(x)} = \lim_{y \rightarrow b} g(y) = c
+\end{align*}
+
+\subsection{Beispiel}
+Sei \(f(x,y) = e^{-x^2 + y^2} = \exp\left( g(x,y) \right) \mitt g(x,y) = x^2 + y^2\), dabei gilt:
+\begin{align*}
+	\lim_{(x,y)^\top \rightarrow (0,0)^\top} g(x,y) = \lim_{(x,y)^\top \rightarrow (0,0)^\top} x^2 + y^2 = 0
+	\quad \Rightarrow \quad \lim_{z \rightarrow 0} f(z) = \lim_{z \rightarrow 0} e^z = 1 \\
+\end{align*}
+
+\subsection{Definition der Stetigkeit}
+Sei \(f: A \subset \Rn \rightarrow Rm\)
+\begin{enumerate}[(i)]
+	\item \(f\) ist \textbf{stetig} in \(a \in A\) wenn gilt:
+	\begin{align*}
+		\forall~ \varepsilon > 0 ~ \exists \delta(\varepsilon) : \quad \Vert f(x) - f(a) \Vert < \varepsilon \quad \forall~ x \in U_{\delta(\varepsilon)}(a) \cap A
+	\end{align*}
+	\textit{Bemerkung}: Es wird \( \lim_{x \rightarrow a} f(x) = f(a) \) gefordert. \\
+	Diese Definition unterscheidet sich in der nicht punktierten \(\varepsilon\)-Umgebung und es gilt \(f(a)\) anstatt b.
+	\item \(f\) ist stetig auf \(A\), wenn \(f\) in jedem Punkt \(a \in A\) stetig ist.
+\end{enumerate}
+
+\subsection{Bemerkung}
+\begin{enumerate}[(i)]
+	\item Kompositionen stetiger Funktionen sind wieder stetig: \(f, g\) stetig \(\Rightarrow f+g, f-g, ...\) stetig
+	\item Das Folgenkriterium überträgt sich: \\
+	Sei \((a_k)_{k=1}^\infty \) eine Folge in \(A\) mit \(\lim_{k \rightarrow \infty} a_k = a  \quad \Leftrightarrow \quad \lim_{k \rightarrow \infty} f(a_k) = f(a)\)
+	\item Ist \(A\) kompakt, dann nimmt eine stetige Funktion \(f : A \rightarrow \R\) immer ein Maximum und Minimum an:
+	\begin{align*}
+		\exists~ x_m, x_M \in A \mitt f(x_m) = \min_{x \in A} f(x), f(x_M) = \max_{x \in A} f(x)
+	\end{align*}
+\end{enumerate}
+
+\section{Partielle Ableitungen, Richtungsableitungen}
+\subsection{Definition der partiellen Ableitung}
+Die Funktion \(f : A \subset \Rn \rightarrow \Rm\) heißt \textbf{partielle differenzierbar} in \(a \in A\) nach der \(k\)-ten Variable \(x_k \mitt k \in \left\{ 1, ..., n\right\} \) wenn der folgender Grenzwert existiert:
+\begin{align*}
+	\frac{\partial}{\partial x_k} f(a) = f_{x_k}(a) = \lim_{h \rightarrow 0} \frac{f(a + h \cdot e_k) - f(a)}{h}
+\end{align*}
+Existieren alle partielle Ableitungen \(f_{x_1}(a), ..., f_{x_n}(a)\), dann ist der \textbf{Gradient} von \(f\) wie folgt definiert:
+\begin{align*}
+	\nabla f(a) = \left( \begin{array}{c}
+		f_{x_1} (a) \\
+		\vdots \\
+		f_{x_n} (a)
+	\end{array} \right)
+\end{align*}
+und die Funktion \(f\) heißt mindestens einmal partielle differenzierbar. Sind die partiellen Ableitungen \(f_{x_1}(a), ..., f_{x_n}(a)\) zudem stetig, so heißt \(f\) einmal stetig differenzierbar: \( f \in C^1(A,\Rm)\) oder kurz \( f \in C^1(A) \).
+
+\subsection{Beispiel}
+Sei \(f(x,y,z) = x^2 - xy + 3z\)
+\begin{align*}
+	\frac{\partial}{\partial x} f(x,y,z) &= 
+	\lim_{h \rightarrow 0} \frac{f(x+h,y,z) - f(x,y,z)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{(x+h)^2 - (x+h)y + 3z - ( x^2 - xy + 3z)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{(x+h)^2 - x^2}{h} - \frac{(x+h)y-xy}{h} + \frac{3z - 3z}{h} \\
+	&= \left( \frac{d}{dx} x^2 \right) - \left( \frac{d}{dx} x \right)y + \left( \frac{d}{dx} 0 \right) z \\
+	&= 2x - y + 0 \\
+	&\Rightarrow \nabla f(x,y,z) = \left( \begin{array}{c}
+		2x - y \\
+		-x \\
+		3	
+	\end{array} \right)
+\end{align*}
+
+\subsection{Definition der Richtungsableitung}
+Sei \(a, r \in \Rn\) mit \(\Vert r \Vert = 1\) (normiert), \(f: \Rn \rightarrow \Rm\), dann heißt der folgende Grenzwert die Richtungsableitung von \(f\) bei \(a\) in Richtung \(r\):
+\begin{align*}
+	\frac{\partial}{\partial r} f(a) = f_r (a) = \lim_{h \rightarrow 0} \frac{f(a + h \cdot r) - f(a)}{h}
+\end{align*}
+
+\subsubsection*{Bemerkung}
+\begin{enumerate}[(i)]
+	\item Ist \(r = e_k\), dann erhalten wir gerade eine partielle Ableitung.
+	\item Es gibt Funktionen die in \(a\) in \underline{jede Richtung differenzierbar} sind, aber in \(a\) \underline{nicht stetig} sind!
+\end{enumerate}
+
+\section{Total Differenzierbarkeit}
+\textit{Idee}: Differenzierbare Funktionen sind lokal im Punkt \(x_0\) linear approximierbar:
+\begin{align*}
+	f(x) = f(x_0) + f'(x_0)(x-x_0) + \underbrace{r(x)\Vert x-x_0 \Vert}_{\tilde{r}(x)}
+\end{align*}
+Dabei muss der Fehler \(\tilde{r}(x) = r(x)\Vert x - x_0 \Vert \) \textit{schneller gegen Null gehen als \(x\) gegen \(x_0\)} also muss \(\tilde{r}(x) = \hbox{o}(x - x_0)\) gelten (Landau-Notation: klein-oh).
+
+\subsection{Definition der totalen Differenzierbarkeit}
+Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(a \in A\)
+\begin{enumerate}[(i)]
+	\item Die Funktion \(f\) nennt man \textbf{total differenzierbar} bei \(a\), wenn eine Matrix \(A \in \Rmxn\) existiert, mit der sich die Funktion \(f\) in einer \(\varepsilon\)-Umgebung um \(a\) mittels einer Hyperebene approximieren lässt:
+	\begin{align*}
+		f(x) = f(a) + A(x-a) + r(x)\Vert x - a \Vert
+	\end{align*}
+	Dann nennt man die Matrix \(A = f'(a) = \frac{\partial}{\partial x} f(a)\) die total Ableitung von \(f\) in \(a\).
+	\item Ist \(f = \left( \begin{array}{c} f_1 \\ \vdots \\ f_m \end{array} \right) \) partiell diff'bar, so nennt man die Ableitung \textbf{Jacobi-Matrix}:
+	\begin{align*}
+		f'(a) = \frac{\partial}{\partial x} f(a) = J_f(a) = \left( \begin{array}{ccc}
+			\frac{\partial}{\partial x_1} f_1(a) & \hdots & \frac{\partial}{\partial x_n} f_1(a) \\
+			\vdots & & \vdots \\
+			\frac{\partial}{\partial x_1} f_m(a) & \hdots & \frac{\partial}{\partial x_n} f_m(a) \\
+		\end{array} \right) \in \Rmxn
+	\end{align*}
+	\textit{Bemerkung}: Es gilt: \( \exists f'(a) \quad \Rightarrow \quad f'(a) = J_f(a) \), \underline{nicht} aber die Gegenrichtung! Es kann also sein, dass die Jacobi-Matrix \(J_f\) existiert die Funktion aber \underline{nicht total diff'bar} ist.
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \begin{align*}
+		f(r,\varphi) = r \cdot \left( \begin{array}{c} \cos \varphi \\ \sin \varphi \end{array} \right) \quad \Rightarrow \quad J_f = \left( \begin{array}{cc}
+			\cos \varphi & -r \sin \varphi \\
+			\sin \varphi & r \cos \varphi
+		\end{array} \right)
+	\end{align*}
+	\item \(f(x) = a + b^\top(x - x_0), \quad f : \Rn \rightarrow \R, \quad a \in \R, \quad b,x_0 \in \Rn\) \\
+	\(\Rightarrow \quad f(x_0) = a, \quad f'(x_0) = b^\top \)
+	\item \(f(x) = a + A(x - x_0), \quad f : \Rn \rightarrow \Rm, \quad a \in \Rm, \quad A \in \Rmxn, \quad x_0 \in \Rn\) \\
+	\(\Rightarrow \quad f(x_0) = a, \quad f'(x_0) = A \)
+\end{enumerate}
+\textit{Bemerkung}: Beispiel (ii) und (iii) sind lineare Funktionen.
+
+\subsection{Satz}
+Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(a \in A\) total differenzierbar, so ist \(f\) stetig in \(A\).
+\textit{Beweis}:
+\begin{align*}
+	f(x) &= \underbrace{f(a)}_{\stackrel{x \rightarrow a}{\rightarrow} f(a)} + 
+	\underbrace{A \underbrace{(x-a)}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rn}}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rn} + 
+	\underbrace{r(x)}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rm} 
+	\underbrace{\Vert x - a \Vert}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \R}
+	\qquad \mitt r(x) \stackrel{x \rightarrow a}{\rightarrow} 0 \\
+	\lim_{x \rightarrow a} f(x) &= f(a) \quad _\square\\
+\end{align*}
+
+\subsection{Satz}
+Sei \(f : A \subset \Rn \rightarrow \Rm, a \in A\)
+\begin{enumerate}[a.~]
+	\item Ist \(f\) total differenzierbar in \(a\), so gilt
+	\begin{enumerate}[(i)]
+		\item \(f'(a) = J_f(a) \)
+		\item \(f\) ist in jede Richtung \(r\) differenzierbar mit: \( \frac{\partial}{\partial r} f(a) = J_f(a) \cdot r \)
+	\end{enumerate}
+	\item Existieren in \(a\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(a\) total differenzierbar.
+\end{enumerate}
+
+
 
 \end{document}
 
