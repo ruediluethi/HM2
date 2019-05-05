@@ -42,6 +42,11 @@
 	\maketitle
 	
 	\section*{5}
+	
+	Sei \(f(x,y,z) = 4 \cos z \arctan \left( y e^{-x^2} \right) \)	\\
+	
+	\noindent
+	Mit Definition:
 	\begin{align*}
 		&\lim_{h \rightarrow 0} \frac{f(x_0 + h r) - f(x_0)}{h} =\\
 		&\lim_{h \rightarrow 0} \frac{4 \cos\left( \frac{\pi}{4} + h \sqrt{14} \right) \arctan \left( (1+h) e^{-(0+h)^2} \right) - 4 \cos\left( \frac{\pi}{4} \right) \arctan \left( 1 e^{-0^2} \right) }{h} = \\
@@ -55,6 +60,71 @@
 		}{1} \\
 		&-4 \frac{1}{\sqrt{2}}\sqrt{14}\frac{\pi}{4}
 		+ 4 \frac{1}{\sqrt{2}}\frac{1}{2} = -\sqrt{7}\pi + \sqrt{2}
+	\end{align*} \\
+	
+	\noindent
+	Mit Jacobi-Matrix:
+	\begin{align*}
+		\nabla f (x,y,z) &= \left( \begin{array}{c}
+			4 \cos z \frac{1}{1 + \left( ye^{-x^2} \right)^2}	\cdot y e^{-x^2} \cdot -2x = 
+			-8 \cos z \cdot xy \frac{e^{-x^2}}{e^{-2x^2} \left( e^{2x^2} + y^2 \right)} = 
+			- \frac{8 \cos z \cdot xy \cdot e^{x^2}}{e^{2x^2} + y^2} \\
+			4 \cos z \frac{1}{1 + \left( ye^{-x^2} \right)^2} \cdot e^{-x^2} = 
+			4 \cos z \frac{e^{-x^2}}{e^{-2x^2} \left( e^{2x^2} + y^2 \right)} = 
+			\frac{4 \cos z \cdot e^{x^2} }{e^{2x^2} + y^2}\\
+			- 4 \sin z \arctan \left( y e^{-x^2} \right)
+		\end{array} \right) \\
+		\nabla f\left( x_0 \right) &= 
+		\nabla f\left( 0,1,\frac{\pi}{4} \right) = \left( \begin{array}{c}
+			0 \\
+			\frac{\frac{4}{\sqrt{2}}}{1 + 1} = \frac{2}{\sqrt{2}} \\
+			-4 \frac{1}{\sqrt{2}} \frac{\pi}{4} = - \frac{\pi}{\sqrt{2}}
+		\end{array} \right) \\
+		\nabla f\left( x_0 \right)^\top r &= \left( \begin{array}{c}
+			0 \\
+			\frac{2}{\sqrt{2}} \\
+			- \frac{\pi}{\sqrt{2}}
+		\end{array} \right)^\top \left( \begin{array}{c}
+			1 \\ 1 \\ \sqrt{14}
+		\end{array} \right) = 0 + \frac{2}{\sqrt{2}} - \frac{\pi \sqrt{14}}{\sqrt{2}} = \sqrt{2} - \pi \sqrt{7}
+	\end{align*}
+	
+	\section*{6}
+	Sei \(\varepsilon > 0\) beliebig und \(\delta_\varepsilon = \varepsilon\), dann gilt für \(f(x,y)\) stetig:
+	\begin{align*}
+		\left\vert f(x,y) - f(0,0) \right\vert = 
+		\left\vert \frac{\vert x \vert y}{\vert x \vert + y^2} - 0\right\vert \stackrel{\vert x \vert \neq 0}{=} 
+		\left\vert \frac{y}{1 + \frac{y^2}{\vert x \vert}} \right\vert \stackrel{\frac{y^2}{\vert x \vert} \geqslant 0}{\leqslant}
+		\vert y \vert < \delta_\varepsilon = \varepsilon
+	\end{align*}
+	
+	\noindent
+	Sei \(r = (r_x, r_y)^\top\) eine beliebige Richtung:
+	\begin{align*}
+		\frac{\partial}{\partial r} f(x_0) &= 
+		\lim_{h \rightarrow 0} \frac{f(x_0 + h r) - f(x_0)}{h} =
+		\lim_{h \rightarrow 0} \frac{f(0 + h r_x, 0 + h r_y) - 0}{h} \\
+		&= \lim_{h \rightarrow 0} \frac{\frac{\vert h r_x \vert h r_y}{\vert h r_x \vert + \left( h r_y \right)^2}}{h} =
+		\lim_{h \rightarrow 0} \frac{\vert h r_x \vert  r_y}{\vert h r_x \vert + h^2 r_y^2} =
+		\lim_{h \rightarrow 0} \frac{\vert h r_x \vert r_y}{\vert h r_x \vert ( 1 + \underbrace{\frac{h^2 r_y^2}{\vert h r_x \vert}}_{\stackrel{h \rightarrow 0}{\rightarrow} 0})} = r_y
+	\end{align*}
+	
+	\noindent
+	Die Funktion ist nicht total differenzierbar da die Jacobi-Matrix nicht existiert, denn:
+	\begin{align*}
+		\frac{\partial}{\partial x} \frac{\vert x \vert y}{\vert x \vert + y^2} \quad \Rightarrow \quad \textrm{ nicht diff'bar da } \vert x \vert \textrm{ nicht diff'bar in } x = 0 \textrm{ ist}
+	\end{align*}
+	
+	\section*{7}	
+	Sei \(r = (r_x, r_y)^\top\) eine beliebige Richtung:
+	\begin{align*}
+		\frac{\partial}{\partial r} f(x_0) &= 
+		\lim_{h \rightarrow 0} \frac{f(x_0 + h r) - f(x_0)}{h} =
+		\lim_{h \rightarrow 0} \frac{f(0 + h r_x, 0 + h r_y) - 0}{h} \\
+		&= \lim_{h \rightarrow 0} \frac{\frac{h r_y \sin(h^2 r_x r_y)}{h^2 r_x^2 + h^4 r_y^4}}{h} = 
+		\lim_{h \rightarrow 0} \frac{r_y \sin(h^2 r_x r_y)}{h^2 r_x^2 + h^4 r_y^4} \stackrel{\textrm{l'H}}{=} 
+			\lim_{h \rightarrow 0} \frac{r_y \cos( h^2 r_x r_y) 2h r_x r_y}{2 h r_x^2 + 4h^3 r_y^4} \\
+			&= \lim_{h \rightarrow 0} \frac{r_x r_y^2 \overbrace{\cos( h^2 r_x r_y)}^{\stackrel{h \rightarrow 0}{\rightarrow}1}}{r_x^2 + \underbrace{2h^2 r_y^4}_{\stackrel{h \rightarrow 0}{\rightarrow}0}} = \frac{r_y^2}{r_x}
 	\end{align*}
 	
 \end{document}

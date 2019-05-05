@@ -177,6 +177,17 @@ für \(A \subset \Rn\) sind folgenden Aussagen äquivalent:
 	\end{align*}
 \end{enumerate}
 
+\subsubsection{Beispiel}
+Seien \(A_1, A_2\) zwei abgeschlossene Mengen, dann gilt
+\begin{enumerate}[(i)]
+	\item \(A_1 \cup A_2\) ist abgeschlossen \\
+	\textit{Beweisidee}: \(A_1\) ist abgeschlossen \(\Rightarrow A_1^c\) ist offen \\
+	\begin{align*}
+		\left( A_1 \cup A_2 \right)^c \stackrel{\textrm{De Morgan}}{=}& \underbrace{A_1^c}_{\textrm{offen}} \cap \underbrace{A_2^c}_{\textrm{offen}} \textrm{ ist offen wegen Satz 1.1.8} \\
+		\left( \left( A_1 \cup A_2 \right)^c \right)^c =& ~A_1 \cup A_2 \textrm{ ist abgeschlossen}
+	\end{align*}
+\end{enumerate}
+
 \subsection{Satz}
 \begin{enumerate}[(i)]
 	\item \(\varnothing\) und \(\Rn\) sind abgeschlossen.
@@ -235,12 +246,15 @@ Wenn eine Folge \((a_k) = \left( \begin{array}{c} \left( a_1^{(k)} \right) \\ \v
 \end{enumerate}
 
 \subsection{Satz von Bolzano Weierstraß}
-Jede beschränkte Folge im \(\Rn\) besitzt einen konvergente Teilfolge. \\
+Jede beschränkte Folge im \(\Rn\) besitzt einen konvergente Teilfolge.
 
-\noindent
-\textit{Beispiel}: Sei \((a_k) = \left( \begin{array}{c} (x_k) \\ (y_k) \end{array} \right) \) eine beschränkte Folge im \(\R^2\) \\
+\subsubsection*{Beispiele}
+\begin{enumerate}[(i)]
+	\item \(n = 1\): Sei \( A \leqslant (a_k) \leqslant B \quad \forall~ k \). Konstruiert man eine neue Schranke mit \(\frac{A + B}{2} \) so liegen wiederum \(\infty\) viele Elemente in der oberen und/oder unteren Hälfte.
+	\item Sei \((a_k) = \left( \begin{array}{c} (x_k) \\ (y_k) \end{array} \right) \) eine beschränkte Folge im \(\R^2\) \\
 \(\Rightarrow\) \((x_k), (y_k)\) sind beschränkte Folgen \\
 \(\stackrel{\substack{\textrm{Satz von}\\\textrm{Bolzano}\\\textrm{Wierstraß}}}{\Rightarrow} \exists~ (x_k), (y_k)\) sind konvergent
+\end{enumerate}
 
 \subsection{Abschließende Bemerkungen}
 \begin{enumerate}[(i)]
@@ -323,7 +337,7 @@ Sei \(f(x,y) = e^{-x^2 + y^2} = \exp\left( g(x,y) \right) \mitt g(x,y) = x^2 + y
 \end{align*}
 
 \subsection{Definition der Stetigkeit}
-Sei \(f: A \subset \Rn \rightarrow Rm\)
+Sei \(f: A \subset \Rn \rightarrow \Rm\)
 \begin{enumerate}[(i)]
 	\item \(f\) ist \textbf{stetig} in \(a \in A\) wenn gilt:
 	\begin{align*}
