@@ -411,22 +411,22 @@ Sei \(a, r \in \Rn\) mit \(\Vert r \Vert = 1\) (normiert), \(f: \Rn \rightarrow 
 Dabei muss der Fehler \(\tilde{r}(x) = r(x)\Vert x - x_0 \Vert \) \textit{schneller gegen Null gehen als \(x\) gegen \(x_0\)} also muss \(\tilde{r}(x) = \hbox{o}(x - x_0)\) gelten (Landau-Notation: klein-oh).
 
 \subsection{Definition der totalen Differenzierbarkeit}
-Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(a \in A\)
+Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(x_0 \in A\)
 \begin{enumerate}[(i)]
-	\item Die Funktion \(f\) nennt man \textbf{total differenzierbar} bei \(a\), wenn eine Matrix \(A \in \Rmxn\) existiert, mit der sich die Funktion \(f\) in einer \(\varepsilon\)-Umgebung um \(a\) mittels einer Hyperebene approximieren lässt:
+	\item Die Funktion \(f\) nennt man \textbf{total differenzierbar} bei \(x_0\), wenn eine Matrix \(A \in \Rmxn\) existiert, mit der sich die Funktion \(f\) in einer \(\varepsilon\)-Umgebung um \(x_0\) mittels einer Hyperebene approximieren lässt:
 	\begin{align*}
-		f(x) = f(a) + A(x-a) + r(x)\Vert x - a \Vert
+		f(x) = f(x_0) + A(x-x_0) + r(x)\Vert x - x_0 \Vert
 	\end{align*}
-	Dann nennt man die Matrix \(A = f'(a) = \frac{\partial}{\partial x} f(a)\) die total Ableitung von \(f\) in \(a\).
+	Dann nennt man die Matrix \(A = f'(x_0) = \frac{\partial}{\partial x} f(x_0)\) die total Ableitung von \(f\) in \(x_0\).
 	\item Ist \(f = \left( \begin{array}{c} f_1 \\ \vdots \\ f_m \end{array} \right) \) partiell diff'bar, so nennt man die Ableitung \textbf{Jacobi-Matrix}:
 	\begin{align*}
-		f'(a) = \frac{\partial}{\partial x} f(a) = J_f(a) = \left( \begin{array}{ccc}
-			\frac{\partial}{\partial x_1} f_1(a) & \hdots & \frac{\partial}{\partial x_n} f_1(a) \\
+		f'(x_0) = \frac{\partial}{\partial x} f(x_0) = J_f(x_0) = \left( \begin{array}{ccc}
+			\frac{\partial}{\partial x_1} f_1(x_0) & \hdots & \frac{\partial}{\partial x_n} f_1(x_0) \\
 			\vdots & & \vdots \\
-			\frac{\partial}{\partial x_1} f_m(a) & \hdots & \frac{\partial}{\partial x_n} f_m(a) \\
+			\frac{\partial}{\partial x_1} f_m(x_0) & \hdots & \frac{\partial}{\partial x_n} f_m(x_0) \\
 		\end{array} \right) \in \Rmxn
 	\end{align*}
-	\textit{Bemerkung}: Es gilt: \( \exists f'(a) \quad \Rightarrow \quad f'(a) = J_f(a) \), \underline{nicht} aber die Gegenrichtung! Es kann also sein, dass die Jacobi-Matrix \(J_f\) existiert die Funktion aber \underline{nicht total diff'bar} ist.
+	\textit{Bemerkung}: Es gilt: \( \exists f'(x_0) \quad \Rightarrow \quad f'(x_0) = J_f(x_0) \), \underline{nicht} aber die Gegenrichtung! Es kann also sein, dass die Jacobi-Matrix \(J_f\) existiert die Funktion aber \underline{nicht total diff'bar} ist.
 \end{enumerate}
 
 \subsection{Beispiele}
@@ -445,27 +445,120 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(a \in A\)
 \textit{Bemerkung}: Beispiel (ii) und (iii) sind lineare Funktionen.
 
 \subsection{Satz}
-Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(a \in A\) total differenzierbar, so ist \(f\) stetig in \(A\).
+Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total differenzierbar, so ist \(f\) stetig in \(A\).
 \textit{Beweis}:
 \begin{align*}
-	f(x) &= \underbrace{f(a)}_{\stackrel{x \rightarrow a}{\rightarrow} f(a)} + 
-	\underbrace{A \underbrace{(x-a)}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rn}}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rn} + 
-	\underbrace{r(x)}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \Rm} 
-	\underbrace{\Vert x - a \Vert}_{\stackrel{x \rightarrow a}{\rightarrow} 0 \in \R}
-	\qquad \mitt r(x) \stackrel{x \rightarrow a}{\rightarrow} 0 \\
-	\lim_{x \rightarrow a} f(x) &= f(a) \quad _\square\\
+	f(x) &= \underbrace{f(x_0)}_{\stackrel{x \rightarrow x_0}{\rightarrow} f(x_0)} + 
+	\underbrace{A \underbrace{(x-x_0)}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rn}}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rn} + 
+	\underbrace{r(x)}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rm} 
+	\underbrace{\Vert x - x_0 \Vert}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \R}
+	\qquad \mitt r(x) \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
+	\lim_{x \rightarrow a} f(x) &= f(x_0) \quad _\square\\
 \end{align*}
 
 \subsection{Satz}
-Sei \(f : A \subset \Rn \rightarrow \Rm, a \in A\)
+Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
 \begin{enumerate}[a.~]
-	\item Ist \(f\) total differenzierbar in \(a\), so gilt
+	\item Ist \(f\) total differenzierbar in \(x_0\), so gilt
 	\begin{enumerate}[(i)]
-		\item \(f'(a) = J_f(a) \)
-		\item \(f\) ist in jede Richtung \(r\) differenzierbar mit: \( \frac{\partial}{\partial r} f(a) = J_f(a) \cdot r \)
+		\item \(f'(x_0) = J_f(x_0) \)
+		\item \(f\) ist in jede Richtung \(r\) differenzierbar mit: \( \frac{\partial}{\partial r} f(x_0) = J_f(x_0) \cdot r \)
 	\end{enumerate}
-	\item Existieren in \(a\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(a\) total differenzierbar.
+	\item Existieren in \(x_0\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(x_0\) total differenzierbar.
 \end{enumerate}
+
+\noindent
+\textit{Beweis zu a}: ...
+
+\noindent
+\textit{Beweis zu b}: ...
+
+\subsection{Bemerkung}
+Sei \(r\) eine Richtung mit \(\Vert r \Vert = 1\) und \(x = x_0 + r\), dann gilt:
+\begin{align*}
+	f(x) &\approx f(x_0) + \nabla f(x_0)^\top \cdot r \\
+	&\Rightarrow \textrm{1. Fall}: \quad r, \nabla f(x_0) \textrm{ zeigen in dieselbe Richtung}: \\
+	&\qquad f(x) - f(x_0) \approx \Vert \nabla f(x_0) \Vert \Vert r \Vert = \Vert \nabla f(x_0) \Vert > 0 \\
+	&\Rightarrow \textrm{2. Fall}: \quad r, \nabla f(x_0) \textrm{ zeigen in entgegengesetzte Richtungen}: \\
+	&\qquad f(x) - f(x_0) \approx - \Vert \nabla f(x_0) \Vert < 0
+\end{align*}
+In allen Fällen gilt Näherungsweise:
+\begin{align*}
+	- \Vert \nabla f(x_0) \Vert  < \nabla f(x_0)^\top r \leqslant \Vert \nabla f(x_0) \Vert
+\end{align*}
+\textit{Fazit}: Beim Reinzoomen sind die Höhenlinien parallel. Der Gradient zeigt in Richtung des steilsten Anstieges.
+
+\subsection{Satz zur Kettenregel}
+Ist \(f: A \subset \Rn \rightarrow B \subset \Rm\) differenzierbar in \(a \in A\) und \(g: B \subset \Rm \rightarrow \R^l\) differenzierbar in \(b \in B\), so gilt:
+\begin{align*}
+	(g \circ f)'(a) = g'\left(\underbrace{f(a)}_{=b}\right) f'(a) = 
+	\underbrace{ J_g (b) }_{\in \R^{l \times m}}
+	\underbrace{ J_f (a) }_{\in \R^{m \times n}}
+\end{align*}
+
+\section{Lokale Extremstellen und Mittelwertsätze}
+
+In einer Dimension gilt:
+\subsubsection*{1. Mittelwertsatz}
+Ist \(f\) differenzierbar auf \((a,b)\) und stetig auf \([a,b]\), so gilt:
+\begin{align*}
+	\exists~ \xi \in (a,b) \mitt f'(\xi) = \frac{f(b) - f(a)}{b - a}
+\end{align*}
+
+\subsubsection*{Satz von Rolle}
+Ist \(f\) differenzierbar auf \((a,b)\) und stetig auf \([a,b]\) und gilt \(f(a) = f(b)\), so gilt:
+\begin{align*}
+	\exists~ \xi \in (a,b) \mitt f'(\xi) = 0
+\end{align*}
+
+\subsection{Definition lokale/globale Extremstellen}
+\begin{enumerate}[a.~]
+	\item Eine Funktion \(f: A \subset \Rn \rightarrow \R \) (Skalarfeld) hat bei \(x_0 \in A\) ein lokales Minimum (Maximum) wenn in einer Umgebung \(U = U_\varepsilon (x_0) \cap A\) für \( \varepsilon > 0\) (offen bezüglich \(A\)) von \(x_0\) gilt:
+	\begin{align*}
+		f(x_0) \stackrel{(\geqslant)}{\leqslant} f(x) \quad \forall x \in U
+	\end{align*}	 
+	Ist bei \(x_0\) ein lokales Minimum (Maximum) dann nennt man \(x_0\) eine lokale Extremstelle. 
+	\item \(f\) besitzt in \(x_0\) ein globales Minimum (Maximum), wenn gilt:
+	\begin{align*}
+		f(x_0) \stackrel{(\geqslant)}{\leqslant} f(x) \quad \forall x \in A
+	\end{align*}
+\end{enumerate}
+
+\subsection{Satz zur notwendigen Bedingung für eine lokale Extremstelle}
+Besitzt \(f: \mathring{A} \subset \Rn \rightarrow \R \) bei \(x_0 \in A\) eine lokale Extremstelle und \(f\) ist partiell differenzierbar, dann ist
+\begin{align*}
+	\nabla f(x_0) = 0
+\end{align*}
+\textit{Bemerkung}: Der Rand ist ausgeschlossen da \(\mathring{A}\) (alle inneren Punkte) gilt.\\
+Es gilt:
+\begin{align*}
+	x_0 \textrm{ ist eine lokale Extremstelle}
+	\quad \stackrel{\not\Leftarrow}{\Rightarrow} \quad
+	f'(x_0) = 0
+\end{align*}
+Aus \(f'(x_0)\) folgt nicht direkt die Extremstelle, denn Sattelpunkte sind keine Extremstellen. \\
+
+\noindent
+\textit{Beweis} ...
+
+\subsection{Definition des kritischen Punktes}
+
+Ein \(x_0 \in \Rn \) mit \(\nabla f(x_0) = 0\) heißt \textbf{kritischer} oder stationärer Punkt.  
+
+\subsection{Mittelwertsatz}
+Sei \(f: G \subset \Rn \rightarrow \R\) differenzierbar und sei \(G\) offen und enthalte die Menge \(\overline{a,b} = \left\{ a,b \in G \mitt  a + t(b-a) : t \in [0,1] \right\}\) (\(a,b\) können durch eine Gerade verbunden werden). Dann:
+\begin{align*}
+	\exists~ \xi \in (0,1)\quad\mitt\quad f(b) = f(a) + \nabla f(a + \xi(b-a))^\top (b-a) 
+\end{align*}
+\textit{Bemerkung}:
+\begin{align*}
+	& h(t) = a + t(b-a) \quad
+	g(t) = f(h(t)) \quad (\textrm{differenzierbar}) \\
+	\Rightarrow \quad & \exists~ \xi \in (0,1)\quad\mitt\quad g'(\xi) = \frac{g(1) - g(0)}{1-0}
+\end{align*}
+\textit{Beweis}: ...
+
+\subsection{Definition eines Gebiets}
 
 
 
