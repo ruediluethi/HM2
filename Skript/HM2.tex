@@ -512,7 +512,7 @@ Ist \(f\) differenzierbar auf \((a,b)\) und stetig auf \([a,b]\) und gilt \(f(a)
 \end{align*}
 
 \subsection{Definition lokale/globale Extremstellen}
-\begin{enumerate}[a.~]
+\begin{enumerate}[(i)]
 	\item Eine Funktion \(f: A \subset \Rn \rightarrow \R \) (Skalarfeld) hat bei \(x_0 \in A\) ein lokales Minimum (Maximum) wenn in einer Umgebung \(U = U_\varepsilon (x_0) \cap A\) für \( \varepsilon > 0\) (offen bezüglich \(A\)) von \(x_0\) gilt:
 	\begin{align*}
 		f(x_0) \stackrel{(\geqslant)}{\leqslant} f(x) \quad \forall x \in U
@@ -560,7 +560,102 @@ Sei \(f: G \subset \Rn \rightarrow \R\) differenzierbar und sei \(G\) offen und 
 
 \subsection{Definition eines Gebiets}
 
+\begin{enumerate}[(i)]
+	\item Ein Menge, die wie folgt konstruiert werden kann, heißt \textbf{Polygonzug}:
+	\begin{align*}
+		\overline{ a_0, ..., a_k} = \bigcup_{j=1}^k \overline{a_{j-1},a_j} \quad\mitt\quad a_0, ..., a_k \in \Rn
+	\end{align*}	
+	\item Eine Menge \(M \subset \Rn\) heißt \textbf{kurvenweise zusammenhängend} wenn zu beliebigen \(a,b \in M\) eine stetige Funktion \(\gamma : [0,1] \rightarrow M\) mit \(\gamma(0) = a, \gamma(1) = b\) existiert.
+	\item Eine Menge \(G \subset \Rn\) heißt \textbf{Gebiet}, wenn \(G\) offen und kurvenweise zusammenhängend ist.
+\end{enumerate}
 
+
+\subsection{Bemerkungen zu Gebieten}
+
+\begin{enumerate}[(i)]
+	\item Ein Gebiet \(G\) entspricht einem offenen Intervall \( (a,b) \subset \R\) im Eindimensionalen: Der Rand ist nicht dabei, es hat keine Inseln.
+	\item Man kann zeigen, dass es reicht, wenn \(a,b \in G\) mit einem Polygonzug verbunden werden kann.
+\end{enumerate}
+	
+\subsection{Satz}
+
+Sei \(G \subset \Rn\) ein Gebiet, \(G \neq \varnothing\), und \(f : G \rightarrow \R\) differenzierbar, dann gilt:
+\begin{align*}
+	f(x) = \textrm{konst.} \quad\Leftrightarrow\quad \nabla f(x) = 0 \quad \forall~ x \in G
+\end{align*}
+
+\textit{Beweis}: ...
+
+
+\subsection{Definition partieller Ableitungen \(r\)'ter Ordnung}
+
+Für \(f : A \subset \Rn \rightarrow \Rm \) definiert man (wenn diese auch existieren) induktiv für \(x_0 \in A\) und \(k_1, ..., k_r \in \left\{ 1, ..., n \right\} \) die partiellen Ableitungen \(r\)'ter Ordnung als:
+\begin{align*}
+	\frac{\partial^n}{\partial x_{k_1} \hdots \partial x_{k_r} } f(x_0) = f_{x_{k_1} \hdots x_{k_r}} = 
+	\left\{ \begin{array}{ll}
+		f(x_0) & r = 0 \\
+		\frac{\partial}{\partial x_{k_1}} f(x_0) & r = 1 \\
+		\frac{\partial}{\partial x_{k_1}} \left( \frac{\partial^{r-1}}{\partial x_{k_2} \hdots \partial x_{k_r}} f(x_0) \right) & r > 1
+	\end{array} \right.
+\end{align*}
+Existieren alle Ableitungen \(r\)'ter Ordnung und sind diese zudem stetig, so nennt man die Funktion \(f\) \(r\)-mal stetig differenzierbar: \(f \in C^r(A;\Rm)\).
+
+\subsection{Definition der Hessematrix}
+Ist \(f : A \subset \Rn \rightarrow \R\) 2-mal stetig differenzierbar bei \(x_0 \in A\), dann ist die \textbf{Hessematrix} wie folgt definiert:
+\begin{align*}
+	H_f(x_0) = \left( \begin{array}{ccc}
+		f_{x_1,x_1} (x_0) & \hdots & f_{x_1,x_n} (x_0) \\
+		\vdots & & \vdots \\
+		f_{x_m,x_1} (x_0) & \hdots & f_{x_m,x_n} (x_0)
+	\end{array} \right)
+\end{align*}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \begin{align*}
+		f(x,y) = 2xy^3 + y \log x
+	\end{align*}
+	\item \begin{align*}
+		f(x,y) = \left\{ \begin{array}{ll}
+			xy \frac{x^2 - y^2}{x^2 + y^2} & (x,y) \neq (0,0) \\
+			0 & (x,y) = (0,0)
+		\end{array} \right.
+	\end{align*}
+	\(\Rightarrow\) Hessematrix ist nicht symmetrisch.
+	\item \(A \in \Rnxn, b \in \Rn, c \in \R, Q : \Rn \rightarrow \R\)
+	\begin{align*}
+		Q(x) &= x^\top A x + b^\top x + c \\
+		\nabla Q(x) &= \left( A + A^\top \right)x + b \quad \overbrace{( =  2Ax + b)}^{\textrm{wenn }A\textrm{ sym.}} \\
+		H_Q(x) &= A + A^\top \quad \underbrace{( = 2A)}_{\textrm{wenn }A\textrm{ sym.}}
+	\end{align*}
+	\(Q\) wird eine quadratische Funktion genannt.
+\end{enumerate}
+
+\subsection{Satz von Schwarz}
+Ist \(f : A \subset \Rn \rightarrow \Rn\) in \(x_0\) 2-mal stetig partielle differenzierbar (\(f \in C^2(A)\)), dann ist \(H_f(x_0) \quad \forall~ x_0 \in A\) symmetrisch und es gilt:
+\begin{align*}
+	f_{x_l, x_k} (x_0) = \frac{\partial}{\partial x_l \partial x_k} f(x_0) = \frac{\partial}{\partial x_k \partial x_l} f(x_0) = f_{x_k, x_l} (x_0) \quad \forall~ l,k \in \{ 1, ..., k \}
+\end{align*}
+
+\subsection{Satz von Taylor mit quadratischem Restglied}
+Seien \(a,b \in G \subset \Rn, f \in C^2(G), G\) ein Gebiet, dann:
+\begin{align*}
+	\exists~ \xi \in \overline{a,b} \quad\mitt\quad f(b) = f(a) + \nabla f(a)^\top (b-a) + \frac{1}{2} (b-a)^\top H_f(\xi)(b-a)
+\end{align*}
+\textit{Beweis}: Definiere \(g(t) = f(h(t))\) mit \(h(t) = a + t(b-a) \quad\Rightarrow\quad g(0) = f(a), g(1) = f(b)\). Bei Funktionen mit einem Skalar, gilt der eindimensionale Taylor mit einer Zwischenstelle \(z \in [0,1]\):
+\begin{align*}
+	\Rightarrow \quad \underbrace{g(1)}_{f(b)} &= \underbrace{g(0)}_{f(a)} + 
+	\underbrace{g'(0)(1-0)}_{\substack{
+		g'(t) = \frac{d}{dt} f(h(t)) \\
+		= f'(h(t))h'(t) \\
+		= \nabla f(a + t(b-a))^\top (b-a) \\
+		= (b-a)^\top \nabla f(a + t(b-a)) 
+	}} + 
+	\underbrace{\frac{1}{2} g''(z)(1-0)^2}_{
+		g''(t) = ... = (b-a)^\top H_f(a + t(b-a))(b-a)
+	} \\
+	&= f(a) + \nabla f(a)^\top (b-a) + \frac{1}{2} (b-a)^\top H_f(\underbrace{\xi}_{\xi = a + t(b-a)})(b-a)
+\end{align*}
 
 \end{document}
 
