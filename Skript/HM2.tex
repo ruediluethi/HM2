@@ -12,12 +12,14 @@
   right=3cm,
   top=3cm,
   bottom=3cm,
-  bindingoffset=5mm
+  bindingoffset=0mm
 }
 \usepackage{enumerate}
 \usepackage[T1]{fontenc} 
 \usepackage{ucs}
 \usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{mdframed}
 
 \newcommand {\Q}	{\mathbb{Q}}
 \newcommand {\R}	{\mathbb{R}}
@@ -35,6 +37,19 @@
 \newcommand{\Onot}		{\mathcal{O}}
 \newcommand{\diag}	{\textrm{diag}}
 \newcommand{\mitt}	{\textrm{ mit }}
+\newcommand{\fum}	{f^{-1}}
+
+%\newcommand{\Beweis}		{\noindent\colorbox{lightgray}{\textcolor{white}{\textbf{Beweis:}}} \color{gray}}
+%\newcommand{\OED}	{\color{black}}
+\newcommand{\Beweis}[1][Beweis]
+{\begin{mdframed}[backgroundcolor=gray!10,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
+\newcommand{\OED}	{\end{mdframed}}
+
+\newcommand{\Beispiel}[1][Anwendungsbeispiel]
+{\begin{mdframed}[backgroundcolor=green!10,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
+\newcommand{\Beispielende}	{\end{mdframed}}
+
+\newcommand{\Bemerkung}	{\noindent\textit{Bemerkung}: }
 
 \begin{document}
 
@@ -51,7 +66,7 @@
 	\textrm{ gilt }  \lim_{n \rightarrow \infty} f(x_n) = f(x_0) \\
 	&\quad \Leftrightarrow \quad \forall~ \varepsilon > 0 \quad \exists~ \delta \quad \textrm{mit} \quad \vert f(x) - f(x_0) \vert < \varepsilon \quad \forall~ x \in \left( x_0 - \delta, x_0 + \delta \right)
 \end{align*}
-\textit{Bemerkung}: Der Grenzwert von Funktionen ist über den Grenzwert von Folgen definiert und kann auch nur so überprüft werden.
+\Bemerkung Der Grenzwert von Funktionen ist über den Grenzwert von Folgen definiert und kann auch nur so überprüft werden.
 
 \section{Zwei Sonderfälle}
 \subsection*{Skalarfeld}
@@ -107,7 +122,7 @@ Sei \(x_0 \in \Rn\) und \(\varepsilon > 0\), dann gilt für die \(\varepsilon\)-
 \begin{align*}
 	U_\varepsilon(x_0) := \left\{ x \in \Rn : \Vert x - x_0 \Vert < \varepsilon \right\}
 \end{align*}
-\textit{Bemerkung}: Die punktierte \(\varepsilon\)-Umgebung ist definiert als: \( \dot{U}_\varepsilon = U_\varepsilon (a) \setminus \left\{ a \right\} \)
+\Bemerkung Die punktierte \(\varepsilon\)-Umgebung ist definiert als: \( \dot{U}_\varepsilon = U_\varepsilon (a) \setminus \left\{ a \right\} \)
 
 \subsection{Topologische Grundbegriffe}
 Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
@@ -181,11 +196,12 @@ für \(A \subset \Rn\) sind folgenden Aussagen äquivalent:
 Seien \(A_1, A_2\) zwei abgeschlossene Mengen, dann gilt
 \begin{enumerate}[(i)]
 	\item \(A_1 \cup A_2\) ist abgeschlossen \\
-	\textit{Beweisidee}: \(A_1\) ist abgeschlossen \(\Rightarrow A_1^c\) ist offen \\
+	\Beweis[Beweisidee] \(A_1\) ist abgeschlossen \(\Rightarrow A_1^c\) ist offen \\
 	\begin{align*}
 		\left( A_1 \cup A_2 \right)^c \stackrel{\textrm{De Morgan}}{=}& \underbrace{A_1^c}_{\textrm{offen}} \cap \underbrace{A_2^c}_{\textrm{offen}} \textrm{ ist offen wegen Satz 1.1.8} \\
 		\left( \left( A_1 \cup A_2 \right)^c \right)^c =& ~A_1 \cup A_2 \textrm{ ist abgeschlossen}
 	\end{align*}
+	\OED
 \end{enumerate}
 
 \subsection{Satz}
@@ -286,11 +302,11 @@ Sei \(f : A \subset \Rn \rightarrow \Rm \) und \(a \in \overline{A}\). Ein \(b \
 \textit{Bemerkung}: Die Funktion \(f\) muss in \(a\) nicht stetig sein, so kann z.b. gelten: \\
 \( \lim_{x \rightarrow a} f(x) = b \neq f(a) \)
 
-\subsection{Bemerkung}
+\subsection{Korollar}
 Sei \(f : A \subset \Rn \rightarrow \Rm, a \in \overline{A}, b \in \Rm\) dann sind folgende Aussagen äquivalent:
 \begin{enumerate}[(i)]
-	\item \( f(x) \stackrel{x \rightarrow a} b \)
-	\item \( \Vert f(x) - b \Vert \stackrel{x \rightarrow a} 0 \in \R^1 \) (Eine Norm bildet immer auf ein Skalar ab)
+	\item \( f(x) \stackrel{x \rightarrow a}{\rightarrow} b \)
+	\item \( \Vert f(x) - b \Vert \stackrel{x \rightarrow a}{\rightarrow} 0 \in \R^1 \) (Eine Norm bildet immer auf ein Skalar ab)
 	\item \( f_1(x) \stackrel{x \rightarrow a}{\rightarrow} b_1, ..., f_m(x) \stackrel{x \rightarrow a}{\rightarrow} b_m \)
 \end{enumerate}
 Zusätzlich gilt das \textbf{Cauchy-Kriterium}:
@@ -445,8 +461,9 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(x_0 \in A\)
 \textit{Bemerkung}: Beispiel (ii) und (iii) sind lineare Funktionen.
 
 \subsection{Satz}
-Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total differenzierbar, so ist \(f\) stetig in \(A\).
-\textit{Beweis}:
+Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total differenzierbar, so ist \(f\) stetig in \(A\). \\
+
+\Beweis
 \begin{align*}
 	f(x) &= \underbrace{f(x_0)}_{\stackrel{x \rightarrow x_0}{\rightarrow} f(x_0)} + 
 	\underbrace{A \underbrace{(x-x_0)}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rn}}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rn} + 
@@ -455,6 +472,7 @@ Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total dif
 	\qquad \mitt r(x) \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
 	\lim_{x \rightarrow a} f(x) &= f(x_0) \quad _\square\\
 \end{align*}
+\OED
 
 \subsection{Satz}
 Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
@@ -464,14 +482,107 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
 		\item \(f'(x_0) = J_f(x_0) \)
 		\item \(f\) ist in jede Richtung \(r\) differenzierbar mit: \( \frac{\partial}{\partial r} f(x_0) = J_f(x_0) \cdot r \)
 	\end{enumerate}
-	\item Existieren in \(x_0\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(x_0\) total differenzierbar.
+	\Beweis
+	Es ist zu zeigen, dass
+	wenn \(f\) differenzierbar in \(x_0\) die Ableitung gerade die Form \(\frac{\partial}{\partial r} f(x_0) = J_f(x_0) \cdot r \) besitzt. Für diese Ableitung muss folgendes gelten:
+	\begin{align*}
+		&f(x) = f(x_0) + A(x-x_0) + \tilde{r}(x) \mitt A = f'(x_0)
+		\textrm{ und } \tilde{r} \in \hbox{o}(\Vert x - x_0 \Vert) \Rightarrow \frac{\tilde{r}(x)}{\Vert x - x_0 \Vert} \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
+		&\stackrel{f(x) = f(x_0 + r \cdot h}{\Leftrightarrow} \quad
+		f(x_0 + r \cdot h) - f(x_0) = A \cdot r \cdot h + \tilde{r}(x) = f'(x_0) r h + \tilde{r}(x)
+	\end{align*}		
+	also muss folgendes gezeigt werden:
+	\begin{align*}
+		&\left\Vert 
+		\underbrace{\frac{f(x_0 + r \cdot h) - f(x_0)}{h}}_{\textrm{Diff'Quotient für }\frac{\partial f}{\partial r}} - 
+		\underbrace{f'(x_0)\cdot r}_{\substack{\textrm{Grenzwert-}\\\textrm{kandidat}}} \right\Vert \stackrel{h \rightarrow 0}{\rightarrow} 0 \\
+		&\left\Vert \frac{f(x_0 + r \cdot h) - f(x_0)}{h} - f'(x_0) \cdot r \right\Vert =
+		\left\Vert
+		\frac{f'(x_0) r h + \tilde{r}(x)}{h} - f'(x_0)r
+		\right\Vert = \\
+		&\left\Vert
+		\frac{f'(x_0)r \not{h}}{\not{h}}
+		+ \frac{\tilde{r}(x)}{h} - 
+		f'(x_0)r
+		\right\Vert = 
+		\left\Vert \frac{\tilde{r}(x)}{h} \right\Vert =
+		\left\Vert \frac{\tilde{r}(x)}{x - x_0} \right\Vert
+		\stackrel{x \rightarrow x_0}{\rightarrow} 0
+	\end{align*}
+	Ist \(r = e_k\) so erhält man gerade eine Spalte der Jacobi-Matrix.
+	\OED
+	
+	\item Existieren in \(x_0\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(x_0\) total differenzierbar. \\
+	
+	\Beweis
+	Für den Fall \(n=2, m=1\) muss folgendes gezeigt werden:
+	\begin{align*}
+		&\exists~ \nabla f(x_0) \textrm{ und } \tilde{r}(x) \mitt 
+		f(x) = f(x_0) + \nabla f(x_0)^\top (x-x_0) + \tilde{r}(x) \\
+		&\textrm{oder } 
+		\left\Vert
+			\frac{f(x) - f(x_0)}{x - x_0} - \nabla f(x_0)
+		\right\Vert =
+		\frac{\left\Vert f(x) - f(x_0) - \nabla f(x_0)(x-x_0)\right\Vert}{\left\Vert x - x_0 \right\Vert}
+		\stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
+	\end{align*}
+	Sei \(x = \left(\begin{array}{c} x_1 \\ x_2 \end{array} \right)\) und sei \(x_0 = a = \left(\begin{array}{c} a_1 \\ a_2 \end{array} \right)\). \\
+	Nebenrechnung: Definition zweier Hilfsfunktionen \(g_1, g_2\):
+	\begin{align*}
+		&\textrm{Sei } g_1(t) = f(t,x_2) \quad g_2:\R \rightarrow \R \\
+		\stackrel{\textrm{MWS}}{\Rightarrow}\quad& \exists~ \xi_1 \in (a_1, x_1) \mitt g_1'(\xi_1) = \frac{g_1(x_1) - g_1(a_1)}{x_1 - a_1} \\
+		&= \frac{\partial}{\partial x_1} f(\xi_1, x_2) = \frac{f(x_1, x_2) - f(a_1, x_2)}{x_1 - a_1} \\
+		\Leftrightarrow\quad& f(x_1,x_2) - f(a_1,x_2) = \frac{\partial}{\partial x_1} f(\xi_1,x_2) (x_1 - a_1) \\
+		\textrm{analog gilt für}\quad& g_2(t) = f(a_1, t) \quad g_2 : \R \rightarrow \R \\
+		& f(a_1, a_2) - f(a_1, x_2) = \frac{\partial}{\partial x_2} f(a_1, \xi_2) (x_2 - a_2)
+	\end{align*}	
+	Damit gilt:
+	\begin{align*}
+		f(x) - f(a) &= f(x_1,x_2) - f(a_1,a_2) = 
+		f(x_1, x_2) \underbrace{- f(a_1, x_2) + f(a_1, x_2)}_{=0} - f(a_1, a_2) \\
+		&\stackrel{\substack{\textrm{mit Resultat}\\
+		\textrm{aus Neben-}\\
+		\textrm{rechnung}}}{=} \frac{\partial}{\partial x_1} f(\xi_1, x_2)(x_1 - a_1) + 
+		\frac{\partial}{\partial x_2} f(a_1, \xi_2)(x_2 - a_2) \\
+		&\qquad= \left(\begin{array}{c}
+			f_{x_1}(\xi_1, x_2) \\
+			f_{x_2}(a_1, \xi_2)
+		\end{array} \right)^\top \left( \begin{array}{c}
+			x_1 - a_1 \\
+			x_2 - a_2
+		\end{array} \right) = \left(\begin{array}{c}
+			f_{x_1}(\xi_1, x_2) \\
+			f_{x_2}(a_1, \xi_2)
+		\end{array} \right)^\top (x - a) \\
+	\end{align*}
+	Für \(x \rightarrow a\) gilt:
+	\begin{align*}
+		x_1 \rightarrow a_1 \quad x_2 \rightarrow a_2 \\
+		\xi_1 \rightarrow a_1 \quad \xi_2 \rightarrow a_2
+	\end{align*}
+	da \(f_{x_1}, f_{x_2}\) \underline{stetig}, folgt:
+	\begin{align*}
+		f_{x_1} (\xi_1, x_2) &\rightarrow f_{x_1} (a_1, a_2) \\
+		f_{x_2} (a_1, \xi_2) &\rightarrow f_{x_2} (a_1, a_2) \\
+		\Rightarrow \left(\begin{array}{c}
+			f_{x_1}(\xi_1, x_2) \\
+			f_{x_2}(a_1, \xi_2)
+		\end{array} \right)^\top &\rightarrow \nabla f (a_1, a_2) = \nabla f(x_0)
+	\end{align*}
+	und es gilt:
+	\begin{align*}
+		\frac{\left\Vert f(x) - f(x_0) - 
+		\overbrace{\left(\begin{array}{c}
+			f_{x_1}(\xi_1, x_2) \\
+			f_{x_2}(a_1, \xi_2)
+		\end{array} \right)^\top}^{\stackrel{x \rightarrow x_0}{\rightarrow} \nabla f(x_0)}
+		(x-x_0)\right\Vert}{\left\Vert x - x_0 \right\Vert}
+		\stackrel{x \rightarrow x_0}{\rightarrow} 0
+	\end{align*}
+	\OED
+	
 \end{enumerate}
 
-\noindent
-\textit{Beweis zu a}: ...
-
-\noindent
-\textit{Beweis zu b}: ...
 
 \subsection{Bemerkung}
 Sei \(r\) eine Richtung mit \(\Vert r \Vert = 1\) und \(x = x_0 + r\), dann gilt:
@@ -495,6 +606,45 @@ Ist \(f: A \subset \Rn \rightarrow B \subset \Rm\) differenzierbar in \(a \in A\
 	\underbrace{ J_g (b) }_{\in \R^{l \times m}}
 	\underbrace{ J_f (a) }_{\in \R^{m \times n}}
 \end{align*}
+
+\Beispiel[Beispiel aus der Strömungsmechanik]
+Die Funktion \(f: \R^4 \rightarrow \R, f = f(x,y,z,t) \) beschreibe die Eigenschaften eines Teilchens in einer Strömung. Dabei kann die Bewegung der Position im Raum \(x,y,z\) als Abhängigkeit von der Zeit beschrieben werden. Dazu definieren wir den Weg \(\gamma(t)\):
+\begin{align*}
+	\gamma: \R \rightarrow \R^4, \quad
+	\gamma(t) = \left( \begin{array}{c}
+		x(t) \\
+		y(t) \\
+		z(t) \\
+		t
+	\end{array} \right) \quad\mitt\quad
+	\frac{d \gamma}{dt} = \left( \begin{array}{c}
+		\frac{d x}{dt} \\
+		\frac{d y}{dt} \\
+		\frac{d z}{dt} \\
+		1
+	\end{array} \right)
+\end{align*}
+Nun leiten wir die verkettete Funktion \(\hat{f}(t) = (f \circ \gamma)(t) = f(\gamma(t))\) nach der Zeit \(t\) ab:
+\begin{align*}
+	\frac{d\hat{f}}{dt} &= \left( \hat{f}(\gamma(t)) \right)' = f'(h(t)) \gamma'(t) = \nabla f \cdot \frac{d\gamma}{dt} \\
+	&= \left( \begin{array}{c}
+		\frac{\partial f}{\partial x} \\
+		\frac{\partial f}{\partial y} \\
+		\frac{\partial f}{\partial z}
+	\end{array} \right)^\top 
+	\left( \begin{array}{c}
+		\frac{d x}{dt} \\
+		\frac{d y}{dt} \\
+		\frac{d z}{dt} \\
+		1
+	\end{array} \right) \\
+	&= \frac{\partial f}{\partial x} \underbrace{\frac{dx}{dt}}_{u}
+	+ \frac{\partial f}{\partial y} \underbrace{\frac{dy}{dt}}_{v}
+	+ \frac{\partial f}{\partial z} \underbrace{\frac{dz}{dt}}_{w}
+	+ \frac{\partial f}{\partial t}
+\end{align*}
+Dabei beschreibt der Vektor \(\left(\begin{array}{c} u \\ v \\ w \end{array}\right) \) die Geschwindigkeit im Raum.
+\Beispielende
 
 \section{Lokale Extremstellen und Mittelwertsätze}
 
@@ -529,8 +679,8 @@ Besitzt \(f: \mathring{A} \subset \Rn \rightarrow \R \) bei \(x_0 \in A\) eine l
 \begin{align*}
 	\nabla f(x_0) = 0
 \end{align*}
-\textit{Bemerkung}: Der Rand ist ausgeschlossen da \(\mathring{A}\) (alle inneren Punkte) gilt.\\
-Es gilt:
+\textit{Bemerkung}: Der Rand ist ausgeschlossen da \(\mathring{A}\) (alle inneren Punkte) in der Definition verwendet wurde.\\
+Auch gilt:
 \begin{align*}
 	x_0 \textrm{ ist eine lokale Extremstelle}
 	\quad \stackrel{\not\Leftarrow}{\Rightarrow} \quad
@@ -539,7 +689,8 @@ Es gilt:
 Aus \(f'(x_0)\) folgt nicht direkt die Extremstelle, denn Sattelpunkte sind keine Extremstellen. \\
 
 \noindent
-\textit{Beweis} ...
+\Beweis ...
+\OED
 
 \subsection{Definition des kritischen Punktes}
 
@@ -550,13 +701,21 @@ Sei \(f: G \subset \Rn \rightarrow \R\) differenzierbar und sei \(G\) offen und 
 \begin{align*}
 	\exists~ \xi \in (0,1)\quad\mitt\quad f(b) = f(a) + \nabla f(a + \xi(b-a))^\top (b-a) 
 \end{align*}
-\textit{Bemerkung}:
+\Bemerkung
 \begin{align*}
 	& h(t) = a + t(b-a) \quad
 	g(t) = f(h(t)) \quad (\textrm{differenzierbar}) \\
 	\Rightarrow \quad & \exists~ \xi \in (0,1)\quad\mitt\quad g'(\xi) = \frac{g(1) - g(0)}{1-0}
 \end{align*}
-\textit{Beweis}: ...
+\Beweis Definiere \(h(t) = a + t(b-a)\) und \(g: [0,1] \rightarrow \R, g(t) = f(h(t))\) differenzierbar, damit gilt:
+\begin{align*}
+	\exists~ \xi \in (0,1) \quad\mitt\quad g'(\xi) &= \frac{g(1) - g(0)}{1 - 0} = g(1) - g(0) = f(a) - f(b) \\
+	g'(\xi) &= \frac{d}{dt} g(t) \vert_{t = \xi} = \frac{d}{dt} f(h(t)) \vert_{t = \xi} \\
+	&\stackrel{\substack{\textrm{Ketten-}\\\textrm{regel}}}{=} f'(h(t))h'(t) \vert_{t = \xi} \\
+	&= \nabla f( a + \xi(b-a) )^\top (b-a) = f(a) - f(b) \\
+	\Leftrightarrow \quad& f(b) = f(a) + \nabla f( a + \xi(b-a) )^\top (b-a)
+\end{align*}
+\OED
 
 \subsection{Definition eines Gebiets}
 
@@ -584,8 +743,8 @@ Sei \(G \subset \Rn\) ein Gebiet, \(G \neq \varnothing\), und \(f : G \rightarro
 	f(x) = \textrm{konst.} \quad\Leftrightarrow\quad \nabla f(x) = 0 \quad \forall~ x \in G
 \end{align*}
 
-\textit{Beweis}: ...
-
+\Beweis ...
+\OED
 
 \subsection{Definition partieller Ableitungen \(r\)'ter Ordnung}
 
@@ -642,7 +801,9 @@ Seien \(a,b \in G \subset \Rn, f \in C^2(G), G\) ein Gebiet, dann:
 \begin{align*}
 	\exists~ \xi \in \overline{a,b} \quad\mitt\quad f(b) = f(a) + \nabla f(a)^\top (b-a) + \frac{1}{2} (b-a)^\top H_f(\xi)(b-a)
 \end{align*}
-\textit{Beweis}: Definiere \(g(t) = f(h(t))\) mit \(h(t) = a + t(b-a) \quad\Rightarrow\quad g(0) = f(a), g(1) = f(b)\). Bei Funktionen mit einem Skalar, gilt der eindimensionale Taylor mit einer Zwischenstelle \(z \in [0,1]\):
+
+\Beweis
+Definiere \(g(t) = f(h(t))\) mit \(h(t) = a + t(b-a) \quad\Rightarrow\quad g(0) = f(a), g(1) = f(b)\). Bei Funktionen mit einem Skalar, gilt der eindimensionale Taylor mit einer Zwischenstelle \(z \in [0,1]\):
 \begin{align*}
 	\Rightarrow \quad \underbrace{g(1)}_{f(b)} &= \underbrace{g(0)}_{f(a)} + 
 	\underbrace{g'(0)(1-0)}_{\substack{
@@ -656,6 +817,320 @@ Seien \(a,b \in G \subset \Rn, f \in C^2(G), G\) ein Gebiet, dann:
 	} \\
 	&= f(a) + \nabla f(a)^\top (b-a) + \frac{1}{2} (b-a)^\top H_f(\underbrace{\xi}_{\xi = a + t(b-a)})(b-a)
 \end{align*}
+\OED
+
+\subsection{Definition von Definitheit}
+Sei \(A \in \Rnxn\) symmetrisch (\(A = A^\top\)):
+\begin{enumerate}[a.~]
+	\item Die durch \(Q_A(x) = x^\top A x\) definierte Funktion \(Q: \Rn \rightarrow \R\) heißt quadratische Form von \(A\).
+	\item Die Matrix \(A\) und ihre quadratische Form \(Q_A\) heißen:
+	\begin{enumerate}[(i)]
+		\item \textbf{positiv definit}, wenn
+		\begin{align*}
+			Q_A(x) = x^\top A x > 0 \quad \forall~ x \in \Rn \mitt x \neq 0
+		\end{align*}
+		\textbf{negativ definit}, wenn
+		\begin{align*}
+			Q_A(x) = x^\top A x < 0 \quad \forall~ x \in \Rn \mitt x \neq 0
+		\end{align*}
+		oder kurz \textbf{definit} falls die Matrix \(A\) positiv oder negativ definit ist.
+		\item \textbf{semi definit} falls die Matrix \(A\) 
+		positiv semi definit oder (negativ semi definit) ist:
+		\begin{align*}
+			Q_A(x) = x^\top A x \stackrel{(\leqslant)}{\geqslant} 0 \quad \forall~ x \in \Rn \mitt x \neq 0
+		\end{align*}
+		\item \textbf{indefinit}, wenn ein \(x_1, x_2 \in \Rn\) existieren mit:
+		\begin{align*}
+			\underbrace{x_1^\top A x_1}_{Q_A(x_1)} < 0
+			\quad \textrm{und} \quad 
+			\underbrace{x_2^\top A x_2}_{Q_A(x_2)} > 0
+		\end{align*}
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \(A = \left( \begin{array}{cc}
+		1 & 0 \\
+		0 & 1
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		-1 & 0 \\
+		0 & -1
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		1 & 0 \\
+		0 & -1
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		\lambda_1 & 0 \\
+		0 & \lambda_2
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		a & b \\
+		c & d
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{ccc}
+		a & b & 0 \\
+		b & c & 0 \\
+		0 & 0 & d
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		2 & 1 \\
+		1 & 2
+	\end{array} \right) \)
+\end{enumerate}
+
+\subsection{Satz zum Hauptminorenkriterium}
+Sei \(A = \left( \begin{array}{ccc}
+		a_{11} & \hdots & a_{1n} \\
+		\vdots & & \vdots \\
+		a_{n1} & \hdots & a_{nn}
+	\end{array} \right) \in \Rnxn\) symmetrisch,\\ 
+	dann ist der \(k\)'te Hauptminor definiert als:
+\(
+	D_k = \det \underbrace{\left( \begin{array}{ccc}
+		a_{11} & \hdots & a_{1k} \\
+		\vdots & & \vdots \\
+		a_{k1} & \hdots & a_{kk}
+	\end{array} \right)}_{k \times k \textrm{ Teilmatrix oben links}}
+\)\\
+Für die Hauptminoren \(D_1, ..., D_n\) gilt:
+\begin{enumerate}[a.~]
+	\item \(A\) ist positiv definit \(\quad\Leftrightarrow\quad D_1 > 0, D_2 > 0, ..., D_n > 0\) alle Hauptminoren sind positiv
+	\item \(A\) ist negativ definit \(\quad\Leftrightarrow\quad D_1 < 0, D_2 > 0, D_3 < 0, ...\) oder \( D_k = \left\{ \begin{array}{ll}
+		< 0 & k \textrm{ ungerade} \\
+		> 0 & k \textrm{ gerade}	
+	\end{array} \right. \)
+	\item \begin{enumerate}[(i)]
+		\item \(D_k < 0\) mit \(k\) gerade \(\quad\Rightarrow\quad A\) ist indefinit
+		\item \(D_k < 0 < D_l\) mit \(k,l\) ungerade \(\quad\Rightarrow\quad A\) ist indefinit
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Beispiele}
+\begin{enumerate}[(i)]
+	\item \(A = \left( \begin{array}{cc}
+		1 & 0 \\
+		0 & 1
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		-1 & 0 \\
+		0 & -1
+	\end{array} \right) \)
+	\item \(A = \left( \begin{array}{cc}
+		1 & 0 \\
+		0 & -1
+	\end{array} \right) \)
+\end{enumerate}
+
+\subsection{Satz über die hinreichenden Bedingungen für lokale Extremstellen}
+Sei \(f \in C^2(U)\) in einer Umgebung \(U\) um \(x_0\) und gilt \(\nabla f(x_0) = 0\) sowie:
+\begin{enumerate}[(i)]
+	\item \(H_f(x_0)\) ist positiv definit \(\quad\Rightarrow\quad x_0\) ist eine lokale Minimalstelle.
+	\item \(H_f(x_0)\) ist negativ definit \(\quad\Rightarrow\quad x_0\) ist eine lokale Maximalstelle.
+\end{enumerate}
+
+\Beweis
+o.B.d.A nur für (i), denn (ii) folgt analog mit gedrehtem Ungleichungszeichen.\\
+Sei \(U = U_\varepsilon(x_0)\) eine \(\varepsilon\)-Umgebung um den Punkt \(x_0 \in \Rn\):
+\begin{align*}
+	\textrm{Sei } f \in C^2(U) 
+	&\Rightarrow H_f \in C^2(U,\Rnxn) \textrm{ mit allen Komponenten stetig} \\
+	&\Rightarrow \tilde{g}:\Rn \rightarrow \R, \tilde{g}(x) = (x - x_0)^\top H_f(x) (x - x_0) \textrm{ ist stetig} \\
+	&\Rightarrow g(x) = (x - x_0)^\top H_f(h(x)) (x - x_0) \textrm{ ist stetig} \\
+	\textrm{ ist }H_f(x_0)\textrm{ pos. def.} 
+	&\Rightarrow (x-x_0)^\top H_f(x_0) (x-x_0) > 0 \textrm{ für } x \neq x_0 \\
+	&\Rightarrow (x-x_0)^\top H_f(h(x_0)) (x-x_0) > 0 \textrm{ falls }z(x_0)\textrm{ nahe genug bei }x_0	
+\end{align*}
+Sei \(h(x_0) = x_0 + \xi(x - x_0)\) dann gilt:
+\begin{align*}
+	f(x) = f(x_0) + 
+	\underbrace{
+		\underbrace{
+			\nabla f(x_0)^\top
+		}_{=0}
+		(x-x_0)
+	}_{=0}		
+	+
+	\underbrace{
+		\frac{1}{2}(x-x_0)^\top
+		\underbrace{
+			H_f(x_0 + \xi(x - x_0))
+		}_{\textrm{pos. def. in } U_\varepsilon(x_0)}
+		(x-x_0)
+	}_{> 0 ~ \forall x \in U_\varepsilon(x_0)}
+	\geqslant f(x_0)
+\end{align*}
+\OED
+
+\subsection{Definition der Sattelpunkte}
+Sei \(U = U_\varepsilon(x_0), f \in C^2(U), \nabla f(x_0) = 0, H_f(x_0)\) indefinit, dann besitzt die Funktion \(f\) bei \(x_0\) einen \textbf{Sattelpunkt}.\\
+
+\Bemerkung \(\forall~ \varepsilon > 0\) gilt:
+\begin{align*}
+	\exists~ x_1, x_2 \in U_\varepsilon(x_0) \mitt f(x_1) > f(x_0) \textrm{ \underline{und} } f(x_2) < f(x_0)
+\end{align*}
+
+\subsection{Satz für den Fall \(n=2\)}
+Ist \(f\in C^2(U)\) für eine Umgebung \(U\) von \(x_0 = \left(\begin{array}{c}
+	a \\ b
+\end{array}\right)\in\R^2\) gilt weiter \(f_x(a,b)=f_y(a,b)=0\), dann ist \(x_0\):
+\begin{enumerate}[(i)]
+	\item eine lokale \textbf{Minimal}stelle, wenn \\
+	\(f_{xx}(a,b) > 0\) (erster Hauptminor \(D_1\)) \underline{und}\\
+	 \(f_{xx}(a,b) f_{yy}(a,b) - 2(f_{xy}(a,b))^2 > 0\) (zweiter Hauptminor \(D_2\))
+	\item eine lokale \textbf{Maximal}stelle, wenn \\
+	\(f_{xx}(a,b) < 0\) (erster Hauptminor \(D_1\)) \underline{und}\\
+	 \(f_{xx}(a,b) f_{yy}(a,b) - 2(f_{xy}(a,b))^2 > 0\) (zweiter Hauptminor \(D_2\))
+	 \item ein \textbf{Sattelpunkt}, wenn \\
+	\(f_{xx}(a,b) < 0\) (erster Hauptminor \(D_1\)) \underline{oder}\\
+	 \(f_{xx}(a,b) f_{yy}(a,b) - 2(f_{xy}(a,b))^2 < 0\) (zweiter Hauptminor \(D_2\))
+\end{enumerate}
+
+\subsection{Beispiel}
+Sei \(f(x,y,z) = x^2 + xy + y^2 - \cos z \in C^2(\R^2)\):
+\begin{align*}
+	\nabla f(x,y,z) = \left( \begin{array}{c}
+		2x + y \\
+		x + 2y \\
+		\sin z
+	\end{array} \right) \stackrel{!}{=} 0
+\end{align*}
+
+\section{Extremstellen unter Nebenbedingungen\\
+und implizite Funktionen}
+
+\textit{Bisher}: Optimierungsproblem ohne Nebenbedingungen: \(\left\{ \begin{array}{l}
+	f(x,y) \rightarrow \min \\
+	\left(\begin{array}{c}
+		x \\ y
+	\end{array}\right) \in \R^2
+\end{array}\right.\)\\
+Lösbar in drei Schritten:
+\begin{enumerate}[1.~]
+	\item lokale Minimalstellen bestimmen
+	\item untersuche \(f(x,y)\) für \(\left\Vert \left( \begin{array}{c}
+		x \\ y	
+	\end{array} \right) \right\Vert \rightarrow \infty\) 
+	\item vergleiche die Resultate aus 1. und 2.
+\end{enumerate}
+\Bemerkung aus \(f(x,y) \rightarrow \min\) wird \(-f(x,y) \rightarrow \max\) darum reicht es o.B.d.A. denn Fall \(\rightarrow \min\) zu betrachten.\\
+
+\noindent
+\textit{Jetzt}: Optimierungsproblem mit Nebenbedingungen: \(\left\{ \begin{array}{l}
+	f(x,y) \rightarrow \min \\
+	\left(\begin{array}{c}
+		x \\ y
+	\end{array}\right) \in A \subset \R^2
+\end{array}\right.\)\\
+Es ist bekannt, dass wenn \(f \in C(A)\) und \(A \neq \varnothing\) kompakt (abgeschlossen und beschränkt) dann existiert sicher eine Lösung (Satz von Weierstraß: \(f\) stetig und \(A\) kompakt \(\Rightarrow\) es wird ein Minimum (Maximum) angenommen).\\
+
+\noindent
+Es sind zwei Fälle möglich:
+\begin{enumerate}[(i)]
+	\item globale Minimalstelle liegt in \(\mathring{A}\) (im Inneren)
+	\item globale Minimalstelle liegt in \(\partial A\) (auf dem Rand)
+\end{enumerate}
+Wenn zusätzlich \(f \in C^2(A)\) gilt, kann die Minimalstelle wie folgt gefunden werden:
+\begin{enumerate}[1.~]
+	\item bestimme lokale Minimalstellen mit \(\nabla f(x_0) = 0\) und \(H_f(x_0)\) positiv definit in \(\mathring{A}\)
+	\item bestimme lokale Minimalstelle in \(\partial A\)\\
+	\Bemerkung Eckpunkte müssen gesondert betrachtet werden, denn die Funktion kann an diesen Stellen nicht differenzierbar sein.
+	\item wähle das Minimum aus 1. und 2.
+\end{enumerate}
+
+\subsection*{Wiederholung im Eindimensionalen}
+Eine Funktion \(f : X\) (Definitionsbereich) \( \rightarrow Y \) (Bildbereich) ist:
+\begin{enumerate}[(i)]
+	\item \textbf{injektiv}, wenn
+	\begin{align*}
+		x_1, x_2 \in X \mitt x_1 \neq x_2 \quad\Rightarrow\quad f(x_1) \neq f(x_2)
+	\end{align*}
+	\textit{Bemerkung}: Von zwei verschiedenen Punkten aus dem Definitionsbereich darf nicht auf den gleichen Punkt im Bildbereich abgebildet werden.
+	\item \textbf{surjektiv}, wenn
+	\begin{align*}
+		\forall~ y \in Y \quad \exists~ x \in X \quad\mitt\quad f(x) = y
+	\end{align*}
+	\textit{Bemerkung}: Für alle Bildpunkte existiert ein Punkt im Definitionsbereich.
+	\item \textbf{bijektiv}, wenn die Funktion \(f\) injektiv und surfjektiv ist.
+\end{enumerate}
+
+\subsection*{Beispiel}
+Sei \(d : C^1(\R) \rightarrow C(\R)\) eine Funktion mit \(f \mapsto f'\) (Ableitungsoperator für alle einmal stetig differenzierbaren Funktionen). Für diese Funktion \(d\) gilt:
+\begin{enumerate}[(i)]
+	\item \(d\) ist \underline{nicht} injektiv da:\\
+	Seien \(f_1(x) = x, f_2(x) = x + 1\) zwei Funktionen aus \(C^1(\R)\). Für diese gilt: \(f_1 \neq f_2\) aber \(d(f_1) = f_1' = 1 = f_2' = d(f_2)\).
+	\item \(d\) ist surjektiv, denn nach dem Hauptsatz der Differential und Integralrechnung gilt: Alle stetigen Funktionen besitzen eine Stammfunktion.
+\end{enumerate}
+
+\subsection{Spezialfälle}
+\begin{enumerate}[(i)]
+	\item \(f\) ist linear und \(f: \Rn \rightarrow \Rm : \quad f(x) = Ax \quad\mitt A \in \Rmxn\) \\
+	Im Fall \(m=n\) gilt: \(f\) ist bijektiv \(\Leftrightarrow A\) ist invertierbar.
+	\item Allgemeinerer Fall z.b. \(f: [0,\infty) \times [-\pi,\pi) \rightarrow \R^2 : \quad f(r,\varphi) = r \left( \begin{array}{c}
+		\cos \varphi \\
+		\sin \varphi
+	\end{array} \right) \) \\
+	\(f\) ist surjektiv aber \underline{nicht} injektiv, denn \( f(0,\varphi) = \left(\begin{array}{c}
+		0 \\ 0
+	\end{array}\right) \quad \forall~ \varphi \in [-\pi,\pi)\)
+\end{enumerate}
+
+\subsection{Bemerkung}
+\begin{enumerate}[a.~]
+	\item Folgende Aussagen sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item \(A\) ist invertierbar (oder regulär oder nicht singulär)
+		\item \(Ax = b\) besitzt \(\forall~ b \in \Rn\) eine eindeutige Lösung \(x \in \Rn\)
+		\item \(\det A \neq 0\)
+	\end{enumerate}
+	\item Sei \(f:\Rn \rightarrow \Rm \mitt x_0 \in \Rn: \quad f(x) = f(x_0) + A(x - x_0) \quad\mitt \det A \neq 0\)\\
+	Die Umkehrfunktion \(f^{-1}\) kann durch 	Äquivalenzumformungen gebildet werden:
+	\begin{align*}
+		f(x_0) + A(x-x_0) &\stackrel{!}{=} y \\
+		\Leftrightarrow\qquad A(x-x_0) &= y - f(x_0) \\
+		\Leftrightarrow\qquad x-x_0 &= A^{-1}(y - f(x_0)) \\
+		\Leftrightarrow\qquad x &= x_0 + A^{-1}(y - f(x_0)) = f^{-1}(y)
+	\end{align*}
+	Für die Ableitung der Umkehrfunktion gilt: \(\frac{\partial}{\partial y} f^{-1}(y) = A^{-1}\)
+\end{enumerate}
+\textit{Kommentar}: Differenzierbare Funktionen sind in einer hinreichend kleinen \(\varepsilon\)-Umgebung im Prinzip linear (nicht ganz korrekt, aber sehr anschaulich).
+
+\subsection{Satz über die Umkehrfunktion}
+Sei \(f \in C^1(G;\Rn) \mitt G\subset \Rn\) ein Gebiet, \(x_0 \in G \mitt \det f'(x_0) = \det J_f(x_0) \neq 0\). Dann gilt in einer geeigneten offenen Umgebung \(U\) um \(x_0\), dass
+\begin{enumerate}[(i)]
+	\item \(V=f(U)\) ist offen (das Bild \(V\) von \(U\) ist offen) und \(\det f'(x) \neq 0 \quad \forall~ x \in U\)
+	\item \(f: U \rightarrow V\) ist bijektiv, das heißt: \(\exists~ f^{-1} : V \rightarrow U \) (die Funktion ist lokal invertierbar)
+	\Beweis[Beweisidee]
+	Da \(f\) stetig differenzierbar ist, gilt:
+	\begin{align*}
+		f(x) &= f(x_0) + f'(x_0)(x-x_0) + r(x)\Vert x - x_0 \Vert \mitt r(x) \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
+		&\approx f(x_0) + f'(x_0)(x-x_0) \\
+		&= f(x_0) + A(x-x_0) \mitt \det A \neq 0
+	\end{align*}
+	Wenn \(\approx\) ein \(=\) wäre so könnte die Umkehrfunktion \(f^{-1}(y)\) einfach durch Äquivalenzumformungen bestimmt werden \\
+	\(\Rightarrow\) In einer hinreichend kleinen \(\varepsilon\)-Umgebung kann \(\approx\) als \(=\) angenommen werden.
+	\OED
+	\item \( \left( f^{-1} \right)'(y) = \left( f'\left( f^{-1}(y) \right) \right)^{-1} \quad\Leftrightarrow\quad J_{f^{-1}}(y) = J_{f'}\left( f^{-1}(y) \right)\)
+	\Beweis[Beweisidee] Wenn \(\fum : V \rightarrow U\) existiert, dann ist \(\fum\) auch stetig diff'bar. \\
+	\textit{Beispielskizze aus dem Eindimensionalen}:
+	\begin{align*}
+		f(x) &= e^x, \quad f'(x) = e^x, \quad \exists~ \fum(y) = \log y \\
+		\Rightarrow \quad y &= f\left( \fum(y) \right) \\
+		\stackrel{\substack{\textrm{Ableiten mit}\\\textrm{Kettenregel}}}{\Rightarrow} \quad
+		1 &= f'\left( \fum(y) \right) \cdot (\fum)'(y) \\
+		\Rightarrow \quad (\fum)'(y) = \log' y &= \frac{1}{f'\left( \fum(y) \right)} = \frac{1}{e^{\log y}} = \frac{1}{y}
+	\end{align*}
+	Beispiel übertragen auf den allgemeinen mehrdimensionalen Fall:
+	\begin{align*}
+		y &= f\left( \fum(y) \right) \\
+		\stackrel{\substack{\textrm{Ableiten mit}\\\textrm{Kettenregel}}}{\Rightarrow} \quad
+		1 &= \underbrace{f'\left( \fum(y) \right)}_{J_{f'}\left(\fum(y)\right)} \cdot \frac{d}{dy} \fum(y) \\
+		\Rightarrow\quad \frac{d}{dy} \fum(y) &= \left( f'\left( \fum(y) \right)\right)^{-1}
+	\end{align*}
+	\OED
+\end{enumerate}
 
 \end{document}
 

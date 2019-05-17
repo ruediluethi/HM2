@@ -18,6 +18,7 @@
 \usepackage[T1]{fontenc} 
 \usepackage{ucs}
 \usepackage[utf8]{inputenc}
+\usepackage{color}
 
 \newcommand {\Q}	{\mathbb{Q}}
 \newcommand {\R}	{\mathbb{R}}
@@ -33,6 +34,7 @@
 \newcommand{\1}    	{\mathbbm{1}}
 \newcommand{\Onot}		{\mathcal{O}}
 \newcommand{\diag}	{\textrm{diag}}
+\newcommand{\mitt}	{\textrm{ mit }}
 
 \author{Ruedi Lüthi}
 \title{Blatt 2}
@@ -90,6 +92,9 @@
 	\end{align*}
 	
 	\section*{6}
+	\color{red}
+	Warum gilt \(\vert y \vert < \delta\)? 
+	\color{black} \\
 	Sei \(\varepsilon > 0\) beliebig und \(\delta_\varepsilon = \varepsilon\), dann gilt für \(f(x,y)\) stetig:
 	\begin{align*}
 		\left\vert f(x,y) - f(0,0) \right\vert = 
@@ -116,6 +121,27 @@
 	\end{align*}
 	
 	\section*{7}	
+	\begin{align*}
+		f(x,y) = \left\{ \begin{array}{ll}
+			0 & (x,y) = (0,0) \\
+			\frac{y \sin(xy)}{x^2 + y^4} & (x,y) \neq (0,0)
+		\end{array} \right)
+	\end{align*}	
+	
+	Nebenrechnung: Für \(\alpha \in (0,\frac{\pi}{2}) \) gilt:
+	\begin{align*}
+		\frac{2 \alpha}{\pi} < \sin(\alpha) < 1
+	\end{align*}
+	
+	Nicht stetig, da
+	\begin{align*}
+		x_0(t) = \left( \begin{array}{c}
+			t \\ \sqrt{t}
+		\end{array}	\right) \quad
+		\lim_{t \rightarrow 0} f(x_0(t)) = 
+		\lim_{t \rightarrow 0} \frac{\sqrt{t} \sin(t \sqrt{t})}{t^2 + \sqrt{t}^4} > \lim_{t \rightarrow 0} \frac{\sqrt{t} \frac{2}{\pi}t\sqrt{t}}{t^2 + t^2} = \frac{2}{\pi} \frac{t^2}{2t^2} = \pi
+	\end{align*}		
+	
 	Sei \(r = (r_x, r_y)^\top\) eine beliebige Richtung:
 	\begin{align*}
 		\frac{\partial}{\partial r} f(x_0) &= 
@@ -126,5 +152,38 @@
 			\lim_{h \rightarrow 0} \frac{r_y \cos( h^2 r_x r_y) 2h r_x r_y}{2 h r_x^2 + 4h^3 r_y^4} \\
 			&= \lim_{h \rightarrow 0} \frac{r_x r_y^2 \overbrace{\cos( h^2 r_x r_y)}^{\stackrel{h \rightarrow 0}{\rightarrow}1}}{r_x^2 + \underbrace{2h^2 r_y^4}_{\stackrel{h \rightarrow 0}{\rightarrow}0}} = \frac{r_y^2}{r_x}
 	\end{align*}
+	
+	\section*{10}
+	\subsection*{a)} Sei \((a_k) = \left( \begin{array}{c} (a_k)_1 \\ \vdots \\ (a_k)_n \end{array} \right) \subset \Rn\) eine Folge und sei \(a = \left( \begin{array}{c} a_1 \\ \vdots \\ a_n \end{array} \right) \in \Rn\).  
+	\begin{align*}
+		\textrm{zu zeigen: } \quad \lim_{k \rightarrow \infty} (a_k) = a \quad \Leftrightarrow \quad \lim_{k \rightarrow \infty} (a_k)_j = a_j \quad \forall~ j = 1, ..., n
+	\end{align*}
+	es gilt:
+	\begin{align*}
+		\vert (a_k)_j - a_j \vert = \sqrt{\vert (a_k)_j - a_j \vert^2} \leqslant 
+		\underbrace{\sqrt{\vert (a_k)_1 - a_1 \vert^2 + ... + \vert (a_k)_n - a_n \vert^2}}_{= \Vert (a_k) - a \Vert_2}
+		\leqslant \sqrt{n} \max_{j\in\{1,...,n\}} \left( (a_k)_j - a_j \right)
+	\end{align*}
+	Gilt \(\lim_{k \rightarrow \infty} \max_{j\in\{1,...,n\}} \left( (a_k)_j - a_j \right) \rightarrow 0\) so gehen auch alle andere Komponenten gegen Null.
+	
+	\subsection*{b)}
+	Wegen \((a_k) \subset \Rn\) beschränkt gilt:
+	\begin{align*}
+		\exists~ c > 0 \mitt \Vert (a_k) \Vert < c \quad \forall k
+	\end{align*}
+	Weiter gilt:
+	\begin{align*}
+		c > \Vert (a_k) \Vert > \Vert \underbrace{(a_k) \cdot e_i}_{= (b_k)} \Vert \mitt (b_k) \subset (a_k)
+	\end{align*}
+	Aus der Konstruktion von \((b_k)\) folgt:
+	\begin{align*}
+		(b_k) = \left( \begin{array}{c}
+			0 \\ \vdots \\ 0 \\
+			(b_k)_i \\
+			0 \\ \vdots \\ 0
+		\end{array} \right)
+	\end{align*}
+	Dabei ist \((b_k)_i\) eine beschränkte Folge in \(\R\) und nach dem Satz von Bolzano-Weierstraß besitzt diese eine konvergente Teilfolge.
+	
 	
 \end{document}
