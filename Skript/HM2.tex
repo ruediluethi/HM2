@@ -26,6 +26,7 @@
 \newcommand {\C}	{\mathbb{C}}
 \newcommand {\Rn}	{\mathbb{R}^n}
 \newcommand {\Rm}	{\mathbb{R}^m}
+\newcommand {\Rmn}	{\mathbb{R}^{m+n}}
 \newcommand {\Rzwei}	{\mathbb{R}^2}
 \newcommand {\Rnxn}	{\mathbb{R}^{n \times n}}
 \newcommand {\Rmxn}	{\mathbb{R}^{m \times n}}
@@ -51,8 +52,12 @@
 
 \newcommand{\Bemerkung}	{\noindent\textit{Bemerkung}: }
 
+\title{Höhere Mathematik II}
+\author{Mitschrift der Vorlesung von Prof. Lehn\\im Sommersemester 2019 an der Uni Ulm}
+
 \begin{document}
 
+\maketitle
 \tableofcontents 
 
 \chapter*{Einführung}
@@ -1112,7 +1117,7 @@ Sei \(f \in C^1(G;\Rn) \mitt G\subset \Rn\) ein Gebiet, \(x_0 \in G \mitt \det f
 	Wenn \(\approx\) ein \(=\) wäre so könnte die Umkehrfunktion \(f^{-1}(y)\) einfach durch Äquivalenzumformungen bestimmt werden \\
 	\(\Rightarrow\) In einer hinreichend kleinen \(\varepsilon\)-Umgebung kann \(\approx\) als \(=\) angenommen werden.
 	\OED
-	\item \( \left( f^{-1} \right)'(y) = \left( f'\left( f^{-1}(y) \right) \right)^{-1} \quad\Leftrightarrow\quad J_{f^{-1}}(y) = J_{f'}\left( f^{-1}(y) \right)\)
+	\item \( \left( f^{-1} \right)'(y) = \left( f'\left( f^{-1}(y) \right) \right)^{-1} \quad\Leftrightarrow\quad J_{f^{-1}}(y) = J_f^{-1}\left( f^{-1}(y) \right)\)
 	\Beweis[Beweisidee] Wenn \(\fum : V \rightarrow U\) existiert, dann ist \(\fum\) auch stetig diff'bar. \\
 	\textit{Beispielskizze aus dem Eindimensionalen}:
 	\begin{align*}
@@ -1130,6 +1135,371 @@ Sei \(f \in C^1(G;\Rn) \mitt G\subset \Rn\) ein Gebiet, \(x_0 \in G \mitt \det f
 		\Rightarrow\quad \frac{d}{dy} \fum(y) &= \left( f'\left( \fum(y) \right)\right)^{-1}
 	\end{align*}
 	\OED
+\end{enumerate}
+
+\subsection{Polarkoordinaten}
+...
+
+\subsection{Beispiel}
+\(f: \R^2 \rightarrow \R^2\) mit \(f(x,y) = \left( \begin{array}{c}
+	x - y^2 \\ 2y
+\end{array} \right) \)
+\begin{align*}
+	\Rightarrow f'(x,y) = J_f(x,y) = \left( \begin{array}{cc}
+		1 &  -2y \\
+		0 & 2
+	\end{array} \right) \quad\mitt\quad \det J_f \neq 0
+\end{align*}
+Direktes Bestimmen der Umkehrfunktion (im Allgemeinen will man dies vermeiden):
+\begin{align*}
+	\left( \begin{array}{c}
+		u \\ v
+	\end{array} \right) \stackrel{!}{=} f(x,y)
+	\quad&\Leftrightarrow\quad \left( \begin{array}{c}
+		u \\ v
+	\end{array} \right) = \left( \begin{array}{c}
+		x - y^2 \\ 2y
+	\end{array} \right)	\\
+	&\Rightarrow\quad v = 2y \quad\Leftrightarrow\quad y = \frac{v}{2} \\
+	&\Rightarrow\quad u = x - \left( \frac{v}{2} \right)^2 
+	\quad\Leftrightarrow\quad x = u + \frac{v^2}{4} \\
+	&\Rightarrow\quad
+	\left( \begin{array}{c}
+		x \\ y
+	\end{array} \right) = \left( \begin{array}{c}
+		u + \frac{v^2}{4} \\ \frac{v}{2}
+	\end{array} \right) = 	
+	\fum(u,v)
+\end{align*}
+Damit gilt für die Ableitung der Umkehrfunktion:
+\begin{align*}
+	\left( \fum(u,v) \right)' = J_{\fum} (u,v) = \left( \begin{array}{cc}
+		1 & \frac{v}{2} \\
+		0 & \frac{1}{2}
+	\end{array} \right)
+\end{align*}
+Alternativ mit dem Satz über die Umkehrfunktion:
+\begin{align*}
+	\left( f^{-1} \right)'(u,v) = \left( f'\left( f^{-1}(u,v) \right) \right)^{-1} = J_f^{-1}\left( u + \frac{v^2}{4}, \frac{v}{2} \right) = \left( \begin{array}{cc}
+		1 & -v \\
+		0 & 2
+	\end{array} \right)^{-1}
+	\stackrel{\substack{
+		\textrm{Inv. mit}\\
+		\textrm{Gauß best.}
+	}}{=} \left( \begin{array}{cc}
+		1 & \frac{v}{2} \\
+		0 & \frac{1}{2}
+	\end{array} \right)
+\end{align*}
+
+\subsection{Kugelkoordinaten}
+Sei \(f: \R^3 \rightarrow \R^3\)
+\begin{align*}
+	f(r,\varphi,\theta) = \left( \begin{array}{c}
+		r \cos\varphi \cos\theta \\
+		r \sin\varphi \cos\theta \\
+		r \sin\theta
+	\end{array} \right) = \left( \begin{array}{c}
+		x \\ y \\ z
+	\end{array} \right)
+\end{align*}
+
+\subsection{Korollar: Gebietstreue}
+Ist \(G \subset \Rn\) offen und sei \(f: G \rightarrow \Rn\) eine Funktion mit \(f \in C^1(G;\Rn)\), dann ist \(f(G)\) offen. Ist \(G\) außerdem ein Gebiet, so ist \(f(G)\) auch ein Gebiet.\\
+\textit{Fazit}: Für \(\fum\) kann man \(\tilde{G} = f(G)\) definieren und \(\fum : \tilde{G} \rightarrow \Rn\) betrachten. Dabei hat \(\tilde{G}\) die gleichen Eigenschaften wie \(G\).
+
+\subsection{Definition impliziter Funktionen}
+Sei \(g: \Rmn \rightarrow \Rm\) mit \(n,m \in \N\) eine Funktion und sei
+\begin{align*}
+	x = \left( \begin{array}{c}
+		x_1 \\ \vdots \\ x_n
+	\end{array} \right) \in \Rn, \quad
+	y = \left( \begin{array}{c}
+		y_1 \\ \vdots \\ y_m
+	\end{array} \right) \in \Rm, \quad
+	b = \left( \begin{array}{c}
+		b_1 \\ \vdots \\ b_m
+	\end{array} \right) \in \Rm \textrm{ konstant}
+\end{align*}
+Man betrachte die Gleichung
+\begin{align*}
+	g(x,y) = \left( \begin{array}{c}
+		g_1(x_1, ..., x_n, y_1, ..., y_m) \\
+		\vdots \\
+		g_m(x_1, ..., x_n, y_1, ..., y_m)
+	\end{array} \right) = \left( \begin{array}{c}
+		b_1 \\ \vdots \\ g_m
+	\end{array} \right)
+\end{align*}
+und sagt
+\begin{enumerate}[a.~]
+	\item die Funktion \(g\) ist bei \(\left(\begin{array}{c} x_0 \\ y_0 \end{array} \right) \) \textbf{lokal nach \(y\) auflösbar}, wenn eine Funktion \(f\) in der Umgebung von \(\left(\begin{array}{c} x_0 \\ y_0 \end{array} \right) \) existiert mit:
+	\begin{enumerate}[(i)]
+		\item \(f(x_0) = y_0\) und
+		\item \(g(x, f(x)) = b\)
+	\end{enumerate}
+	\item \(g\) ist auf \(A \subset \Rn\) \textbf{global nach \(y\) auflösbar}, wenn eine Funktion \(f : A \rightarrow \Rm\)
+	\begin{enumerate}[(i)]
+		\item existiert und
+		\item \(g(x,f(x)) \quad \forall~ x \in A\) gilt
+	\end{enumerate}
+	\item analog gilt die Definition für auflösbar nach \(x\) mit \(g(f(y),y)\)
+\end{enumerate}
+
+\subsection{Beispiel Einheitskreis}
+Sei \(g:\Rzwei \rightarrow \R\) (also \(m=n=1\)) mit \(g(x,y) = x^2 + y^2\) und \(b = 1\). Die Funktion \(g\) ist auflösbar bei \(\left( \begin{array}{c}
+	x_0 \\ y_0
+\end{array} \right)\), wenn \(x_0 \neq 0\) (denn \(y_0^2 = 1\) hat zwei Lösungen) gilt:
+\begin{align*}
+	\textrm{Fall } y_0 > 0 &: \quad f_{>0}(x) = y = \sqrt{1 - x^2} \\
+	\textrm{Fall } y_0 < 0 &: \quad f_{<0}(x) = y = -\sqrt{1 - x^2}
+\end{align*}
+
+
+\subsection{Hauptsatz über implizite Funktionen}
+Seien \(x_0 \in \Rn, y,b \in \Rm\) für eine offene Umgebung \(G\) um \(\left( \begin{array}{c}
+	x_0 \\ y_0
+\end{array} \right)\) und sei \(g \in C^1(G;\Rm)\) (stetig diff'bar). Gilt weiter \(g(x_0,y_0) = b\) und \(\det g_y(x_0,y_0) \neq 0\) so existiert eine offene Umgebung \(U_0\) von \(x_0\) und \(V_0\) von \(y_0\), so dass gilt:
+\begin{enumerate}[(i)]
+	\item \(\det g_y(x,y) \neq 0 \quad \forall~ x \in X_0, \forall~ y \in Y_0\)
+	\item die Gleichung \(g(x,y) = b\) besitzt eine \textbf{eindeutig bestimmte Auflösung}: \\
+	\(f: U_0 \rightarrow V_0\) nach \(y\) mit \(f(x_0) = y_0\) und \(g(x,f(x)) = b \quad \forall~ x \in U_0\)\\
+	außerdem ist diese Funktion \(f\) differenzierbar und es gilt: \\
+	\(f'(x) = -\left( g_y\left( x_0, f(x_0) \right) \right)^{-1} g_x\left( x_0, f(x_0) \right) = -\left( g_y\left( x_0, y_0 \right) \right)^{-1} g_x\left( x_0, y_0 \right) \)
+	\item ist \(g \in C^r(G;\Rm)\) mit \(r \geqslant 2\) so ist \(f \in C^r(U_0;\Rm)\) und die höheren Ableitungen werden durch weiteres ableiten von \(f'\) in (ii) bestimmt.
+\end{enumerate}
+\Bemerkung
+\begin{align*}
+	g: \R^{m+n} \rightarrow \Rm \quad&\mitt\quad
+	x = \left( \begin{array}{c}
+		x_1 \\ \vdots x_n
+	\end{array} \right) \in \Rn, \quad
+	y = \left( \begin{array}{c}
+		y_1 \\ \vdots y_m
+	\end{array} \right) \in \Rm \\
+	(x,y) \mapsto g(x,y) &= 
+	\left( \begin{array}{c}
+		g_1(x,y) \\ \vdots \\ g_m(x,y)
+	\end{array} \right) = 
+	\left( \begin{array}{c}
+		g_1(x_1, ..., x_n, y_1, ..., y_m) \\
+		\vdots \\
+		g_m(x_1, ..., x_n, y_1, ..., y_m)
+	\end{array} \right) \\
+	g' = \frac{\partial}{\partial(x,y)}= J_g &= \left( \begin{array}{cccccc}
+		\frac{\partial}{\partial x_1} g_1 &
+		\hdots &
+		\frac{\partial}{\partial x_n} g_1 &
+		\frac{\partial}{\partial y_1} g_1 &
+		\hdots & 
+		\frac{\partial}{\partial y_m} g_1 \\
+		\vdots & & \vdots & \vdots & & \vdots \\
+		\frac{\partial}{\partial x_1} g_m &
+		\hdots &
+		\frac{\partial}{\partial x_n} g_m &
+		\frac{\partial}{\partial y_1} g_m &
+		\hdots & 
+		\frac{\partial}{\partial y_m} g_m \\
+	\end{array} \right) \in \R^{m \times (n+m)} \\
+	&= \left( \begin{array}{ccc}
+		\frac{\partial}{\partial x} g &
+		&
+		\frac{\partial}{\partial y} g
+	\end{array} \right)
+\end{align*}
+
+\Beweis[Beweisidee]
+Im Spezialfall, dass die Funktion \(g\) linear ist gilt:
+\(
+	g(x,y) = A \left( \begin{array}{c}
+		x \\ y
+	\end{array} \right)
+\)\\
+Dabei besteht die Matrix \(A \in \R^{m \times (m+n)}\) aus zwei Teilmatrizen \(X \in \Rmxn, Y \in \Rmxm\) also gilt:
+\begin{align*}
+	g(x,y) = \left( \begin{array}{cc}
+		X & Y
+	\end{array} \right) \left( \begin{array}{c}
+		x \\ y
+	\end{array} \right) = Xx + Yy \quad\mitt\quad
+	\frac{\partial}{\partial x} g = X, \quad \frac{\partial}{\partial y} g = Y
+\end{align*}
+Ist die Funktion \(g\) differenzierbar, so ist sie in einer hinreichend kleinen Umgebung näherungsweise linear, also gilt:
+\begin{align*}
+	g(x,y) = b \quad&\Leftrightarrow\quad Xx + Yy = b \\
+	\quad&\Leftrightarrow\quad Yy = b - Xx
+	\quad\stackrel{\det Y \neq 0}{=} y = Y^{-1}(b-Xx) = Y^{-1}b - Y^{-1}Xx = f(x) \\
+	&\Rightarrow\quad f'(x) = -Y^{-1} X = -(g_y)^{-1} g_x
+\end{align*}
+\OED
+\Bemerkung für den Fall \(m=n=1\) \\
+Es gilt \(g(x,f(x)) = b\) für \(x \in U_0\) mit \(g:\Rzwei \rightarrow \R, f:\R \rightarrow \R, b \in \R\) konstant \\
+Setze \(h(x) = g(x,f(x))\) mit \(h: \R \rightarrow \R\) also muss \(h(x) = b, \forall x \in U_0\) gelten. Da \(b\) konstant ist, gilt für die Ableitung \(h'(x) = 0\).
+\begin{align*}
+	h'(x) &\stackrel{\substack{\textrm{Ketten-}\\\textrm{regel}}}{=}
+	g'(x,f(x)) \left( \begin{array}{c}
+		x \\ f(x)
+	\end{array} \right)' = 
+	\nabla g (x,f(x))^\top \left( \begin{array}{c}
+		1 \\ f'(x)	
+	\end{array} \right) \\
+	&= \left( \begin{array}{cc}
+		g_x(x,f(x)) & g_y(x,f(x))
+	\end{array} \right) \left( \begin{array}{c}
+		1 \\ f(x)
+	\end{array} \right) =
+	g_x(x,f(x)) + g_y(x,f(x)) f'(x) = 0 \\
+	&\stackrel{g_y(x,f(x))\neq 0}{\Rightarrow} f'(x) = - \frac{g_x(x,f(x)}{g_y(x,f(x))}
+	\quad\stackrel{f(x_0)=y_0}{\Rightarrow}\quad - \frac{g_x(x_0,y_0)}{g_y(x_0,y_0)} = f'(x_0)
+\end{align*}
+
+\subsection{Lokale Extremstellen unter Nebenbedingungen}
+Seien \(f,g_1,...,g_m : G \subset \Rn \rightarrow \R\) mit \(G\) offen gegeben, sowie \(b_1, ..., b_m \in \R\). Dann nennt man \(x_0 \in G\) ein lokales Minimum (Maximum) unter den Nebenbedingungen \(g_1(x) = b_1, ..., g_m(x) = b_m\) wen es eine offene Umgebung \(U \subset G\) von \(x_0\) gibt mit:
+\begin{align*}
+	f(x) \stackrel{(\leqslant)}{\geqslant} f(x_0) \quad
+	\forall~ x \in U \mitt g(x) = b
+\end{align*}
+
+
+\subsection{Satz von Lagrange}
+\textbf{Notwendige} Bedingung für Extremstellen unter Nebenbedingungen.\\
+Seien \(f,g_1, ..., g_m \in C^1(U)\) für eine offene Umgebung \(U\) von \(x_0 \in \Rn\) und seien \(b_1, ..., b_m \in \R\) (\(b \in \Rm\)). Ist \(x_0 \in U\) eine lokale Extremstelle unter der Nebenbedingung \(g_1(x_0)=b_1, ..., g_m(x_0)=b_m\) und sind die Gradienten \(\nabla g_1(x_0), ..., \nabla g_m(x_0)\) linear unabhängig also \(\det\left( \nabla g_1(x_0), ..., \nabla g_m(x_0) \right) \neq 0\), dann existieren die Konstanten \(\lambda_1, ..., \lambda_m \in \R\) (Lagrange-Multiplikatoren) mit:
+\begin{align*}
+	\nabla f(x_0) + \underbrace{
+		\lambda_1 \nabla g_1(x_0) + ... + \lambda_m \nabla g_m(x_0)
+		}_{
+			\underbrace{
+				\left( \begin{array}{ccc}
+					\nabla g_1(x_0) & \hdots & \nabla g_m(x_0)
+				\end{array} \right)
+			}_{J_g^\top}
+			\left( \begin{array}{c}
+				\lambda_1 \\
+				\vdots \\
+				\lambda_m
+			\end{array} \right)
+		} = 0
+\end{align*}
+\Bemerkung Der Satz von Lagrange enthält nur eine \textbf{notwendige} Bedingung: Es kann also Punkte geben mit \(\nabla f(x_0) + \lambda \nabla g(x_0) = 0\) die keine Extremstelle sind (z.b. Sattelpunkte). Der Satz liefert also nur Kandidaten, welche dann durch einsetzen in die Funktion \(f\) weiter untersucht werden müssen.\\
+
+\Bemerkung Anschaulich bedeutet die Bedingung \(\nabla f(x_0) + \lambda \nabla g(x_0) = 0\), dass die Gradienten beider Funktionen im Punkt \(x_0\) in die gleiche (oder entgegengesetzte) Richtung schauen müssen.
+
+\Beweis für den Fall \(n=2, m=1\) \\
+\(f,g : U \subset \Rzwei \rightarrow \R, b \in \R\) und sei \(\left(\begin{array}{c}
+	x_0 \\ y_0
+\end{array} \right) \) eine lokale Extremstelle unter der Nebenbedingung \(g(x_0,y_0) = b\). Außerdem sei \(\nabla g(x_0,y_0) \) linear unabhängig (im Fall \(n=2, m=1\) bedeutet dies: nicht der Nullvektor).
+\begin{align*}
+	\nabla g(x_0,y_0) &= \left( \begin{array}{c}
+		g_x(x_0,y_0) \\
+		g_y(x_0,y_0)
+	\end{array} \right) \\
+	&\Rightarrow \quad
+	g_x(x_0,y_0) \neq 0 \textrm{ oder } g_y(x_0,y_0) \neq 0
+	\stackrel{\textrm{o.B.d.A.}}{\Rightarrow} g_y(x_0,y_) \neq 0 \\
+	&\Rightarrow\quad
+	\exists \textrm{ eine lokale Auflösung }h\textrm{ nach }y \\
+	&\quad\quad h:U_0 \subset \R \rightarrow \R \mitt h(x_0) = y_0 \textrm{ und } g(x,h(x)) = b 
+\end{align*}
+Sei nun \(\hat{f}(x) = f(x,h(x)) \mitt \hat{f} : U_0 \subset \R \rightarrow \R\) und betrachte \(\hat{f}(x) \rightarrow \min/\max\):
+\begin{align*}
+	0 \stackrel{!}{=} \hat{f}'(x) = \frac{d}{dx} f(x,h(x)) 
+	&\stackrel{\substack{\textrm{Ketten-}\\\textrm{regel}}}{=} \nabla f(x,h(x))^\top \cdot \left( \begin{array}{c} 1 \\ h'(x) \end{array} \right) \\
+	&= 
+	\left( \begin{array}{cc}
+		f_x(x,h(x)) &
+		f_y(x,h(x)) 
+	\end{array} \right) \left( \begin{array}{c}
+		1 \\ h'(x)
+	\end{array} \right) \\
+	&= f_x(x,h(x)) + f_y(x,h(x)) h'(x)
+\end{align*}
+Nach dem Hauptsatz über implizite Funktionen gilt \(h'(x) = -\frac{g_x(x,h(x))}{g_y(x,h(x))}\), damit gilt weiter:
+\begin{align*}
+	0 \stackrel{!}{=} f_x(x,h(x)) - f_y(x,h(x)) \frac{g_x(x,h(x))}{g_y(x,h(x))}
+\end{align*}
+Bei \(x_0\) gilt ja gerade \(h(x_0) = y_0)\):
+\begin{align*}
+	0 \stackrel{!}{=} f_x(x_0,y_0) - f_y(x_0,y_0) \frac{g_x(x_0,y_0)}{g_y(x_0,y_0)} = f_x(x_0,y_0) g_y(x_0,y_0) - f_y(x_0,y_0) g_x(x_0,y_0) 
+\end{align*}
+Also sind die Gradienten \(\nabla f, \nabla g\) linear abhängig.
+\OED
+
+\subsection{Bespiele}
+\begin{enumerate}[a.~]
+	\item \( \left\{ \begin{array}{l}
+		f(x,y) = x+y \rightarrow \min/\max \\
+		g(x,y) = x^2 + y^2 = b = 1
+	\end{array} \right. \)
+	\begin{enumerate}[(i)]
+		\item Die Nebenbedingung \(g(x,y) = b\) beschreibt eine kompakte (beschränkt und abgeschlossene) Menge 
+		\(B = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) \mitt x^2 + y^2 = 1 \right\}\) und da \(f\) stetig ist gilt: \\
+		\(\stackrel{\substack{\textrm{Satz von}\\\textrm{Weierstraß}}}{\Rightarrow} \exists~ x_m, x_M \in B \mitt f(x_m) \leqslant f(x) \leqslant f(x_M) \quad \forall~ x \in B\) \\
+		(Die Funktion \(f\) nimmt auf \(B\) ein Minimum und ein Maximum an.)
+		\item Für ein \(x_0\) (also \(x_m\) oder \(x_M\)) muss gelten, dass: \\
+		\( \exists~ \lambda \in \R \mitt \nabla f(x_0) + \lambda \nabla g(x_0) = 0\)\\
+		Man erhält also eine Menge \(\tilde{B} \subset B\) welche die Lagrange-Bedingung erfüllen:
+		\begin{align*}
+			&\nabla g(x,y) = \left( \begin{array}{c}
+				2x \\ 2y
+			\end{array} \right),  
+			\nabla f(x,y) = \left( \begin{array}{c}
+				1 \\ 1			
+			\end{array} \right) \\
+			& \nabla f(x,y) + \lambda \nabla g(x,y) \stackrel{!}{=} 0 \\
+			\Leftrightarrow\quad& \left( \begin{array}{c}
+				1 \\ 1
+			\end{array} \right) + \lambda
+			\left( \begin{array}{c}
+				2x \\ 2y
+			\end{array} \right) = 
+			\left( \begin{array}{c}
+				0 \\ 0
+			\end{array} \right) \\
+			\Leftrightarrow\quad& \left. \begin{array}{l}
+				\lambda \cdot 2x = -1 \\
+				\lambda \cdot 2y = -1
+			\end{array} \right\{ \begin{array}{l}
+				2 \textrm{ Gleichungen mit }3\textrm{ Unbekannten} \\
+				\Rightarrow 1\textrm{ Freiheitsgrad }(\textrm{durch }\lambda \textrm{ beschrieben})
+			\end{array}\\
+			\textrm{Fall } x \neq 0, y \neq 0 \quad& 
+			- \frac{1}{2x} = \lambda = - \frac{1}{2y} 
+			\quad\Rightarrow\quad x=y \\
+			\textrm{Fall } x = 0, y \neq 0 \quad& 2\cdot 0 \cdot \lambda = -1 \Rightarrow 0 = -1 \Rightarrow \textrm{Widerspruch, Fall nicht möglich} \\
+			&\Rightarrow \textrm{dasselbe gilt für die Fälle } x \neq 0, y = 0 \textrm{ und } x = 0, y = 0 \\
+			\stackrel{\substack{
+				\textrm{Einetzen in die} \\
+				\textrm{Nebenbedingung}
+			}}{\Rightarrow}\quad& b = 1 = g(x,y) = x^2 + y^2 \stackrel{x=y}{\Rightarrow} 1 = x^2 + x^2 \Leftrightarrow x_{1,2} = \pm \frac{1}{\sqrt{2}} \\
+			\Rightarrow\quad&
+			\tilde{B} = \left\{ \left( \begin{array}{c}
+				\frac{1}{\sqrt{2}} \\
+				\frac{1}{\sqrt{2}}
+			\end{array} \right),
+			\left( \begin{array}{c}
+				-\frac{1}{\sqrt{2}} \\
+				-\frac{1}{\sqrt{2}}
+			\end{array} \right)
+			\right\} \\
+			\stackrel{
+				\substack{
+					\textrm{Satz von}\\
+					\textrm{Weierstraß}
+				}
+			}{\Rightarrow}\quad& x_m, x_M \in \tilde{B}
+		\end{align*}
+		\item Prüfen der Elemente aus \(\tilde{B}\):
+		\begin{align*}
+			&f(\left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right) = \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{2}} = \sqrt{2} \quad\Rightarrow\quad \max \\
+			&f(\left(-\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}\right) = -\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} = -\sqrt{2} \quad\Rightarrow\quad \min			
+		\end{align*}
+	\end{enumerate}
+	\item \( \left\{ \begin{array}{l}
+		f(x,y) = x^2+y^2 \rightarrow \min/\max \\
+		g(x,y) = x + y = b = 1
+	\end{array} \right. \) \\
+	Die Menge \(B = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) \mitt x + y = 1 \right\}\) ist nicht kompakt, darum gilt hier der Satz von Weierstraß nicht! In diesem konkreten Fall existiert kein Maximum.
 \end{enumerate}
 
 \end{document}
