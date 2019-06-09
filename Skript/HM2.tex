@@ -39,12 +39,13 @@
 \newcommand{\diag}	{\textrm{diag}}
 \newcommand{\mitt}	{\textrm{ mit }}
 \newcommand{\fum}	{f^{-1}}
+\newcommand{\Kurve}	{{\mathcal{K}}}
 
 %\newcommand{\Beweis}		{\noindent\colorbox{lightgray}{\textcolor{white}{\textbf{Beweis:}}} \color{gray}}
-%\newcommand{\OED}	{\color{black}}
+%\newcommand{\QED}	{\color{black}}
 \newcommand{\Beweis}[1][Beweis]
 {\begin{mdframed}[backgroundcolor=gray!10,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
-\newcommand{\OED}	{\end{mdframed}}
+\newcommand{\QED}	{\end{mdframed}}
 
 \newcommand{\Beispiel}[1][Anwendungsbeispiel]
 {\begin{mdframed}[backgroundcolor=green!10,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
@@ -206,7 +207,7 @@ Seien \(A_1, A_2\) zwei abgeschlossene Mengen, dann gilt
 		\left( A_1 \cup A_2 \right)^c \stackrel{\textrm{De Morgan}}{=}& \underbrace{A_1^c}_{\textrm{offen}} \cap \underbrace{A_2^c}_{\textrm{offen}} \textrm{ ist offen wegen Satz 1.1.8} \\
 		\left( \left( A_1 \cup A_2 \right)^c \right)^c =& ~A_1 \cup A_2 \textrm{ ist abgeschlossen}
 	\end{align*}
-	\OED
+	\QED
 \end{enumerate}
 
 \subsection{Satz}
@@ -477,7 +478,7 @@ Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total dif
 	\qquad \mitt r(x) \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
 	\lim_{x \rightarrow a} f(x) &= f(x_0) \quad _\square\\
 \end{align*}
-\OED
+\QED
 
 \subsection{Satz}
 Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
@@ -515,7 +516,7 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
 		\stackrel{x \rightarrow x_0}{\rightarrow} 0
 	\end{align*}
 	Ist \(r = e_k\) so erhält man gerade eine Spalte der Jacobi-Matrix.
-	\OED
+	\QED
 	
 	\item Existieren in \(x_0\) alle partiellen Ableitungen (also \underline{alle Komponenten der Jacobi-Matrix}) und diese \underline{stetig} sind \(\quad \Rightarrow \quad f\) ist in \(x_0\) total differenzierbar. \\
 	
@@ -584,7 +585,7 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, x_0 \in A\)
 		(x-x_0)\right\Vert}{\left\Vert x - x_0 \right\Vert}
 		\stackrel{x \rightarrow x_0}{\rightarrow} 0
 	\end{align*}
-	\OED
+	\QED
 	
 \end{enumerate}
 
@@ -695,7 +696,7 @@ Aus \(f'(x_0)\) folgt nicht direkt die Extremstelle, denn Sattelpunkte sind kein
 
 \noindent
 \Beweis ...
-\OED
+\QED
 
 \subsection{Definition des kritischen Punktes}
 
@@ -720,7 +721,7 @@ Sei \(f: G \subset \Rn \rightarrow \R\) differenzierbar und sei \(G\) offen und 
 	&= \nabla f( a + \xi(b-a) )^\top (b-a) = f(a) - f(b) \\
 	\Leftrightarrow \quad& f(b) = f(a) + \nabla f( a + \xi(b-a) )^\top (b-a)
 \end{align*}
-\OED
+\QED
 
 \subsection{Definition eines Gebiets}
 
@@ -749,7 +750,7 @@ Sei \(G \subset \Rn\) ein Gebiet, \(G \neq \varnothing\), und \(f : G \rightarro
 \end{align*}
 
 \Beweis ...
-\OED
+\QED
 
 \subsection{Definition partieller Ableitungen \(r\)'ter Ordnung}
 
@@ -822,7 +823,7 @@ Definiere \(g(t) = f(h(t))\) mit \(h(t) = a + t(b-a) \quad\Rightarrow\quad g(0) 
 	} \\
 	&= f(a) + \nabla f(a)^\top (b-a) + \frac{1}{2} (b-a)^\top H_f(\underbrace{\xi}_{\xi = a + t(b-a)})(b-a)
 \end{align*}
-\OED
+\QED
 
 \subsection{Definition von Definitheit}
 Sei \(A \in \Rnxn\) symmetrisch (\(A = A^\top\)):
@@ -967,7 +968,7 @@ Sei \(h(x_0) = x_0 + \xi(x - x_0)\) dann gilt:
 	}_{> 0 ~ \forall x \in U_\varepsilon(x_0)}
 	\geqslant f(x_0)
 \end{align*}
-\OED
+\QED
 
 \subsection{Definition der Sattelpunkte}
 Sei \(U = U_\varepsilon(x_0), f \in C^2(U), \nabla f(x_0) = 0, H_f(x_0)\) indefinit, dann besitzt die Funktion \(f\) bei \(x_0\) einen \textbf{Sattelpunkt}.\\
@@ -1116,7 +1117,7 @@ Sei \(f \in C^1(G;\Rn) \mitt G\subset \Rn\) ein Gebiet, \(x_0 \in G \mitt \det f
 	\end{align*}
 	Wenn \(\approx\) ein \(=\) wäre so könnte die Umkehrfunktion \(f^{-1}(y)\) einfach durch Äquivalenzumformungen bestimmt werden \\
 	\(\Rightarrow\) In einer hinreichend kleinen \(\varepsilon\)-Umgebung kann \(\approx\) als \(=\) angenommen werden.
-	\OED
+	\QED
 	\item \( \left( f^{-1} \right)'(y) = \left( f'\left( f^{-1}(y) \right) \right)^{-1} \quad\Leftrightarrow\quad J_{f^{-1}}(y) = J_f^{-1}\left( f^{-1}(y) \right)\)
 	\Beweis[Beweisidee] Wenn \(\fum : V \rightarrow U\) existiert, dann ist \(\fum\) auch stetig diff'bar. \\
 	\textit{Beispielskizze aus dem Eindimensionalen}:
@@ -1134,7 +1135,7 @@ Sei \(f \in C^1(G;\Rn) \mitt G\subset \Rn\) ein Gebiet, \(x_0 \in G \mitt \det f
 		1 &= \underbrace{f'\left( \fum(y) \right)}_{J_{f'}\left(\fum(y)\right)} \cdot \frac{d}{dy} \fum(y) \\
 		\Rightarrow\quad \frac{d}{dy} \fum(y) &= \left( f'\left( \fum(y) \right)\right)^{-1}
 	\end{align*}
-	\OED
+	\QED
 \end{enumerate}
 
 \subsection{Polarkoordinaten}
@@ -1332,7 +1333,7 @@ Ist die Funktion \(g\) differenzierbar, so ist sie in einer hinreichend kleinen 
 	\quad\stackrel{\det Y \neq 0}{=} y = Y^{-1}(b-Xx) = Y^{-1}b - Y^{-1}Xx = f(x) \\
 	&\Rightarrow\quad f'(x) = -Y^{-1} X = -(g_y)^{-1} g_x
 \end{align*}
-\OED
+\QED
 \Bemerkung für den Fall \(m=n=1\) \\
 Es gilt \(g(x,f(x)) = b\) für \(x \in U_0\) mit \(g:\Rzwei \rightarrow \R, f:\R \rightarrow \R, b \in \R\) konstant \\
 Setze \(h(x) = g(x,f(x))\) mit \(h: \R \rightarrow \R\) also muss \(h(x) = b, \forall x \in U_0\) gelten. Da \(b\) konstant ist, gilt für die Ableitung \(h'(x) = 0\).
@@ -1423,7 +1424,7 @@ Bei \(x_0\) gilt ja gerade \(h(x_0) = y_0)\):
 	0 \stackrel{!}{=} f_x(x_0,y_0) - f_y(x_0,y_0) \frac{g_x(x_0,y_0)}{g_y(x_0,y_0)} = f_x(x_0,y_0) g_y(x_0,y_0) - f_y(x_0,y_0) g_x(x_0,y_0) 
 \end{align*}
 Also sind die Gradienten \(\nabla f, \nabla g\) linear abhängig.
-\OED
+\QED
 
 \subsection{Bespiele}
 \begin{enumerate}[a.~]
@@ -1501,6 +1502,498 @@ Also sind die Gradienten \(\nabla f, \nabla g\) linear abhängig.
 	\end{array} \right. \) \\
 	Die Menge \(B = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) \mitt x + y = 1 \right\}\) ist nicht kompakt, darum gilt hier der Satz von Weierstraß nicht! In diesem konkreten Fall existiert kein Maximum.
 \end{enumerate}
+
+\subsection{Kochrezept für Lagrange}
+Für das Bestimmen der Kandidaten für mögliche Maximal/Minimal-Stellen der Funktion \(f\) unter der Nebenbedingung \(g\) eignet sich das folgende Vorgehen:
+\begin{enumerate}[1.~]
+	\item Lagrange-Funktion aufstellen:
+	\begin{align*}
+		L(x,\lambda) = f(x) + \lambda^\top g(x)
+	\end{align*}
+	\item Gradient von \(L\) auf Null setzen und Gleichungen lösen:
+	\begin{align*}
+		\nabla L(x,\lambda) \stackrel{!}{=} 0 \quad 
+		\left\{ \begin{array}{ll}
+			L_x (x,\lambda) \stackrel{!}{=} 0 &\quad n \textrm{ Gleichungen} \\
+			L_\lambda(x,\lambda) \stackrel{!}{=} 0 &\quad m \textrm{ Gleichungen}
+		\end{array} \right. \rightarrow \textrm{nach }x\textrm{ und }\lambda\textrm{ lösen}
+	\end{align*}
+	Unbekannte sind also \(\lambda_1, ..., \lambda_m\) und \(x_1, ..., x_n\) (also \(m + n\) Unbekannte).\\
+	Meist ist es geschickter zuerst \(\lambda\) zu bestimmen und danach nach \(x\) aufzulösen.
+\end{enumerate}
+
+\chapter{Integrale in mehreren Dimensionen}
+\section{Parameterintegrale}
+\subsection{Satz zu eigentlichen Parameterintegralen}\label{sec:eigtl_param_int}
+Sei \(f(x,t)\) reell und stetig in \([\alpha,\beta]\times[a,b]\) (also auf \(\left\{ \left( \begin{array}{c} x \\ t \end{array}\right) : \alpha \leqslant x \leqslant \beta, a \leqslant t \leqslant b \right\}\). Dann gilt für
+\begin{align*}
+	F(x) = \int_a^b f(x,t) ~dt \qquad F:[\alpha,\beta] \rightarrow \R
+\end{align*}
+\begin{enumerate}[(i)]
+	\item \(F\) ist stetig auf \([\alpha,\beta]\)
+	\item Falls \(f_x\) stetig auf \([\alpha,\beta]\times[a,b]\) ist, so ist \(F \in C^1([a,b])\) und es gilt
+	\begin{align*}
+		F'(x) = \int_a^b f_x(x,t) ~dt = \int_a^b \frac{d}{dx} f(x,t) ~dt
+	\end{align*}
+	\item \begin{align*}
+		\int_\alpha^\beta F(x) dx = 
+		\int_\alpha^\beta \left( \int_a^b f(x,t) ~dt \right) dx =
+		\int_a^b \left( \int_\alpha^\beta f(x,t) ~dx \right) dt
+	\end{align*}
+\end{enumerate}
+\Bemerkung In (ii) und (iii) werden Grenzwerte vertauscht, im allgemeinen geht so etwas schief:\\
+z.b. für \(f(n,x)=x^n\) und \(x < 1\)
+\begin{align*}
+	\underbrace{
+		\lim_{n \rightarrow \infty} 
+		\underbrace{
+			\lim_{x \rightarrow 1} f(n,x)
+		}_{
+			\lim_{x \rightarrow 1} x^n = 1^n
+		}
+	}_{
+		\lim_{n \rightarrow \infty} 1^n = 1
+	} = 1 \neq 0 =
+	\underbrace{
+		\lim_{x \rightarrow 1} 
+		\underbrace{
+			\lim_{n \rightarrow \infty} f(n,x)
+		}_{
+			\lim_{n \rightarrow \infty} x^n \stackrel{x < 1}{=} 0
+		}
+	}_{
+		\lim_{x \rightarrow 1} 0 = 0
+	}
+\end{align*}
+\textit{Beispiel}: Sei \(f(x,t) = x \sin t, x \in [0,1], t \in [0,\pi]\)
+\begin{align*}
+	\textrm{ohne Hilfe des Satzes}: &\quad
+	F(x) = \left[ - x \cos t \right]_0^\pi = x + x = 2x \rightarrow F'(x) = 2 \\
+	\textrm{mit (ii) aus dem Satz}: &\quad
+	F'(x) = \int_0^\pi f_x(x,t) ~dt = \int_0^\pi \sin t ~dt = \left[ -\cos t \right]_0^\pi = 2
+\end{align*}
+
+\subsection{Satz zur Leibniz-Regel}
+Seien \(f(x,t), f_x(x,t)\) stetig in \([\alpha,\beta]\times[a,b]\) und \(u,v \in C^1 ([\alpha,\beta]\times[a,b])\), dann ist
+\begin{align*}
+	& F(x) = \int_{u(x)}^{v(x)} f(x,t) ~dt \quad \in C^1([\alpha,\beta]) \\
+	\textrm{und}\quad& F'(x) = \int_{u(x)}^{v(x)} f_x(x,t) ~dt + f(x, v(x)) v'(x) - f(x,u(x))u'(x)
+\end{align*}
+\Beweis
+	Die stetige Differenzierbarkeit folgt dadurch, dass \(F(x)\) eine Verkettung von \(C^n\) Funktionen ist.\\
+	Sei \(F(x) = \tilde{F}(x,u(x),v(x))\) mit \(\tilde{F}(x,a,b) = \int_a^b f(x,t) ~dt\) dann ist \(\tilde{F}\) bezüglich \(x\) stetig differenzierbar wegen Satz \ref{sec:eigtl_param_int} und bezüglich \(a,b\) nach dem Hauptsatz der Differential- und Integralrechnung.\\
+	\(\Rightarrow \tilde{F}\) ist stetig partiell differenzierbar\\
+	\(\Rightarrow \tilde{F}\) ist total differenzierbar, außerdem ist \(h(x) = \left( \begin{array}{c} x \\ u(x) \\ v(x) \end{array}\right)\) total differenzierbar.
+	\(\Rightarrow\) durch die weitere Verkettung gilt \(\tilde{F}(h(x)) = \tilde{F}(x, u(x), v(x))= \int_{u(x)}^{v(x)}f(x,t) ~dt \) ist total differenzierbar \\
+	
+	\noindent
+	Außerdem gilt nach der Kettenregel:
+	\begin{align*}
+		F'(x) &= \nabla \tilde{F}(\underbrace{x,u(x),v(x)}_{h(x)} \cdot
+		\underbrace{ \left( \begin{array}{c}
+			1 \\ u'(x) \\ v'(x)		
+		\end{array} \right) }_{h'(x)} \\
+		&= \left( \begin{array}{ccc}
+			\underbrace{\tilde{F}_x(x,u(x),v(x))}_
+			{\stackrel{\ref{sec:eigtl_param_int}}{=} \int_a^b f_x(x,t) dt} &
+			\underbrace{\tilde{F}_a(x,u(x),v(x))}_
+			{= -f(x,a)} &
+			\underbrace{\tilde{F}_b(x,u(x),v(x))}_
+			{= f(x,b)}
+		\end{array} \right)\left( \begin{array}{c}
+			1 \\ u'(x) \\ v'(x)		
+		\end{array} \right) \\
+		&= \int_a^b f_x(x,t) ~dt \cdot 1 - f(x,u(x)) u'(x) + f(x,v(x)) v'(x)
+	\end{align*}
+\QED
+
+\subsection{Definition uneigentlicher Parameterintegrale}
+Ist für \(x \in M \subset \R\) ein Integral \(\int_a^b f(x,t) ~dt\) definiert und ist \(a\) (oder \(b\)) ein kritischer Punkt, so ist das Integral gleichmäßig konvergent in \(M\), wenn gilt:
+\begin{align*}
+	\forall~  \varepsilon > 0 \quad \exists~ L \in (a,b) \mitt
+	\left\vert \int_{T_1}^{T_2} f(x,t) ~dt \right\vert < \varepsilon \quad \forall~ x \in M &\textrm{ und } \forall~ T_1, T_2 \in (L,b) \\
+	&\left(\textrm{bzw. } \forall~ T_1, T_2 \in (a,L) \right)
+\end{align*}
+
+\textit{Beispiele}
+\begin{enumerate}[(i)]
+	\item Eindimensional: \begin{align*}
+		\underbrace{\int_0^1}_{0\rightarrow\textrm{krit.Pkt.}} \frac{1}{\sqrt{t}} ~dt = \lim_{a \rightarrow 0} \int_a^1 \frac{1}{\sqrt{t}} ~dt = \lim_{a \rightarrow 0} \left[ 2 \sqrt{t} \right]_a^1 = 2\sqrt{1} - \lim_{a \rightarrow 0} 2\sqrt{a} = 2
+	\end{align*}
+	\item \begin{align*}
+		\int_1^\infty \frac{1}{t^2} ~dt
+	\end{align*}
+	\item Sei \(\alpha \in \R\)
+	\begin{align*}
+		&\int_1^\infty t^\alpha ~dt = \lim_{b \rightarrow \infty} 
+		\int_1^b t^\alpha ~dt \Rightarrow 
+		\left\{ \begin{array}{ll}
+			\frac{t^{\alpha+1}}{\alpha+1} &\quad \alpha \neq -1 \\
+			\log t &\quad \alpha = -1
+		\end{array} \right. \\
+		\alpha = -1:\quad&
+		\lim_{b \rightarrow \infty} \left[ \log t \right]_1^b = \infty \\
+		\alpha \neq -1:\quad&
+		\lim_{b \rightarrow \infty}
+		\left[ \frac{t^{\alpha+1}}{\alpha+1} \right]_1^b =
+		\underbrace{\lim_{b\rightarrow\infty} \frac{b^{\alpha+1}}{\alpha+1}}_{\stackrel{b\rightarrow\infty}{\rightarrow} 0 \textrm{ falls } \alpha + 1 < 0} - \frac{1}{\alpha + 1} = 
+		\left\{ \begin{array}{ll}
+			\infty &\quad \alpha > -1 \\
+			-\frac{1}{\alpha+1} &\quad \alpha < -1
+		\end{array} \right.
+	\end{align*}
+\end{enumerate}
+
+\subsection{Satz zum Majorantenkriterium}
+Ein uneigentliches Integral \(\int_a^b f(x,t) ~dt\) konvergiert gleichmäßig in \(M\subset\R\), wenn ein konvergentes (eigentliches oder uneigentliches) Integral \(\int_a^b g(t) ~dt\) existiert mit
+\begin{align*}
+	\left\vert f(x,t) \right\vert \leqslant g(t) \quad
+	\underbrace{\forall t \in (a,b)}_{-\infty\leqslant a \leqslant b \leqslant\infty} \quad \forall~ x \in M
+\end{align*} 
+
+\subsection{Satz von Fubini für uneigentliche Integrale}
+Ist \(f(x,t)\) stetig in \(I \times (a,b)\) (dabei ist \(I\) ein Intervall) und konvergiert \(F(x) = \int_a^b f(x,t) ~dt \) gleichmäßig in \(I\), dann ist \(F\) stetig und für \(I = [\alpha,\beta] \mitt \alpha,\beta \in \R\) gilt:
+\begin{align*}
+	\int_\alpha^\beta \left( \int_a^b f(x,t) ~dt \right) dx = 
+	\int_a^b \left( \int_\alpha^\beta f(x,t) ~dx \right) dt
+\end{align*} 
+
+\subsection{Satz zur Ableitung uneigentlicher Parameterintegrale}
+\label{sec:abl_uneigtl_paramint}
+Sind \(f(x,t)\) und \(f_x(x,t)\) stetig auf \([\alpha,\beta]\times[a,b]\) und ist
+\begin{align*}
+	&\int_a^b f(x_0,t) ~dt \textrm{ konvergent für ein } x_0 \in [\alpha,\beta] \textrm{ und ist }\\
+	&\int_a^b f_x(x,t) ~dt \textrm{ konvergent } \forall~ x \in [\alpha,\beta] \textrm{ so konvergiert} \\
+	F(x) = &\int_a^b f(x,t) ~dt \textrm{ gleichmäßig } \forall~ x \in [\alpha,\beta] \textrm{ und es gilt } \\
+	F'(x) = &\int_a^b f_x(x,t) ~dt \textrm{ also gilt } F' \in C^1([\alpha,\beta])
+\end{align*}
+
+\subsection{Beispiel}
+Berechne \(\int_0^1 \frac{t^\beta - t^\alpha}{\log t} ~dt \) für \(-1 < \alpha < \beta\):
+\begin{align*}
+	\textrm{definiere}:&\quad F(x) = \int_0^1 \underbrace{\frac{t^x - t^\alpha}{\log t}}_{f(x,t)} ~dt \\
+	\textrm{sei } \alpha \textrm{ ein } x_0 \in [\alpha,\beta]:&\quad
+	F(\alpha) = \int_0^1 \frac{t^\alpha - t^\alpha}{\log t} = 0 \quad \Rightarrow\quad \textrm{uneigentliches Intervall konvergiert} \\
+	\textrm{weiter gilt}:&\quad
+	%\int_0^1 f_x(x,t)~dt = 
+	\int_0^1 \frac{d}{dx} \frac{ \overbrace{e^{x\log t}}^{t^x} - t^\alpha}{\log t} = \int_0^1 \frac{\log t \cdot t^x}{\log t}~dt = \int_0^1 t^x ~dt \\
+	&\quad = \left[ \frac{t^{x+1}}{x+1} \right]_0^1 = \frac{1}{x+1} < 1 \quad\Rightarrow\quad \int_0^1 f_x(x,t) ~dt \textrm{ konvergiert} \\
+	\textrm{also gilt}:&\quad F'(x) \stackrel{\ref{sec:abl_uneigtl_paramint}}{=} \int_0^1 f_x(x,t) ~dt = \frac{1}{x+1} \\
+	\textrm{wieder aufleiten}:&\quad F(x) = \log(x+1) + c \\
+	\mitt: &\quad F(\alpha) = \log(\alpha + 1) + c = 0 
+	\quad\Leftrightarrow\quad c = -\log(\alpha+1) \\
+	&\quad F(\beta) = \log(\beta + 1) + c = \log(\beta + 1) - \log(\alpha + 1) = \log\left(\frac{\beta+1}{\alpha+1}\right)
+\end{align*}
+
+\section{Kurvenintegrale}
+
+\subsection{Definition der Äquivalenzrelation für Kurven}
+Zwei stetige Funktionen \(x:[a,b] \subset \R \rightarrow \Rn\) und \(y:[\alpha,\beta] \subset \R \rightarrow \Rn\) heißen äquivalent \((x \sim y)\), wenn es eine streng monoton wachsende Funktion \(\varphi:[a,b] \rightarrow [\alpha,\beta]\) gibt mit \(y(\varphi(t)) = x(t) \quad \forall~ t \in [a,b]\).\\
+
+\noindent
+\textit{Beispiel}:
+\begin{align*}
+	\textrm{(i)} \quad & 
+	x(t) = \left( \begin{array}{c}
+		\cos t \\
+		\sin t	
+	\end{array} \right) \quad
+	t \in [0,2\pi] \qquad
+	y(t) = \left( \begin{array}{c}
+		\cos 2t \\
+		\sin 2t	
+	\end{array} \right) \quad
+	t \in [0,\pi] \\
+	& \textrm{Sei } \varphi(t) = \frac{t}{2} \quad \Rightarrow \quad
+	y(\varphi(t)) = y\left(\frac{t}{2}\right) = x(t) \quad \forall~ t \in [0,2\pi] \\
+	\textrm{(ii)} \quad & 
+	x(t) = \left( \begin{array}{c}
+		\cos t \\
+		\sin t	
+	\end{array} \right) \quad
+	t \in [0,2\pi] \qquad
+	y(t) = \left( \begin{array}{c}
+		\cos t \\
+		-\sin t	
+	\end{array} \right) \quad
+	t \in [0,2\pi] \\
+	&\textrm{Sei } \varphi(t) = -t \quad \Rightarrow \quad
+	y(-t) = x(t) \textrm{ aber } \varphi \textrm{ ist \underline{nicht} monoton wachsend!} \\
+	&\Rightarrow\quad \textrm{Die Kurven müssen in die gleiche Richtung zeigen.}
+\end{align*}
+\textit{Bemerkung}:
+\begin{enumerate}[(i)]
+	\item Reflexiv: \(x \sim x\)
+	\Beweis Wähle \(\varphi(t) = t\) \QED
+	\item Symmetrie: \(x \sim y \quad\Rightarrow\quad y \sim x \)
+	\Beweis Zu jedem \(\varphi\) existiert ein \(\varphi^{-1}\), welches ebenfalls stetig und monoton wachsend ist. Also gilt: \(y(t) = x\left( \varphi^{-1} \right) \quad \forall~ t \in [\alpha,\beta]\) \QED
+	\item Transitivität: \(x \sim y\) und \(y \sim z \quad\Rightarrow\quad x \sim z\)
+	\Beweis \(y(\varphi(t)) = x(t), z(\psi(\tau)) = y(\tau) \quad\Rightarrow\quad z\left( \psi\left( \varphi(t) \right) \right) = x(t) \) \QED
+\end{enumerate}
+
+\subsection{Definition einer Kurve im \(\Rn\)}
+Ist \(x: [a,b] \rightarrow \Rn\) stetig, so nennt man die Menge \(\Kurve = \left\{ y: [\alpha,\beta] \subset \R \rightarrow \Rn : y \sim x \right\}\) die Kurve \(\Kurve\) mit Parameterdarstellung \(x\) (dabei ist jedes \(y \in \Kurve\) eine äquivalente Parameterdarstellung von \(\Kurve\)) mit Anfangspunkt \(p = x(a)\) und Endpunkt \(q = x(b)\).\\
+Schreibweise: \(\Kurve : x(t), a \leqslant t \leqslant b\).\\
+Die Menge \(T(\Kurve) = x([a,b]) = \{ x(t) : a \leqslant t \leqslant b \}\) heißt \textbf{Träger} von \(\Kurve\).\\
+
+\noindent
+Man nennt eine Kurve \(\Kurve\)
+\begin{enumerate}
+	\item \textbf{geschlossen}, wenn \(x(a) = x(b)\) gilt
+	\item \textbf{einfach} oder \textbf{Jordan}kurve, wenn \(\forall~ t,u \in [a,b] : x(t) \neq x(u) \Leftrightarrow t \neq u\) gilt\\
+	(Kurve hat keine Überschneidungen)
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \( x(t) = \left( \begin{array}{c}
+		\cos t \\
+		\sin t	
+	\end{array} \right) \quad t \in [0,2\pi] \)
+	\item \( y(t) = \left( \begin{array}{c}
+		\cos t^2 \\
+		\sin t^2	
+	\end{array} \right) \quad t \in [0,\sqrt{2\pi}] \)
+	\item \( z(t) = \left( \begin{array}{c}
+		\cos -t \\
+		\sin -t	
+	\end{array} \right) \quad t \in [0,2\pi] \)
+\end{enumerate}
+Es gilt \(x \sim y\): Gleiche Kurve mit unterschiedlicher Parameterdarstellung. Für (i) ist \(\Kurve : x(t), 0 \leqslant t \leqslant 2\pi\) und für (ii) ist \(\Kurve : y(t), 0 \leqslant t \leqslant \sqrt{2\pi}\).\\
+Aber weiter gilt \(x,y \not\sim z\), denn die Kurve beschrieben durch \(z(t)\) geht in die andere Richtung.
+
+\subsection{Eigenschaften von Parameterdarstellungen}
+\begin{enumerate}[(i)]
+	\item Eine Parameterdarstellung \(x: [a,b] \subset \R \rightarrow \Rn\) einer Kurve \(\Kurve\) heißt \textbf{stückweise stetig differenzierbar}, wenn eine Zerlegung \(a = t_0 < t_1 < ... < t_N = b\) existiert und \(x\) auf \([t_l, t_{l+1}]\) mit \(l \in \{ 0, ..., N-1 \}\) stetig differenzierbar ist.
+	\item Besitzt eine Kurve \(\Kurve\) eine stückweise stetig differenzierbare Parameterdarstellung \(x(t)\) mit \(t \in [a,b]\) und gilt \(\dot{x}(t) \neq 0 ~\forall~ t \in [a,b]\), dann heißt die Kurve \(\Kurve\) \textbf{glatt} oder \textbf{regulär}.
+	\item Ist von \(\Kurve\) eine Parameterdarstellung \(x\) stückweise stetig differenzierbar und \(\dot{x}(t) \neq 0\), so heißt der Vektor
+	\begin{align*}
+		T(t) = \frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert} \quad
+		\textrm{der \textbf{Tangenten(einheits)vektor} von \(\Kurve\) bei \(t\).}
+	\end{align*}
+	Dabei ist \(T\) wieder eine Kurve, beziehungsweise Funktion der Form \(T:[a,b] \rightarrow \Rn\). Ist \(T\) zusätzlich ebenfalls stetig differenzierbar und gilt \(\dot{T}(t) \neq 0\), so heißt
+	\begin{align*}
+		N(t) = \frac{\dot{T}(t)}{\Vert \dot{T}(t) \Vert} \quad
+		\textrm{der \textbf{Hauptnormalen(einheits)vektor} von \(\Kurve\) bei }t
+	\end{align*}
+	(Dabei ist \(N(t)\) die normierte zweite Ableitung von \(x(t)\)).\\
+	Falls \(n=3\) so heißt falls existent
+	\begin{align*}
+		B(t) = T(t) \times N(t) \quad
+		\textrm{der \textbf{Binormalen(einheits)vektor} \(\Kurve\) bei \(t\).}
+	\end{align*}
+\end{enumerate}
+
+\subsection{Bemerkung}
+\begin{enumerate}[(i)]
+	\item Existieren \(T\) und \(N\), dann gilt \(N(t) \perp T(t)\). Existiert auch \(B\) so gilt \(N(t) \perp B(t), T(t) \perp B(t)\).
+	\item Existiert \(T\), so hängt der Tangenteneinheitsvektor nicht von der Parameterdarstellung ab.
+	\Beweis Sei z.b. \(y(\varphi(t)) = x(t), a \leqslant t \leqslant b\)
+	\begin{align*}
+		\Rightarrow\quad & T(t) = 
+		\frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert} = 
+		\frac{\dot{y}(\varphi(t))\dot{\varphi}(t)}{\Vert \dot{y}(\varphi(t))\dot{\varphi}(t) \Vert} = 
+		\frac{\dot{y}(\varphi(t))}{\Vert \dot{y}(\varphi(t)) \Vert} 
+		\underbrace{
+			\frac{\dot{\varphi}(t)}{\vert \dot{\varphi}(t) \vert }
+		}_{
+			\stackrel{\substack{
+				\varphi \textrm{ monoton}\\
+				\textrm{wachsend}\\
+				\Rightarrow \dot{\varphi} > 0
+			}}{=} \frac{\dot{\varphi}(t)}{\dot{\varphi}(t)} = 1
+		} \\
+		&= \frac{\dot{y}(\varphi(t))}{\Vert \dot{y}(\varphi(t)) \Vert}
+		\stackrel{\tau = \varphi(t)}{=}
+		\frac{\dot{y}(\tau)}{\Vert \dot{y}(\tau) \Vert}
+	\end{align*} \QED
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \( x(t) = \left( \begin{array}{c}
+		\cos t \\
+		\sin t
+	\end{array} \right) \quad t \in [0,2\pi] \)
+	\begin{align*}	 
+		\dot{x}(t) &= \left( \begin{array}{c}
+			-\sin t \\
+			\cos t
+		\end{array} \right) 
+		\stackrel{\Vert \dot{x}(t) \Vert = 1}{=}
+		\frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert} = T(t)\\
+		\ddot{x}(t) &= \left( \begin{array}{c}
+			-\cos t \\
+			-\sin t
+		\end{array} \right) = \dot{T}(t)
+		\stackrel{\Vert \dot{T}(t) \Vert = 1}{=} 
+		\frac{\dot{T}(t)}{\Vert \dot{T}(t) \Vert} = N(t)\\
+	\end{align*}
+	\item \( x(t) = \left( \begin{array}{c}
+		\cos 2t \\
+		\sin 2t
+	\end{array} \right) \quad t \in [0,\pi] \)
+	\begin{align*}
+		\dot{x}(t) &= \left( \begin{array}{c}
+			-2\sin 2t \\
+			2\cos 2t
+		\end{array} \right)
+		\Rightarrow \frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert}
+		\stackrel{\Vert \dot{x}(t) \Vert = \sqrt{4} = 2}{=}
+		\frac{1}{2} \dot{x}(t) = T(t) = \left( \begin{array}{c}
+			-\sin 2t \\
+			\cos 2t
+		\end{array} \right) \\
+		\dot{T}(t) &= \left( \begin{array}{c}
+			-2\cos 2t \\
+			-2\sin 2t
+		\end{array} \right)
+		\Rightarrow \frac{\dot{T}(t)}{\Vert \dot{x}(T) \Vert}
+		\stackrel{\Vert \dot{T}(t) \Vert = \sqrt{4} = 2}{=}
+		\frac{1}{2} \dot{T}(t) = N(t) = \left( \begin{array}{c}
+			-\cos 2t \\
+			-\sin 2t
+		\end{array} \right)
+	\end{align*}
+\end{enumerate}
+
+\subsection{Definition zusammen- und entgegengesetzter Kurven}
+\begin{enumerate}[(i)]
+	\item Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve, dann heißt \(-\Kurve : y(t), a \leqslant t \leqslant b\) mit \(y(t) = x(a + b - t)\) die zu \(\Kurve\) \textbf{entgegengesetzte} Kurve
+	\item Sind \(\Kurve : x(t), a \leqslant t \leqslant b\) und \(\mathcal{L} : y(t), \alpha \leqslant t \leqslant \beta\) zwei Kurven mit \(x(b) = y(\alpha)\), dann heißt \(\Kurve + \mathcal{L} : z(t), a \leqslant t \leqslant b + \beta - \alpha\) mit \(z(t) = \left\{ \begin{array}{ll}
+	x(t) &\quad a \leqslant t \leqslant b \\
+	y(t - \beta + \alpha) &\quad b \leqslant t \leqslant b + \beta - \alpha
+	\end{array} \right. \) die \textbf{zusammengesetzte} Kurve von \(\Kurve\) und \(\mathcal{L}\).\\
+	\textit{Bemerkung}: Der Parameterbereich von \(x\) hat die Länge \(b-a\), der Parameterbereich von \(y\) hat die Länge \(\beta - \alpha\) und der Parameterbereich von \(z\) hat die Länge \(b - a + \beta - \alpha = (b + \beta - \alpha) - a\).
+\end{enumerate} 
+
+\subsection{Definition von rektifizierbaren Kurven}
+Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve, so heißt
+\begin{align*}
+	l(\Kurve) = \sup\left\{ \sum_{k=1}^n \Vert x(t_k) - x(t_{k-1}) \Vert : a = t_0 < ... < t_n = b \right\}
+\end{align*}
+die \textbf{Länge} von \(\Kurve\). Ist \(L(\Kurve) < \infty\) so heißt die Kurve \(\Kurve\) \textbf{rektifizierbar}.\\
+\textit{Bemerkung}: \(l(\Kurve) \approx l(\textrm{Polygonzug})\). Dabei hängt die Genauigkeit von der Feinheit der Zerlegung \(a = t_0 < ... < t_n = b\) ab.
+
+\subsection{Satz}
+Sei \(\Kurve\) eine Kurve mit einer Parameterdarstellung \(x \in C^1 \) (stetig diff'bar), so gilt
+\begin{align*}
+	l(\Kurve) = \int_a^b \Vert \dot{x}(t) \Vert dt \approx 
+	\sum_{k=1}^n \underbrace{
+		\Vert \dot{x}(\xi_k) \Vert (t_k - t_{k-1}	)
+	}_{
+		\Vert \dot{x}(\xi_k) (t_k - t_{k-1}) \Vert
+	}	
+\end{align*}
+
+
+
+\subsection*{Methoden zur Berechnung von Stammfunktionen}
+\subsection{Nach Variablen integrieren}
+\textit{Beispiel}: Sei \(f(x,y,z) = \left(\begin{array}{c}
+	y~e^{yz} + 1 \\
+	x~e^{yz} + xyz~e^{yz} \\
+	xy^2~e^{yz} + \cos z
+\end{array} \right) = \left( \begin{array}{c}
+	f_1(x,y,z) \\
+	f_2(x,y,z) \\
+	f_3(x,y,z)
+\end{array} \right) \)\\
+Gesucht ist ein \(F\) mit \(\nabla F = \left( \begin{array}{c}
+	F_x \\ F_y \\ F_z
+\end{array} \right) = \left( \begin{array}{c}
+	f_1 \\ f_2 \\ f_3
+\end{array} \right)\)
+\begin{align*}
+	\textrm{\underline{1.}}\quad & 
+	F(x,y,z) \stackrel{!}{=} \int f_1(x,y,z) ~dx = xy~e^{yz} + x + c(y,z) \\
+	\textrm{\underline{2.}}\quad & 
+	F_y(x,y,z) = x~e^{yz} + xy~e^{yz}~z + 0 + c_y(y,z) \stackrel{!}{=}
+	f_2(x,y,z) = x~e^{yz} + xyz~e^{yz} \\
+	&\Rightarrow c_y(y,z) = 0 \quad\Rightarrow\quad c(y,z) = \tilde{c}(z) \\
+	&\Rightarrow F(x,y,z) = xy~e^{yz} + x + \tilde{c}(z) \\
+	\textrm{\underline{3.}}\quad &
+	F_z(x,y,z) = 0~e^{yz} + xy~e^{yz}~y + 0 + \tilde{c}_z(z) \stackrel{!}{=}
+	f_3(x,y,z) = xy^2~e^{yz} + \cos z \\
+	&\Rightarrow \tilde{c}_z(z) = \cos z \quad\Rightarrow\quad
+	\tilde{c}(z) = \int \cos z ~dz = \sin z + c \quad\mitt c \in \R \\
+	&\Rightarrow F(x,y,z) = xy~e^{yz} + x + \sin z + c
+\end{align*}
+
+\subsection{Mittels Kurvenintegral und passendem Weg}
+Sei \(F(x)= \int_{\Gamma_x} f\), dabei ist \(\Gamma\) ein Weg von \(x_0\) (fest) nach \(x\) in \(G\).\\
+
+\noindent
+\textit{Beispiel}: Sei \(f(x,y) = \left( \begin{array}{cc}
+	- \frac{y}{x^2 + y^2} &
+	\frac{x}{x^2 + y^2}
+\end{array} \right)\) mit \(G = \Rzwei \setminus \left\{ \left( \begin{array}{c} x \\ 0 \end{array}\right) : x \leqslant 0 \right\}\) (sternförmig)
+\begin{align*}
+	\textrm{Sei}: \quad & 
+	\Gamma_1 = \left( \begin{array}{c} 
+		t \\
+		0
+	\end{array} \right), \quad
+	\Gamma_2 = r \left( \begin{array}{c} 
+		\cos \phi \\
+		\sin \phi
+	\end{array} \right)
+	\quad\textrm{und}\quad x_0 = \left( \begin{array}{c}
+		1 \\ 0	
+	\end{array} \right) \\
+	\textrm{Es gilt}: \quad & 
+	F(x,y) = \int_{\Gamma_1} f + \int_{\Gamma_2} f \\
+	&\qquad = 
+	\int_1^r f(t,0) ~d\left( \begin{array}{c}
+		t \\ 0	
+	\end{array} \right) +
+	\int_0^\phi f(r \cos t, r \sin t	) ~d
+	\left( \begin{array}{c}
+		r \cos t \\
+		r \sin t
+	\end{array} \right) \\
+	&\qquad = 
+	\int_1^r \left( \begin{array}{cc}
+		-\frac{0}{t^2 + 0^2} & 
+		\frac{t}{t^2 + 0^2}	
+	\end{array} \right) 
+	\left( \begin{array}{c}
+		\frac{d}{dt} t \\
+		\frac{d}{dt} 0
+	\end{array} \right)\\
+	&\qquad\quad + 
+	\int_0^\phi \left( \begin{array}{cc}
+		-\frac{r \sin t}{r^2 \cos^2 t + r^2 \sin^2 t} & 
+		\frac{r \cos t}{r^2 \cos^2 t + r^2 \sin^2 t}
+	\end{array} \right)
+	\left( \begin{array}{c}
+		\frac{d}{dt} r \cos t \\
+		\frac{d}{dt} r \sin t
+	\end{array} \right) \\
+	& \qquad = 
+	\int_1^r \left( \begin{array}{cc}
+		0 & t
+	\end{array} \right)
+	\left( \begin{array}{c}
+		1 \\
+		 0
+	\end{array} \right)~dt + 
+	\int_0^\phi
+	\left( \begin{array}{cc}
+		-\frac{1}{r} \sin t & \frac{1}{r} \cos t
+	\end{array} \right)
+	\left( \begin{array}{c}
+		-r \sin t \\
+		r \cos t
+	\end{array} \right)~dt \\
+	& \qquad = 
+	\int_1^r 0\cdot 1 + t \cdot 0 ~dt+ \int_0^\phi \frac{1}{r} \sin t \cdot r \sin t + \frac{1}{r} \cos t \cdot r \cos t ~dt \\
+	& \qquad = 
+	\int_1^r 0 ~dt + \int_0^\phi \frac{r}{r} \left( \cos^2 t + \sin^2 t \right)~dt =
+	\int_1^r 0 ~dt + \int_0^\phi 1 ~dt \\
+	\Rightarrow \quad & F(x,y) = \phi = \textrm{arg}(x,y)
+\end{align*}
+
 
 \end{document}
 
