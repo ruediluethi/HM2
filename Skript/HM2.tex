@@ -104,13 +104,18 @@ Sei \(x \in \Rn\) mit \(x = \left(\begin{array}{c} x_1 \\ \vdots \\ x_n \end{arr
 	\begin{align*}
 		\forall~ x,y \in \Rn \quad : \quad \vert \left< x,y \right> \vert \leqslant \Vert x \Vert \cdot \Vert y \Vert
 	\end{align*}
-	Begründung (nicht Beweis!) durch alternative Definition: \( \left< x,y \right> = \Vert x \Vert \cdot \Vert y \Vert \underbrace{\cos \alpha}_{\leqslant 1} \) \\
-	Dabei ist \(\alpha\) der Winkel der zwischen \(x\) und \(y\) eingeschlossen wird. \\
+	\Beweis[Begründung (kein Beweis) durch alternative Definition]
+	\begin{align*}
+		\left< x,y \right> = \Vert x \Vert \cdot \Vert y \Vert ~ \underbrace{\cos \alpha}_{\leqslant 1}
+	\end{align*}
+	Dabei ist \(\alpha\) der Winkel der zwischen \(x\) und \(y\) eingeschlossen wird.
+	\QED
 	Daraus folgt:
 	\begin{align*}
 		\vert \left< x,y \right> \vert = \Vert x \Vert \cdot \Vert y \Vert
-		\Leftrightarrow
-		x,y \textrm{ sind lin. unabhängig} : x = \lambda y \textrm{ oder } y = \lambda x \textrm{ für } \lambda \in \R
+		\quad&\Leftrightarrow\quad
+		x,y \textrm{ sind lin. abhängig} \quad (x = \lambda y \textrm{ für } \lambda \in \R) \\
+		&\Leftrightarrow\quad x, y \textrm{ zeigen in die gleiche oder entgegengesetzte Richtung}
 	\end{align*}
 	\item \(\Vert \cdot \Vert\) ist eine Norm. Eine Norm hat folgende Eigenschaften:
 	\begin{enumerate}[(i)]
@@ -145,6 +150,12 @@ Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
 \subsubsection*{Korollar}
 \begin{enumerate}[(i)]
 	\item \(\mathring{A} \subset A\)
+	\Beweis Zu zeigen: \(x \in \mathring{A} \quad\Rightarrow\quad x \in A\)
+	\begin{align*}
+		x \in \mathring{A} \quad\Rightarrow\quad
+		\exists~ \varepsilon > 0 \mitt U_\varepsilon(x) \subset A
+		\quad\stackrel{x \in U_\varepsilon(x)}{\Rightarrow}\quad x \in A
+	\end{align*}\QED
 	\item \(\mathring{A} \subset \overline{A}\)
 	\item \(\partial A \subset \overline{A}\)
 	\item \(\overline{A} = \mathring{A} \cup \partial A \)
@@ -152,6 +163,7 @@ Sei \(A \subset \Rn\), dann heißt ein Punkt \(x_0 \in \Rn\)
 \end{enumerate}
 
 \subsection{Definition von offen und abgeschlossen}
+\label{sec:def_offen_abgeschl}
 Eine Menge \(A \subset \Rn\) heißt
 \begin{enumerate}[(i)]
 	\item \textbf{offen}, wenn \(A = \mathring{A} \) gilt (\(A\) besteht nur aus inneren Punkten)
@@ -161,6 +173,19 @@ Eine Menge \(A \subset \Rn\) heißt
 \subsection{Beispiele}
 \begin{enumerate}[1.~]
 	\item Jede \(\varepsilon\)-Umgebung \(U_\varepsilon(x_0 \in \Rn)\) ist offen
+	\Beweis Sei \(A = U_\varepsilon(x_0)\) und \(x \in A\) beliebig.\\
+	Zu zeigen: \(x \in \mathring{A}\), respektive \(\exists~ \delta > 0 \mitt U_\delta(x) \subset A\)\\
+	Wähle \(\delta = \varepsilon - \Vert x - x_0 \Vert\), dann gilt:
+	\begin{align*}
+		\underbrace{y \in U_\delta(x)}_{\Leftrightarrow~\Vert y - x \Vert < \delta}
+		&\quad\Rightarrow\quad
+		\underbrace{y \in A}_{\Leftrightarrow~\Vert y - x_0 \Vert < \varepsilon} \\
+		\Vert y - x_0 \Vert =
+		\Vert y - x + x - x_0 \Vert &\stackrel{\Delta-\textrm{Ungl.}}{\leqslant}
+		\underbrace{\Vert y - x \Vert}_{< \delta} + \Vert x - x_0 \Vert < \delta + \Vert x - x_0 \Vert\\
+		&= \underbrace{\varepsilon - \Vert x - x_0 \Vert}_{\delta} + \Vert x - x_0 \Vert = \varepsilon
+	\end{align*}
+	\QED
 	\item Sei \(I \subset \R\), dann gilt
 	\begin{enumerate}[(i)]
 		\item \(I\) ist offen, wenn \(I = (a,b)\) mit \( -\infty \leqslant a \leqslant b \leqslant \infty \) \\
@@ -180,18 +205,49 @@ für \(A \subset \Rn\) sind folgenden Aussagen äquivalent:
 	\item \(A\) enthält alle Randpunkte, \(\partial A \subset A\)
 	\item \(A^c\) ist offen
 \end{enumerate}
+\Beweis[Beweis zu (i) \(\Rightarrow\) (iv)] Annahme: \(A^c\) ist nicht offen:
+\begin{align*}
+	&\Rightarrow\quad \exists~ x \in A^c \mitt U_\varepsilon(x) \not\subset A^c \quad \forall~ \varepsilon > 0 \\
+	&\Rightarrow\quad \forall~ \varepsilon > 0 : U_\varepsilon(x) \cap A \neq \varnothing\\
+	&\Rightarrow\quad x \textrm{ ist Berührungspunkt von }A \quad\Rightarrow\quad x \in A \quad\Rightarrow\quad \textrm{Widerspruch zur Annahme}
+\end{align*}\QED
+
+\Beweis[Beweis zu (iv) \(\Rightarrow\) (i)] \begin{align*}
+	A^c \textrm{ ist offen} \quad&\Rightarrow\quad
+	\forall~ x \in A^c : \exists~ \varepsilon > 0 \mitt U_\varepsilon(x) \subset A^c \quad\Rightarrow\quad U_\varepsilon(x) \cap \left(A^c\right)^c = \varnothing \\
+	&\Rightarrow\quad  U_\varepsilon(x) \cap A = \varnothing \textrm{ und }  U_\varepsilon(x) \cap A^c \neq \varnothing \\
+	&\Rightarrow\quad \textrm{kein }x\in A^c\textrm{ ist Berührungspunkt von }A\\
+	&\Rightarrow\quad A \textrm{ enthält alle seine Berührungspunkte} \quad\Rightarrow\quad A \textrm{ ist abgeschlossen}
+\end{align*}\QED
 
 \subsection{Satz}
 \begin{enumerate}[(i)]
 	\item \(\varnothing\) und \(\Rn\) sind offen.
+	\Beweis Folgt direkt aus der Definition \ref{sec:def_offen_abgeschl} \QED
 	\item Die Vereinigung beliebig vieler offene Mengen ist offen:
 	\begin{align*}
 		\bigcup_{j \in J} \left( O_j \textrm{ offen} \right) = O \textrm{ offen}
 	\end{align*}
+	\Beweis Sei \(A = \bigcup_{j \in J} O_j, x \in A\) beliebig.\\
+	Zu zeigen: Für \(x \in A\) gilt \(\exists~ \varepsilon > 0 : U_\varepsilon(x) \subset A\)
+	\begin{align*}
+		x \in A \quad&\Rightarrow\quad x \in O_j \textrm{für mindestens ein } j \in J \\
+		&\stackrel{O_j \textrm{offen}}{\Rightarrow}\quad \exists~ \varepsilon > 0 : U_\varepsilon(x) \subset O_j \subset A
+	\end{align*}
+	\QED
 	\item Der Durchschnitt \underline{endlich} vieler offener Mengen ist offen:
 	\begin{align*}
 		\bigcap_{j = 1}^{n} \left( O_j \textrm{ offen} \right) = O \textrm{ offen}
 	\end{align*}
+	\Beweis Sei \(A = O_1 \cap O_2 \cap ... \cap O_n\).\\
+	Für \(x \in A\) gilt \(\exists~ \varepsilon > 0 : U_\varepsilon(x) \subset A\)
+	\begin{align*}
+		&\Rightarrow\quad x \in O_1 \textrm{ und } x \in O_2 \textrm{ und } ... \\
+		&\stackrel{O_1, O_2, ... \textrm{ offen}}{\Rightarrow}\quad \exists~ \varepsilon_1 > 0 \mitt U_{\varepsilon_1}(x) \subset 0_1 \textrm{ und }
+		\exists~ \varepsilon_2 > 0 \mitt U_{\varepsilon_2}(x) \subset 0_2 \textrm{ und } ... \\
+		&\Rightarrow\quad \textrm{für } \varepsilon = \min\{ \varepsilon_1, ..., \varepsilon_n \} \textrm{ gilt } U_\varepsilon(x) \subset A = O_1 \cap ... \cap O_n
+	\end{align*}
+	\QED
 	\textit{Bemerkung}: Für unendlich viele offene Mengen gilt dies nicht immer:
 	\begin{align*}
 		\bigcap_{k = 1}^{\infty} \left( -\frac{1}{k}, \frac{1}{k} \right) = \left( -1, 1 \right) \cap \left( -\frac{1}{2}, \frac{1}{2} \right) \cap \left( -\frac{1}{3}, \frac{1}{3} \right) \cap ... = \left\{ 0 \right\} \textrm{ abgeschlossen}
@@ -448,7 +504,7 @@ Sei \(f : A \subset \Rn \rightarrow \Rm, A\) offen, \(x_0 \in A\)
 			\frac{\partial}{\partial x_1} f_m(x_0) & \hdots & \frac{\partial}{\partial x_n} f_m(x_0) \\
 		\end{array} \right) \in \Rmxn
 	\end{align*}
-	\textit{Bemerkung}: Es gilt: \( \exists f'(x_0) \quad \Rightarrow \quad f'(x_0) = J_f(x_0) \), \underline{nicht} aber die Gegenrichtung! Es kann also sein, dass die Jacobi-Matrix \(J_f\) existiert die Funktion aber \underline{nicht total diff'bar} ist.
+	\textit{Bemerkung}: Es gilt: \( \exists~ f'(x_0) \quad \Rightarrow \quad f'(x_0) = J_f(x_0) \), \underline{nicht} aber die Gegenrichtung! Es kann also sein, dass die Jacobi-Matrix \(J_f\) existiert die Funktion aber \underline{nicht} total diff'bar ist.
 \end{enumerate}
 
 \subsection{Beispiele}
@@ -476,7 +532,7 @@ Ist \(f : A \subset \Rn \rightarrow \Rm\) in jedem Punkt \(x_0 \in A\) total dif
 	\underbrace{r(x)}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \Rm} 
 	\underbrace{\Vert x - x_0 \Vert}_{\stackrel{x \rightarrow x_0}{\rightarrow} 0 \in \R}
 	\qquad \mitt r(x) \stackrel{x \rightarrow x_0}{\rightarrow} 0 \\
-	\lim_{x \rightarrow a} f(x) &= f(x_0) \quad _\square\\
+	\lim_{x \rightarrow a} f(x) &= f(x_0)
 \end{align*}
 \QED
 
@@ -613,6 +669,19 @@ Ist \(f: A \subset \Rn \rightarrow B \subset \Rm\) differenzierbar in \(a \in A\
 	\underbrace{ J_f (a) }_{\in \R^{m \times n}}
 \end{align*}
 
+\Beweis
+\begin{align*}
+	f(x) &= f(a) + f'(a)(x-a) + \underbrace{r_f(x) \Vert x - a \Vert}_{\tilde{r_f}(x)} \\
+	g(y) &= g(b) + g'(b)(y-b) + \underbrace{r_g(y) \Vert y - b \Vert}_{\tilde{r_g}(y)}
+\end{align*}
+mit \(b = f(a)\) und \(y = f(x)\) folgt:
+\begin{align*}
+	g(f(x)) &= g(f(a)) + g'(f(a)) \left( \underbrace{ f(x) - f(a) }_{f'(a)(x-a) + \tilde{r_f}(x)} \right) + \tilde{r_g}(f(x)) \\
+	&= g(f(a)) + g'(f(a))f'(a)(x-a) + \tilde{r}(x)
+\end{align*}
+mit \(\tilde{r}(x) = g'(f(a))\tilde{r_f}(x) + \tilde{r_g}(f(x))\) und es gilt \(\frac{\tilde{r}(x)}{\Vert x - a\Vert} \stackrel{x \rightarrow a}{\rightarrow} 0\)
+\QED
+
 \Beispiel[Beispiel aus der Strömungsmechanik]
 Die Funktion \(f: \R^4 \rightarrow \R, f = f(x,y,z,t) \) beschreibe die Eigenschaften eines Teilchens in einer Strömung. Dabei kann die Bewegung der Position im Raum \(x,y,z\) als Abhängigkeit von der Zeit beschrieben werden. Dazu definieren wir den Weg \(\gamma(t)\):
 \begin{align*}
@@ -695,7 +764,17 @@ Auch gilt:
 Aus \(f'(x_0)\) folgt nicht direkt die Extremstelle, denn Sattelpunkte sind keine Extremstellen. \\
 
 \noindent
-\Beweis ...
+\Beweis Sei \(k \in \{1, ..., n\}\) beliebig und \(g(t) = f\left(\underbrace{x_0 + t e_k}_{h(t)}\right)\) dann hat \(g\) in \(t_0\) eine lokale Extremstelle, denn
+\begin{align*}
+	\stackrel{\substack{
+		\textrm{eindimensionale}\\
+		\textrm{Extremstelle, da}\\
+		g: \R \rightarrow \R
+	}}{\Rightarrow}
+	0 &= g'(t_0) = \frac{d}{dt} f(h(t_0)) 
+	\stackrel{\substack{\textrm{Ketten-}\\\textrm{regel}}}{=} f'(h(t_0)) h'(t_0) = \nabla f(h(t_0))^\top e_k \\
+	&= \frac{\partial}{\partial x_k} f(h(t_0)) = \frac{\partial}{\partial x_k} f(x_0)
+\end{align*}
 \QED
 
 \subsection{Definition des kritischen Punktes}
@@ -749,7 +828,45 @@ Sei \(G \subset \Rn\) ein Gebiet, \(G \neq \varnothing\), und \(f : G \rightarro
 	f(x) = \textrm{konst.} \quad\Leftrightarrow\quad \nabla f(x) = 0 \quad \forall~ x \in G
 \end{align*}
 
-\Beweis ...
+\Beweis[Beweis \(\Rightarrow\)]\\
+\underline{Eindimensional}: Sei \(f:(a,b) \rightarrow \R\) differenzierbar.\\
+Zu zeigen: \(f\) konstant \(\quad\Rightarrow\quad f'(x) = 0 \quad \forall~ x \in (a,b)\)
+\begin{align*}
+	f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}
+	\stackrel{\substack{
+		f \textrm{ konst.}\\
+		\Rightarrow f(x+h) = f(x)
+	}}{=} 0
+\end{align*}
+\underline{Mehrdimensional}: Sei \(f: G \subset \Rn \rightarrow \R\).\\
+Zu zeigen: \(f\) konstant \(\quad\Rightarrow\quad\frac{\partial}{\partial x_k} f(x) = 0 \quad \forall~ k \in \{1, ..., n\}, \forall~ x \in G\)
+\begin{align*}
+	\frac{\partial}{\partial x_k} f(x) = 
+	\lim_{h \rightarrow 0} \frac{f(x+h e_k) - f(x)}{h} =
+	\lim_{h \rightarrow 0} \frac{0}{h} = 0
+\end{align*}
+\QED
+
+\Beweis[Beweis \(\Leftarrow\)]\\
+\underline{Eindimensional}: Annahme: \(f'(x) = 0 \quad \forall x \in (a,b)\) aber \(f\) nicht konstant, dann
+\begin{align*}
+	&\exists~ x_1, x_2 \in (a,b) \mitt x_1 \neq x_2 \textrm{ und } f(x_1) \neq f(x_2) \\
+	&\quad\Rightarrow\quad
+	0 \neq \frac{f(x_2) - f(x_1)}{x_2 - x_1} \stackrel{\textrm{1ter MWS}}{=} f'(\xi) = 0 
+	\quad\Rightarrow\quad \textrm{Widerspruch}
+\end{align*}
+\underline{Mehrdimensional}: Annahme: \(\nabla f(x) = 0, \quad \forall x \in G\) aber \(f\) nicht konstant, dann
+\begin{align*}
+	&\exists~ a,b \in G \mitt a \neq b \textrm{ und } f(a) \neq f(b) \\
+	&\textrm{o.B.d.A sei } \overline{a b} \subset G \textrm{ (sonst muss ein Polygonzug betrachtet werden)} \\
+	& \textrm{es folgt mit } h(t) = a + t(b-a) : \quad f(b) - f(a) = f(h(1)) - f(h(0)) \\
+	& \textrm{Sei } g(t) = f(h(t)) \textrm{, dann gilt}: \quad \frac{g(1) - g(0)}{1 - 0} = \frac{f(b)-f(a)}{1} \neq 0 \\
+	&\quad \stackrel{\textrm{1ter MWS}}{=} g'(\xi) = 
+	\left. \frac{d}{dt} g(t) \right\vert_{t=\xi} = 
+	\left. \frac{d}{dt} f(h(t)) \right\vert_{t=\xi} \stackrel{\substack{\textrm{Ketten-}\\\textrm{regel}}}{=}
+	\left. f'(h(t))h'(t) \right\vert_{t=\xi} \\
+	&\quad = \nabla \underbrace{f(a + \xi(b - a))^\top}_{=0 \textrm{(nach Annahme)}} (b-a) = 0 \quad\Rightarrow\quad \textrm{Widerspruch}
+\end{align*} 
 \QED
 
 \subsection{Definition partieller Ableitungen \(r\)'ter Ordnung}
