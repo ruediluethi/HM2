@@ -48,7 +48,7 @@
 \newcommand{\QED}	{\end{mdframed}}
 
 \newcommand{\Beispiel}[1][Anwendungsbeispiel]
-{\begin{mdframed}[backgroundcolor=green!10,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
+{\begin{mdframed}[backgroundcolor=green!7,linewidth=0pt]\noindent\textit{\textbf{{#1}:}}~}
 \newcommand{\Beispielende}	{\end{mdframed}}
 
 \newcommand{\Bemerkung}	{\noindent\textit{Bemerkung}: }
@@ -1886,9 +1886,209 @@ Sei \(\Kurve\) eine Kurve mit einer Parameterdarstellung \(x \in C^1 \) (stetig 
 	}	
 \end{align*}
 
+\subsubsection*{Bemerkung zu Riemann- Summen und Riemann-Integralen im Eindimensionalen}
+\begin{figure}[!h]
+  	\centering
+ 	\includegraphics[width=7cm]{grafiken/Riemann-Summe.png}
+  	\caption{Funktion \(f(t)\) mit Zerlegung \(t_0 < ... < t_N\) und Zwischenpunkt \(\xi_k\).}
+\end{figure}
+
+Für eine Funktion \(f: \R \rightarrow \R\) und eine Zerlegung \(a = t_0 < ... < t_n = b\) sowie beliebige Zwischenpunkte \(\xi_1, ..., \xi_n\) mit \(t_{k-1} \leqslant \xi_k \leqslant t_k\) ist die Riemann-Summe \(S(f,t,\xi\) wie folgt definiert:
+\begin{align*}
+	S\left(f, \left( \begin{array}{c}
+		t_0 \\ \vdots \\ t_n	
+	\end{array} \right), \left( \begin{array}{c}
+		\xi_0 \\ \vdots \\ \xi_n	
+	\end{array} \right) \right) = 
+	\sum_{k=1}^n f(\xi_k)(t_k - t_{k-1})
+\end{align*}
+(Dabei ist \( f(\xi_k)(t_k - t_{k-1}) \) die Fläche eines Rechteckes mit Länge \(f(\xi_k)\) und Breite \( t_k - t_{k-1} \).)\\
+
+\noindent
+Weiter ist ist die Feinheit einer Zerlegung \(t=(t_0, ..., t_n)\) folgendermaßen definiert:
+\begin{align*}
+	\mu(t) = \max\left\{ t_k - t_{k-1}: k = 1, ..., n \right\}
+\end{align*}
+(Maximale Breite der unterteilten Rechtecke.)\\
+
+\noindent
+Für eine beliebige Folge \( \left( \vec{t_N} \right)_{N=1}^\infty \) von Zerlegungen mit \(\lim_{N\rightarrow\infty} \mu\left( \vec{t_N} \right) = 0\) und einer beliebigen Folge mit den Zugehörigen Zwischenpunkten \( \left( \vec{\xi_N} \right)_{N=1}^\infty \) gilt, falls der Grenzwert \( \lim_{N\rightarrow\infty} S\left( f, \vec{t_n}, \vec{\xi_N} \right)\) existiert, dann ist dieser für alle Folgen gleich und es gilt:
+\begin{align*}
+	\int_a^b f(t) ~dt = \lim_{N\rightarrow\infty} S\left( f, \vec{t_n}, \vec{\xi_N} \right)
+\end{align*}
+
+\subsection{Definition von Kurvenintegralen}
+Gegeben sei eine Kurve \(\Kurve \subset \Rn\) und \(f : \underbrace{T(\Kurve)}_{\substack{\textrm{Träger}\\\textrm{von }\Kurve}} \rightarrow \Rn\).
+\begin{enumerate}[a.~]
+	\item Sei \(x: [a,b] \rightarrow \Rn\) eine Parameterdarstellung von \(\Kurve\)
+	\begin{enumerate}[(i)]
+		\item für eine Zerlegung \(\vec{t} : a = t_0 < ... < t_N = b\) mit zugehörigen Zwischenpunkten \(\vec{\xi} = \{ \xi_1, ... \xi_N \} \) gilt für die \textbf{Riemann(zwischen)summe}:
+		\begin{align*}
+			S\left( f, \vec{t}, \vec{\xi} \right) = \sum_{k=1}^N f(\xi_k) \underbrace{\cdot}_{\substack{\textrm{Skalar-}\\\textrm{produkt}}} \left(x(t_k) - x(t_{k-1})\right)
+		\end{align*}
+		\item Existiert ein \(I \in \R\) derart, dass für alle Folgen von Zerlegungen \(\left( \vec{t_N} \right)_{N=1}^\infty \) mit beliebigen zugehörigen Zwischenpunkten \(\left( \vec{\xi_N} \right)_{N=1}^\infty \) mit der Eigenschaft \(\lim_{N\rightarrow\infty} \mu( \vec{t_N} ) = 0\) gilt
+		\begin{align*}
+			\lim_{N\rightarrow\infty} S\left( f, \vec{t_N}, \vec{\xi_n} \right) = I = \int_a^b f \cdot ~dx = \int_a^b f\left( x(t) \right) \cdot ~dx(t)
+		\end{align*}
+		Dabei heißt \(I\) das \textbf{Kurvenintegral} von \(\Kurve\) längs \(f\).
+	\end{enumerate}
+	\item Existiert ein \(I \in R\) wie in (ii) so heißt \(f\) längs \(\Kurve\) \textbf{(Riemann)integrierbar} und man schreibt
+	\begin{align*}
+		I = \int_\Kurve f = \int_\Kurve f(x) \cdot ~dx = \int_\Kurve f_1(x) ~dx_1 + f_2(x) ~dx_2 + ... + f_n(x) ~dx_n
+	\end{align*}
+\end{enumerate}
+
+\subsection{Substitutionsformel}
+\label{sec:subst_formel}
+Ist \(\Kurve : x(t), a \leqslant t \leqslant b\) eine stückweise differenzierbare Kurve im \(\Rn\) und \(f : T(\Kurve) \rightarrow \Rn\) stetig, dann gilt:
+\begin{align*}
+	\int_\Kurve f(x) \cdot ~dx = \int_a^b f(x(t)) \cdot \dot{x}(t) dt
+\end{align*}
+\Beweis[Beweisidee]
+	\begin{align*}
+		&\textrm{Nach 1ter Mittelwertsatz } \exists~\tilde{\xi}_k \in [t_{k-1},t_k]: \quad
+		x(t_k) - x(t_{k-1}) = \dot{x}(\tilde{\xi}_k) (t_k - t_{k-1}) \\
+		&S\left( f, \vec{t}, \vec{\xi} \right) = 
+		\sum_{k=1}^N f(\xi_k) \cdot \left(x(t_k) - x(t_{k-1})\right) \stackrel{\textrm{1ter MWS}}{=} 
+		\sum_{k=1}^N f(\xi_k) \cdot \dot{x}(\tilde{\xi}_k) (t_k - t_{k-1})
+	\end{align*}
+	Im allgemeinen gilt \(\xi_k \neq \tilde{\xi_k}\). Also wird \(\vec{\xi}\) gerade so gewählt, dass gilt:
+	\begin{align*}
+		S\left( f, \vec{t}, \vec{\xi} \right) = 
+		\sum_{k=1}^N f\left( \underbrace{x \left(\overbrace{t_k}^{\xi_k}\right)}_{\tilde{\xi}_k}\right) \cdot \left(x(t_k) - x(t_{k-1})\right) &\stackrel{\textrm{1ter MWS}}{=} 
+		\sum_{k=1}^N f(x(t_k)) \cdot \dot{x}(\tilde{\xi}_k) (t_k - t_{k-1}) \\
+		&\quad \Rightarrow \quad \int_a^b f(x(t)) \cdot \dot{x}(t) ~dt
+	\end{align*}
+\QED
+\Bemerkung Theoretisch können so die meisten Kurvenintegrale ausgerechnet werden. In der Praxis ist diese Methode aber meist nicht praktikabel.
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item Kurvenintegrale sind verallgemeinerte eindimensionale (Riemann-)Integrale. Sei \(f : [a,b] \rightarrow \R \) (eindimensionales Vektorfeld) und \(x(t) = a + t(b - a)\) (eine Kurve im \(\R^1\))
+	\begin{align*}
+		\int_\Kurve f = \int_\Kurve f(x) \cdot dx 
+		&\stackrel{\ref{sec:subst_formel}}{=} 
+		\int_0^1 f(x(t)) \cdot \dot{x}(t) ~dt \\
+		&= 
+		\int_0^1 f\left(\underbrace{a + t(b-a)}_{x}\right)\cdot \underbrace{(b-a) dt}_{dx} = \int_0^1 f(x) ~dx
+	\end{align*}
+	\item Die Länge einer Kurve kann mit einem Kurvenintegral berechnet werden. Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) mit \(x\) stellenweise differenzierbar und \(\dot{x}(t) \neq 0 ~\forall~ t \in [a,b]\)
+	\begin{align*}
+		\int_a^b \frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert} \cdot dx(t) 
+		&\stackrel{\ref{sec:subst_formel}}{=} 
+		\int_a^b \frac{\dot{x}(t)}{\Vert \dot{x}(t) \Vert} \cdot \dot{x}(t) ~dt \\
+		&= \int_a^b \frac{\Vert \dot{x}(t) \Vert^2}{\Vert \dot{x}(t) \Vert} ~dt = \int_a^b \Vert \dot{x}(t) \Vert = l(\Kurve)
+	\end{align*}
+\end{enumerate}
 
 
-\subsection*{Methoden zur Berechnung von Stammfunktionen}
+\subsection{Definition der Wegunabhängigkeit}
+Sei \(f \in C(G,\Rn), G \subset \Rn\) ein Gebiet.
+\begin{enumerate}[(i)]
+	\item Gilt für zwei beliebige Wege \(\Kurve\) und \(\mathcal{L}\) in \(G\) mit gleichem Anfangs- und Endpunkt stets \(\int_\Kurve f = \int_\mathcal{L} f\) dann heißt das Kurvenintegral \textbf{wegunabhängig}.
+	\item Existiert eine Funktion \(F:G \rightarrow \R\) mit \(F' = \nabla F = f\) (implizit wird \(F\) differenzierbar gefordert) auf \(G\), dann heißt \(F\) eine \textbf{Stammfunktion} von \(f\).\\
+	\Bemerkung In der Praxis wird das Potential eines Vektorfeldes als \(P = -F\) definiert.
+	\item Ein Vektorfeld \(f\) heißt \textbf{konservativ} wenn eine Stammfunktion \(F\) in \(G\) existiert.
+\end{enumerate}
+
+\subsection{Erster Hauptsatz für Kurvenintegralen}
+\label{sec:HS_kurvenint}
+Sei \(f\) konservativ in \(G\) und \(F\) eine Stammfunktion, dann gilt für jeden Weg \(\Kurve\) in \(G\) mit Anfangspunkt \(p\) und Endpunkt \(q\)
+\begin{align*}
+	\int_\Kurve f = F(q) - F(p)
+\end{align*}
+Also ist insbesondere das Kurvenintegral wegunabhängig.
+
+\Beweis (o.B.d.A. nur für glatte Kurven) Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) glatt, dann gilt
+\begin{align*}
+	\int_\Kurve f &= \int_\Kurve f(x) \cdot dx \stackrel{\ref{sec:subst_formel}}{=}
+	\int_a^b \underbrace{f(x(t))\cdot\dot{x}(t)}
+	_{\substack{
+		= F'(x(t))\cdot\dot{x}(t) \\
+		= \frac{d}{dt} F(x(t))
+	}} ~dt =
+	\int_a^b \left( \frac{d}{dt} F(x(t)) \right)~dt \\
+	&= \left[ F(x(t)) \right]_a^b \stackrel{\substack{\textrm{Hauptsatz}\\\textrm{der Diff/Int-}\\\textrm{Rechnung}}}{=} F(x(b)) - F(x(a)) = F(q) - F(p)
+\end{align*}
+\QED
+
+\subsection{Satz}
+Für \(f \in C(G;\Rn), G \subset \Rn\) ein Gebiet, sind folgende Aussagen äquivalent:
+\begin{enumerate}[(i)]
+	\item \(\int_\Kurve f\) ist wegunabhängig
+	\item \(f\) besitzt eine Stammfunktion \(F\)
+	\item \(\int_\Kurve f = 0\) für jede geschlossene Kurve
+\end{enumerate}
+\Beweis[Beweisansätze]\\
+(ii) \(\Rightarrow\) (i): folgt direkt aus dem ersten Hauptsatz \ref{sec:HS_kurvenint}\\
+(i) \(\Leftrightarrow\) (iii): Seien \(\Kurve\) und \(\mathcal{L}\) zwei Kurven mit gleichen Anfangs- und Endpunkt. So kann eine neue geschlossene Kurve \(\mathcal{M}\) wie folgt konstruiert werden:
+\begin{align*}
+	\int_\mathcal{M} f = \int_\Kurve f + \int_{-\mathcal{L}} = \int_\Kurve f - \int_{\mathcal{L}} = 0
+\end{align*}
+\QED
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+	\item \(f(x) = \frac{x}{\Vert x \Vert^3}\) mit \(x = \left(\begin{array}{c} x_1 \\ x_2 \end{array}\right) \in G = \Rzwei \setminus \{0\}\) ist konservativ mit Stammfunktion \(F(x) = \frac{1}{\Vert x \Vert}\) ...
+	\item \(f(x_1, x_2) = \left( \begin{array}{c} 2x_1x_2 \\ x_1^2 \end{array}\right)\) ist konservativ mit \(F(x_1,x_2) = x_1^2x_2\) ...
+\end{enumerate}
+
+\subsection{Definition einfach zusammenhängender Gebiete}
+Ein Gebiet \(G \subset \Rn\) heißt \textbf{einfach zusammenhängend}, wenn sich jede geschlossene Kurve in \(G\) innerhalb von \(G\) \textit{stetig auf einen Punkt zusammenziehen} lässt.\\
+\textit{Beispiele im \(\R^3\)}:
+\begin{enumerate}[(i)]
+	\item Berliner ohne Füllung ist einfach zusammenhängend.
+	\item Ein Donut ist es nicht.
+\end{enumerate}
+
+\subsection{Sternförmige Gebiete}
+Eine Menge \(G \subset \Rn\) heißt \textbf{sternförmig} (bezüglich einem \(x_0 \in G\)), wenn zu jedem \(x \in G\) die Strecke \(\overline{x_0 x} \subset G\) ist (komplett im Gebiet liegt).
+
+\subsection{Bemerkung}
+\begin{enumerate}[(i)]
+	\item Eine sternförmige Menge ist stets auch eine einfach zusammenhängende Menge.\\
+	Ein sternförmiges Gebiet ist stets auch ein sternförmiges Gebiet.
+	\item Die Vereinigung von sternförmigen Gebieten muss nicht sternförmig sein.
+	\item Oft kann ein einfach zusammenhängendes Gebiet als Vereinigung von sternförmigen Gebieten betrachtet werden.
+\end{enumerate}
+
+\subsection{Zweiter Hauptsatz für Kurvenintegralen}
+Sei \(f \in C^1(G;\Rn)\) und \(G\) ein Gebiet, dann gilt:
+\begin{enumerate}[(i)]
+	\item (notwendige Bedingung) Besitzt \(f\) eine Stammfunktion \(F\) in \(G\), so erfüllt \(f\) in \(G\) die \textbf{Integrabilitätsbedingung}:
+	\begin{align*}
+		\frac{\partial f_k}{\partial x_l} = \frac{\partial f_l}{\partial x_k} \quad \textrm{in } G \quad \forall~ l,k \in \{1, ..., n\}
+	\end{align*}
+	\item (hinreichende Bedingung) Ist \(G\) einfach zusammenhängend, so besitzt \(f\) eine Stammfunktion \(F\) in \(G\), wenn die Integrabilitätsbedingung erfüllt ist.
+\end{enumerate}
+\Beweis[Beweisidee]
+Wenn \(f\) eine Stammfunktion \(F\) hat, so muss der Satz von Schwarz gelten, also muss die Hessematrix symmetrisch sein.
+\QED
+
+\subsection{Definition der Rotation}
+Sei \(G \subset \R^3\) ein Gebiet und \(f: G \rightarrow \R\) partiell differenzierbar, dann heißt die Funktion \(\textrm{rot} f : G \rightarrow \R^3 \) \textbf{Rotation} von \(f\) in \(G\) und ist folgendermaßen definiert: 
+\begin{align*}
+	\underbrace{\textrm{rot} f}_{\textrm{curl} f}(x) = 
+	\left( \begin{array}{c}
+		\frac{\partial f_3}{\partial x_2} - \frac{\partial f_2}{\partial x_3} \\
+		\frac{\partial f_1}{\partial x_3} - \frac{\partial f_3}{\partial x_1} \\
+		\frac{\partial f_2}{\partial x_1} - \frac{\partial f_1}{\partial x_2}
+	\end{array} \right) = \vec{\nabla} \times \vec{f}
+\end{align*}
+\Bemerkung Die Rotation gibt an ob ein Feld Wirbel enthält.
+
+\subsection{Korollar zum zweiten Hauptsatz für Kurvenintegrale}
+Sei \(f \in C^1(G;\R^3)\) mit \(G\) ein Gebiet.
+\begin{enumerate}
+	\item \(f\) besitzt eine Stammfunktion \(\quad\Rightarrow\quad \textrm{rot} f = 0\) 
+	\item Ist \(G\) einfach zusammenhängend, dann gilt:\\
+	\(f\) besitzt eine Stammfunktion \(\quad\Leftrightarrow\quad \textrm{rot} f = 0\)
+\end{enumerate}
+
+
+\Bemerkung Zentralkraftfelder (wie z.b. Gravitationsfelder) haben keine Rotation und sind somit wegunabhängig.
+
+\subsection*{Zwei Methoden zur Berechnung von Stammfunktionen:}
 \subsection{Nach Variablen integrieren}
 \textit{Beispiel}: Sei \(f(x,y,z) = \left(\begin{array}{c}
 	y~e^{yz} + 1 \\
