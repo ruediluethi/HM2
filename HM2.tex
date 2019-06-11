@@ -20,6 +20,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{xcolor}
 \usepackage{mdframed}
+\usepackage{float}
 
 \newcommand {\Q}	{\mathbb{Q}}
 \newcommand {\R}	{\mathbb{R}}
@@ -2103,7 +2104,7 @@ Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve und sei \(f : \Rn \r
 \begin{align*}
 	\int_\Kurve f(x) \cdot dx = \int_a^b f(x(t)) ~\Vert \dot{x}(t) \Vert ~dt
 \end{align*}
-\begin{figure}[!h]
+\begin{figure}[H]
   	\centering
  	\includegraphics[width=10cm]{grafiken/Kurvenint_erster_Art.png}
   	\caption{Kurvenintegral über eine Skalarfeld \(f:\Rzwei \rightarrow \R\) erster Art.}
@@ -2114,11 +2115,12 @@ Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve und sei \(f : \Rn \r
 \begin{align*}
 	\int_\Kurve f(x) \cdot dx = \int_a^b f(x(t)) \cdot \dot{x}(t) ~dt
 \end{align*}
-\begin{figure}[!h]
+\begin{figure}[H]
   	\centering
- 	\includegraphics[width=10cm]{grafiken/Kurvenint_zweiter_Art.png}
+ 	\includegraphics[width=11cm]{grafiken/Kurvenint_zweiter_Art.png}
   	\caption{Kurvenintegral über eine Vektorfeld \(f:\Rzwei \rightarrow \Rzwei\) zweiter Art.}
 \end{figure}
+\Bemerkung Das Kurvenintegral entlang einer Höhenlinie ist an jeder Stelle Null. Denn da steht ja gerade der Vektor der Ableitung \(\dot{x}(t)\) orthogonal zum Vektorfeld \(f(x)\) also gilt \(f(x(t)) \cdot \dot{x}(t) = 0 \quad \forall~ t \in [a,b]\).
 
 \subsection{Definition der Wegunabhängigkeit}
 Sei \(f \in C(G,\Rn), G \subset \Rn\) ein Gebiet.
