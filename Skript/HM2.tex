@@ -2098,6 +2098,27 @@ Ist \(\Kurve : x(t), a \leqslant t \leqslant b\) eine stückweise differenzierba
 	\end{align*}
 \end{enumerate}
 
+\subsection*{Kurvenintegrale 1. Art}
+Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve und sei \(f : \Rn \rightarrow \R\) ein stetiges Skalarfeld, dann ist das Kurvenintegral \textbf{erster} Art definiert durch:
+\begin{align*}
+	\int_\Kurve f(x) \cdot dx = \int_a^b f(x(t)) ~\Vert \dot{x}(t) \Vert ~dt
+\end{align*}
+\begin{figure}[!h]
+  	\centering
+ 	\includegraphics[width=10cm]{grafiken/Kurvenint_erster_Art.png}
+  	\caption{Kurvenintegral über eine Skalarfeld \(f:\Rzwei \rightarrow \R\) erster Art.}
+\end{figure}
+
+\subsection*{Kurvenintegral 2. Art}
+Sei \(\Kurve : x(t), a \leqslant t \leqslant b\) eine Kurve und sei \(f : \Rn \rightarrow \Rn\) ein stetiges Vektorfeld, dann ist das Kurvenintegral \textbf{zweiter} Art definiert durch:
+\begin{align*}
+	\int_\Kurve f(x) \cdot dx = \int_a^b f(x(t)) \cdot \dot{x}(t) ~dt
+\end{align*}
+\begin{figure}[!h]
+  	\centering
+ 	\includegraphics[width=10cm]{grafiken/Kurvenint_zweiter_Art.png}
+  	\caption{Kurvenintegral über eine Vektorfeld \(f:\Rzwei \rightarrow \Rzwei\) zweiter Art.}
+\end{figure}
 
 \subsection{Definition der Wegunabhängigkeit}
 Sei \(f \in C(G,\Rn), G \subset \Rn\) ein Gebiet.
