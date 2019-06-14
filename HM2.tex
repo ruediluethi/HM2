@@ -299,7 +299,7 @@ Eine Folge \((a_k)_{k=1}^\infty \) heißt
 \begin{enumerate}[(i)]
 	\item \textbf{konvergent}, wenn gilt
 	\begin{align*}
-		\exists~ a \in \Rn \quad \textrm{mit} \quad \forall~ \varepsilon > 0 \quad \exists~ N(\varepsilon) : \quad \Vert a_k - a \Vert \quad \forall~ k \geqslant N(\varepsilon)
+		\exists~ a \in \Rn \quad \textrm{mit} \quad \forall~ \varepsilon > 0 \quad \exists~ N(\varepsilon) : \quad \Vert a_k - a \Vert < \varepsilon \quad \forall~ k \geqslant N(\varepsilon)
 	\end{align*}
 	Dann ist \(a\) der Grenzwert der Folge:
 	\begin{align*}
@@ -706,7 +706,8 @@ Nun leiten wir die verkettete Funktion \(\hat{f}(t) = (f \circ \gamma)(t) = f(\g
 	&= \left( \begin{array}{c}
 		\frac{\partial f}{\partial x} \\
 		\frac{\partial f}{\partial y} \\
-		\frac{\partial f}{\partial z}
+		\frac{\partial f}{\partial z} \\
+		\frac{\partial f}{\partial t}
 	\end{array} \right)^\top 
 	\left( \begin{array}{c}
 		\frac{d x}{dt} \\
@@ -889,7 +890,7 @@ Ist \(f : A \subset \Rn \rightarrow \R\) 2-mal stetig differenzierbar bei \(x_0 
 	H_f(x_0) = \left( \begin{array}{ccc}
 		f_{x_1,x_1} (x_0) & \hdots & f_{x_1,x_n} (x_0) \\
 		\vdots & & \vdots \\
-		f_{x_m,x_1} (x_0) & \hdots & f_{x_m,x_n} (x_0)
+		f_{x_n,x_1} (x_0) & \hdots & f_{x_n,x_n} (x_0)
 	\end{array} \right)
 \end{align*}
 
@@ -1348,7 +1349,7 @@ Man betrachte die Gleichung
 		\vdots \\
 		g_m(x_1, ..., x_n, y_1, ..., y_m)
 	\end{array} \right) = \left( \begin{array}{c}
-		b_1 \\ \vdots \\ g_m
+		b_1 \\ \vdots \\ b_m
 	\end{array} \right)
 \end{align*}
 und sagt
@@ -1791,16 +1792,18 @@ Berechne \(\int_0^1 \frac{t^\beta - t^\alpha}{\log t} ~dt \) für \(-1 < \alpha 
 \begin{align*}
 	\textrm{definiere}:&\quad F(x) = \int_0^1 \underbrace{\frac{t^x - t^\alpha}{\log t}}_{f(x,t)} ~dt \\
 	\textrm{sei } \alpha \textrm{ ein } x_0 \in [\alpha,\beta]:&\quad
-	F(\alpha) = \int_0^1 \frac{t^\alpha - t^\alpha}{\log t} = 0 \quad \Rightarrow\quad \textrm{uneigentliches Intervall konvergiert} \\
+	F(\alpha) = \int_0^1 \frac{t^\alpha - t^\alpha}{\log t} ~dt = 0 \quad \Rightarrow\quad \textrm{uneigentliches Intervall konvergiert} \\
 	\textrm{weiter gilt}:&\quad
 	%\int_0^1 f_x(x,t)~dt = 
-	\int_0^1 \frac{d}{dx} \frac{ \overbrace{e^{x\log t}}^{t^x} - t^\alpha}{\log t} = \int_0^1 \frac{\log t \cdot t^x}{\log t}~dt = \int_0^1 t^x ~dt \\
+	\int_0^1 \frac{d}{dx} \frac{ \overbrace{e^{x\log t}}^{t^x} - t^\alpha}{\log t} ~dt = \int_0^1 \frac{\log t \cdot t^x}{\log t}~dt = \int_0^1 t^x ~dt \\
 	&\quad = \left[ \frac{t^{x+1}}{x+1} \right]_0^1 = \frac{1}{x+1} < 1 \quad\Rightarrow\quad \int_0^1 f_x(x,t) ~dt \textrm{ konvergiert} \\
 	\textrm{also gilt}:&\quad F'(x) \stackrel{\ref{sec:abl_uneigtl_paramint}}{=} \int_0^1 f_x(x,t) ~dt = \frac{1}{x+1} \\
 	\textrm{wieder aufleiten}:&\quad F(x) = \log(x+1) + c \\
-	\mitt: &\quad F(\alpha) = \log(\alpha + 1) + c = 0 
+	\mitt: &\quad F(\alpha) = \log(\alpha + 1) + c \stackrel{!}{=} 0 
 	\quad\Leftrightarrow\quad c = -\log(\alpha+1) \\
-	&\quad F(\beta) = \log(\beta + 1) + c = \log(\beta + 1) - \log(\alpha + 1) = \log\left(\frac{\beta+1}{\alpha+1}\right)
+	&\quad F(\beta) = \log(\beta + 1) + c = \log(\beta + 1) - \log(\alpha + 1) \\
+	&\qquad\quad = \log\left(\frac{\beta+1}{\alpha+1}\right)
+	= \int_0^1 \frac{t^\beta - t^\alpha}{\log t} ~dt
 \end{align*}
 
 \section{Kurvenintegrale}
@@ -2199,11 +2202,111 @@ Sei \(f \in C^1(G;\Rn)\) und \(G\) ein Gebiet, dann gilt:
 	\begin{align*}
 		\frac{\partial f_k}{\partial x_l} = \frac{\partial f_l}{\partial x_k} \quad \textrm{in } G \quad \forall~ l,k \in \{1, ..., n\}
 	\end{align*}
+	\Beweis
+	Falls \(F\) existiert (was nach Voraussetzung gegeben ist), dann ist \(F \in C^2(G;\R)\) (zweimal stetig differenzierbar) und es gilt:
+	\begin{align*}
+		\frac{\partial}{\partial x_i} f_j (x)
+		\stackrel{\frac{\partial}{\partial x_j} F = f_j}{=}
+		\frac{\partial^2}{\partial x_i x_j} F(x)		
+		\stackrel{\substack{
+			\textrm{Satz von}\\
+			\textrm{Schwarz}\\
+			H_f \textrm{ sym.}
+		}}{=}
+		\frac{\partial^2}{\partial x_j x_i} F(x)
+		\stackrel{\frac{\partial}{\partial x_i} F = f_i}{=}	
+		\frac{\partial}{\partial x_j} f_i (x)
+	\end{align*}
+	\QED
 	\item (hinreichende Bedingung) Ist \(G\) einfach zusammenhängend, so besitzt \(f\) eine Stammfunktion \(F\) in \(G\), wenn die Integrabilitätsbedingung erfüllt ist.
+	\Beweis
+	Nur für den Fall, dass \(G\) sternförmig.\\
+	Wenn \(G\) sternförmig, so existiert ein \(a = \left( \begin{array}{c} a_1 \\ \vdots \\ a_n \end{array} \right) \in \Rn\). Sei weiter \(F(x)\) eine Stammfunktion und \(F'(x) = f(x) = \left( \begin{array}{c} f_1(x) \\ \vdots \\ f_n(x)\end{array} \right) \) deren Ableitung (dies muss gezeigt werden), sowie \(g:[0,1] \rightarrow G,  g(t) = a + t(x - a)\) eine Gerade vom Punkt \(x \in G\) zum Punkt \(a \in G\). Damit gilt:
+	\begin{align*}
+		F(x) &= \int_{\overline{a~x}} f \stackrel{\substack{\textrm{Subst.-}\\\textrm{formel}}}{=} \int_0^1 f(g(t)) \cdot g'(t) ~dt = \int_0^1 f(a + t(x - a)) \cdot (x - a) ~dt \\
+		&= \int_0^1 \left( \begin{array}{c}
+			f_1(a + t(x - a)) \\
+			\vdots \\
+			f_n(a + t(x - a))
+		\end{array} \right)^\top
+		\left( \begin{array}{c}
+			x_1 - a_1 \\
+			\vdots \\
+			x_n - a_n
+		\end{array} \right)
+		~dt	\\
+		&= \int_0^1 \sum_{i=1}^n f_i(a + t(x - a))(x_i - a_i) ~dt
+	\end{align*}
+	Es muss \(\nabla F = f\) gezeigt werden: \( \frac{\partial}{\partial x_k} F = f_k \quad \forall~ k = 1, ..., n\) (partielle Ableitung). Sei \(k \in \{ 1, ..., n\}\) fest aber beliebig, dann gilt:
+	\begin{align*}
+		\frac{\partial}{\partial x_k} F(x) &= F_{x_k}(x) =
+		\frac{\partial}{\partial x_k} \int_0^1 \sum_{i=1}^n f_i(a + t(x - a))(x_i - a_i) ~dt \\
+		&\stackrel{\substack{\textrm{da }f\in C^1}}{=}
+		\int_0^1\left( \frac{\partial}{\partial x_k} \sum_{i=1}^n f_i(a + t(x - a))(x_i - a_i) \right) dt \\
+		\stackrel{\substack{
+			\textrm{Fallbsp.}\\
+			n=2
+		}}{\Rightarrow}\quad&
+		\int_0^1 \frac{\partial}{\partial x_k}
+		\left( f_1(a+t(x-a)) + f_2(a+t(x-a)) \right) dt \\
+		\stackrel{\substack{
+			\textrm{Fallbsp.}\\
+			k=1
+		}}{\Rightarrow}\quad&
+		\int_0^1 \underbrace{
+			\frac{\partial f_1}{\partial x_1} (a+t(x-a))
+			\overbrace{t}^{\substack{\textrm{innere}\\\textrm{Abl.}}}
+			(x_1 - a_1) + 
+			\overbrace{f_1(a+t(x-a)) \cdot 1}^{\substack{\textrm{2ter Teil}\\\textrm{Prod. Regel}}}
+		}_{= \frac{\partial}{\partial x_1} f_1(a+t(x-a))(x_1 - a_1) } \\
+		&\quad + \underbrace{
+			\frac{\partial f_2}{\partial x_1}(a+t(x-a))
+		}_{\substack{
+			= \frac{\partial}{\partial x_1} f_2(a+t(x-a))(x_1 - a_1)\\
+			\textrm{(keine Prod. Regel nötig)}
+		}} dt \\
+		&= \int_0^1 \left(\sum_{i=1}^2 \frac{\partial f_i}{\partial x_k} (a+t(x-a))~t~(x_i-a_i)\right) + f_1(a+t(x-a)) ~dt \\
+		\Rightarrow\quad& 
+		\int_0^1 \sum_{i=1}^n \underbrace{\frac{\partial f_i}{\partial x_k}}_{\frac{\partial f_k}{\partial x_i}} (a+t(x-a))(x_i-a_i)~t + f_k(a+t(x-a)) ~dt \\
+		&\stackrel{(*)}{=} \int_0^1 \frac{d}{dt} f_k(a+t(x-a)) ~ t ~dt \\
+		&\stackrel{\substack{
+			\textrm{HS der}\\
+			\textrm{Diff./Int.}\\
+			\textrm{Rechnung}
+		}}{=} f_k(a+t(x-a))\cdot 1 - f_k(a+t(x-a))\cdot 0 = f_k
+	\end{align*}
+	Zu (\(*\)):
+	\begin{align*}
+		\frac{d}{dt} f_k(a+t(x-a)) ~ t
+		&\stackrel{\substack{
+			\textrm{Prod.} \\
+			\textrm{Regel}
+		}}{=}
+		\left( \frac{d f_k}{d t}(a+t(x-a)) \right) ~ t 
+		+ f_k(a+t(x-a))~ \frac{dt}{dt} \\
+		&\left(\begin{array}{l}
+			\frac{d f_k}{d t}(a+t(x-a))
+			\stackrel{\substack{
+				\textrm{Ketten} \\
+				\textrm{Regel}
+			}}{=}
+			\nabla f_k(a+t(x-a))\cdot(x-a) \\
+			= \left( \begin{array}{c}
+				\frac{\partial f_k}{\partial x_1} (a+t(x-a)) \\
+				\vdots \\
+				\frac{\partial f_k}{\partial x_n} (a+t(x-a))
+			\end{array} \right)^\top
+			\left( \begin{array}{c}
+				x_1 - a_1 \\
+				\vdots \\
+				x_n - a_n
+			\end{array} \right) \\
+			= \sum_{i=1}^n \frac{\partial f_k}{\partial x_i} (a+t(x-a)) (x_i - a_i)
+		\end{array}\right)\\
+		&= \sum_{i=1}^n \frac{\partial f_k}{\partial x_i} (a+t(x-a)) (x_i - a_i) ~ t + f_k(a+t(x-a))
+	\end{align*}
+	\QED
 \end{enumerate}
-\Beweis[Beweisidee]
-Wenn \(f\) eine Stammfunktion \(F\) hat, so muss der Satz von Schwarz gelten, also muss die Hessematrix symmetrisch sein.
-\QED
 
 \subsection{Definition der Rotation}
 Sei \(G \subset \R^3\) ein Gebiet und \(f: G \rightarrow \R\) partiell differenzierbar, dann heißt die Funktion \(\textrm{rot} f : G \rightarrow \R^3 \) \textbf{Rotation} von \(f\) in \(G\) und ist folgendermaßen definiert: 
@@ -2333,6 +2436,130 @@ Sei \(F(x)= \int_{\Gamma_x} f\), dabei ist \(\Gamma\) ein Weg von \(x_0\) (fest)
 	\int_1^r 0 ~dt + \int_0^\phi 1 ~dt \\
 	\Rightarrow \quad & F(x,y) = \phi = \textrm{arg}(x,y)
 \end{align*}
+
+\section{Bereichsintegrale}
+\subsection{Definition von Intervallen im \(\Rn\)}
+Für \(a,b \in \Rn\) wird die Menge \([a,b] = [a_1,b_1]\times...\times[a_n,b_n]\) als \textbf{kompakter Quader} oder als \textbf{kompaktes Intervall} in \(\Rn\) bezeichnet.\\
+
+\noindent
+Die Differenz \(b_k - a_k\) nennt man die \textbf{Kantenlänge} des Quaders.\\
+
+\noindent
+Die Zahl
+\begin{align*}
+	v\left( [a,b] \right) = \left\{ \begin{array}{ll}
+		\prod_{k=1}^n (b_k - a_k) & 
+		\textrm{falls } a_1 \leqslant b_1, ..., a_n \leqslant b_n \\
+		0 & \textrm{sonst (negative Kantenlänge)}
+	\end{array} \right.
+\end{align*}
+nennt man das \textbf{Volumen} von \([a,b]\).
+
+\subsection{Definition von Zerlegungen im \(\Rn\)}
+Ist \([a,b] = [a_1,b_1]\times...\times[a_n,b_n] \) und ist für jedes \(k \in \{1,...,n\}\) mit \(T^{(k)} : a_k = x_0^{(k)} < ... x_{L_k}^{(k)} = b_k\) eine Zerlegung von \([a_k,b_k]\) gegeben, dann heißt die Menge mit den Elementen
+\begin{align*}
+	I_{l_1, ..., l_n} = [x_{l_0},x_{l_1}] \times ... \times [x_{l_{n-1}},x_{l_n}]
+\end{align*}
+eine Zerlegung \(T\) von \([a,b]\). Das Maß für die \textbf{Feinheit} der Zerlegung \(T\) ist
+\begin{align*}
+	\mu(T) = \max_{l_1,...,l_n} v\left( I_{l_1, ..., l_n} \right) 
+\end{align*}
+
+\subsection{Definition der Riemann-Summe im mehrdimensionalen}
+Sei \(T = \{I_1, ..., I_L\} \) eine Zerlegung eines mit den Zwischenpunkten \(Z = \{\xi_1, ..., \xi_L\}\), dann heißt für eine Funktion \(f: [a,b] \rightarrow \R\) die Summe
+\begin{align*}
+	S(f;T;Z) = \sum_{k=1}^L f(\xi_k) ~ v(I_k)
+\end{align*}
+die \textbf{Riemann-Summe} von \(f\) bezüglich \(T\) und \(Z\).
+
+\subsection{Definition Riemann integrierbarer Bereichsintegrale\\über ein Quader}
+Sei \(f:[a,b] \subset \Rn \rightarrow \R\) eine Funktion und gibt es eine Zahl \(J \in \R\), so dass für jede Folge von Zerlegungen \(\left( T_k \right)_{k=1}^\infty\) mit \(\mu(T_k) \stackrel{k \rightarrow \infty}{\rightarrow} 0\) und jede Folge mit zugehörigen Zwischenpunkten \(\left( Z_k \right)_{k=1}^\infty\) stets gilt
+\begin{align*}
+	\lim_{k\rightarrow\infty} S(f;T_k;Z_k) = J
+\end{align*}
+dann ist \(f \in R([a,b])\) und heißt \textbf{Riemann integrierbar} über \([a,b]\). Dabei ist \(J\) der Wert des \textbf{Bereichsintegrals} von \(f\) über \([a,b]\):
+\begin{align*}
+	J = \int_{[a,b]} f = {\int ... \int}_{[a_1,b_1]\times...\times[a_n,b_n]} f(x_1, ..., x_n) ~d(x_1, ..., x_n)
+\end{align*}
+
+\subsection{Bemerkung}
+Sei \(I = [a,b] = [a_1,b_1]\times...\times[a_n,b_n] \neq \varnothing\)
+\begin{enumerate}[(i)]
+	\item ist \(f = 1\) konstant
+	\begin{align*}
+		S(f;T;Z) = \sum_{k=1}^L \underbrace{f(\xi_k)}_{=1} ~ v(I_k)
+		= v(I) = \prod_{l=1}^L (b_l - a_l)
+	\end{align*}
+	\item es gilt: \(f \in C^1(I) \quad\Rightarrow\quad f \in R(I)\) (stetig differenzierbare Funktionen sind auch integrierbar, aber nicht alle integrierbaren Funktionen sind auch stetig) und es gilt:
+	\begin{align*}
+		\int_I f = 
+		\underbrace{
+			\int_{[a_1,b_1]\times...\times[a_n,b_n]} f(x_1, ..., x_n)~d(x_1, ..., x_n) 
+		}_{\textrm{Bereichsintegral}}
+		\stackrel{\substack{\textrm{Satz von}\\\textrm{Fubini}}}{=} 
+		\underbrace{
+			\int_{a_1}^{b_1} ... \int_{a_n}^{b_n} f(x_1, ..., x_n) ~dx_n ... dx_1
+		}_{\textrm{verschachtelte Parameterintegrale (eindim.)}}
+	\end{align*}
+\end{enumerate}
+
+\subsection{Definition von Bereichsintegralen\\über beliebig beschränkte Menge}
+Sei \(M \subset \Rn\) beschränkt (\(\exists~ c > 0 \mitt \Vert x_0 - x \Vert < c ~\forall~ x \in M\)) und existiert ein \(I = [a,b] \subset \Rn\) mit \(M \subset I\), dann heißt eine Funktion \(f:M\rightarrow\R\) Riemann integrierbar über \(M\), wenn die Funktion
+\begin{align*}
+	f_M : I \rightarrow \R \mitt f_M(x) = \left\{ \begin{array}{ll}
+		f(x) &\quad \textrm{falls } x \in M \\
+		0 &\quad \textrm{sonst}
+	\end{array}\right.
+\end{align*}
+über \(I\) Riemann integrierbar ist.
+
+\subsection{Vorgehen zum Berechnen von Bereichsintegralen}
+\begin{enumerate}[a.~]
+	\item Verschachtelte Parameterintegrale:
+	\begin{align*}
+		\int_{[a,b]} f = \int_{a_1}^{b_1} ... \int_{a_n}^{b_n} f(x_1, ..., x_n) ~dx_1 ... dx_n
+	\end{align*}
+	\item \begin{enumerate}[(i)]
+		\item Salamitaktik: Satz von Cavilieri/Fubini
+		\item Die Menge \(M\) in ein Quader transformieren: Mehrdimensionale Substitution-Regel
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Prinzip von Cavalieri und Satz von Fubini}
+Sei \(M \subset \Rn (n > 1)\) und bezeichne
+\begin{align*}
+	M' &= \left\{ x \in \R : \left( \begin{array}{c}
+		x \\ y	
+	\end{array}\right) = \left( \begin{array}{c}
+		x \\ y_2 \\ \vdots \\ y_n
+	\end{array}\right)
+	\in M \textrm{ für ein } y \in \R^{n-1}
+	\right\} \\
+	M(x) &= \left\{ y \in \R^{n-1} : \left( \begin{array}{c}
+		x \\ y	
+	\end{array}\right) \in M \right\} \textrm{ für } x \in \R
+\end{align*}
+Dabei ist \(M'\) ist die Projektion von \(M\) auf die \(x\)-Achse und \(M(x)\) der Schnitt (Schnitz) an der Stelle \(x\).\\
+
+\noindent
+Dann gilt für jede Funktion \(f \in C^1(\overline{M})\) (falls \(M,M',M(x)\) messbar sind), dass
+\begin{align*}
+	\int_M f = \int_{M'} \left( \int_{M(x)} f(x,y) ~dy \right) dx
+\end{align*}
+
+\subsection{Beispiel}
+\begin{enumerate}[(i)]
+	\item Funktion \(f:\Rzwei \rightarrow \R, f(x,y) = xy\) über \\ 
+	oberen Einheitshalbkreis:
+	\(M = \left\{ \left( \begin{array}{c}
+		x \\ y	
+	\end{array}\right) \in \Rzwei : x^2 + y^2 \leqslant 1, y \geqslant 0 \right\} \)
+	\item Kreisfläche \(f(x) = 1\) (konst.) des Einheitskreises
+	\(M = \left\{ \left( \begin{array}{c}
+		x \\ y	
+	\end{array}\right) \in \Rzwei : x^2 + y^2 \leqslant 1\right\} \)
+\end{enumerate}
+
 
 
 \end{document}
