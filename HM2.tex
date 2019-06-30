@@ -29,6 +29,7 @@
 \newcommand {\Rm}	{\mathbb{R}^m}
 \newcommand {\Rmn}	{\mathbb{R}^{m+n}}
 \newcommand {\Rzwei}	{\mathbb{R}^2}
+\newcommand {\Rdrei}	{\mathbb{R}^3}
 \newcommand {\Rnxn}	{\mathbb{R}^{n \times n}}
 \newcommand {\Rmxn}	{\mathbb{R}^{m \times n}}
 \newcommand {\Rmxm}	{\mathbb{R}^{m \times m}}
@@ -41,6 +42,9 @@
 \newcommand{\mitt}	{\textrm{ mit }}
 \newcommand{\fum}	{f^{-1}}
 \newcommand{\Kurve}	{{\mathcal{K}}}
+\newcommand{\vol}	{\textrm{vol}}
+\newcommand{\rotation}	{\textrm{rot}}
+\newcommand{\divergenz}	{\textrm{div}}
 
 %\newcommand{\Beweis}		{\noindent\colorbox{lightgray}{\textcolor{white}{\textbf{Beweis:}}} \color{gray}}
 %\newcommand{\QED}	{\color{black}}
@@ -1771,6 +1775,7 @@ Ein uneigentliches Integral \(\int_a^b f(x,t) ~dt\) konvergiert gleichmäßig in
 \end{align*} 
 
 \subsection{Satz von Fubini für uneigentliche Integrale}
+\label{sec:fubini_fuer_uneigtl_int}
 Ist \(f(x,t)\) stetig in \(I \times (a,b)\) (dabei ist \(I\) ein Intervall) und konvergiert \(F(x) = \int_a^b f(x,t) ~dt \) gleichmäßig in \(I\), dann ist \(F\) stetig und für \(I = [\alpha,\beta] \mitt \alpha,\beta \in \R\) gilt:
 \begin{align*}
 	\int_\alpha^\beta \left( \int_a^b f(x,t) ~dt \right) dx = 
@@ -1855,7 +1860,7 @@ Zwei stetige Funktionen \(x:[a,b] \subset \R \rightarrow \Rn\) und \(y:[\alpha,\
 \subsection{Definition einer Kurve im \(\Rn\)}
 Ist \(x: [a,b] \rightarrow \Rn\) stetig, so nennt man die Menge \(\Kurve = \left\{ y: [\alpha,\beta] \subset \R \rightarrow \Rn : y \sim x \right\}\) die Kurve \(\Kurve\) mit Parameterdarstellung \(x\) (dabei ist jedes \(y \in \Kurve\) eine äquivalente Parameterdarstellung von \(\Kurve\)) mit Anfangspunkt \(p = x(a)\) und Endpunkt \(q = x(b)\).\\
 Schreibweise: \(\Kurve : x(t), a \leqslant t \leqslant b\).\\
-Die Menge \(T(\Kurve) = x([a,b]) = \{ x(t) : a \leqslant t \leqslant b \}\) heißt \textbf{Träger} von \(\Kurve\).\\
+Die Menge \(\Gamma(\Kurve) = x([a,b]) = \{ x(t) : a \leqslant t \leqslant b \}\) heißt \textbf{Träger} von \(\Kurve\).\\
 
 \noindent
 Man nennt eine Kurve \(\Kurve\)
@@ -2039,7 +2044,7 @@ Für eine beliebige Folge \( \left( \vec{t_N} \right)_{N=1}^\infty \) von Zerleg
 \end{align*}
 
 \subsection{Definition von Kurvenintegralen}
-Gegeben sei eine Kurve \(\Kurve \subset \Rn\) und \(f : \underbrace{T(\Kurve)}_{\substack{\textrm{Träger}\\\textrm{von }\Kurve}} \rightarrow \Rn\).
+Gegeben sei eine Kurve \(\Kurve \subset \Rn\) und \(f : \underbrace{\Gamma(\Kurve)}_{\substack{\textrm{Träger}\\\textrm{von }\Kurve}} \rightarrow \Rn\).
 \begin{enumerate}[a.~]
 	\item Sei \(x: [a,b] \rightarrow \Rn\) eine Parameterdarstellung von \(\Kurve\)
 	\begin{enumerate}[(i)]
@@ -2526,6 +2531,7 @@ Sei \(M \subset \Rn\) beschränkt (\(\exists~ c > 0 \mitt \Vert x_0 - x \Vert < 
 \end{enumerate}
 
 \subsection{Prinzip von Cavalieri und Satz von Fubini}
+\label{sec:fubini_cavalieri}
 Sei \(M \subset \Rn (n > 1)\) und bezeichne
 \begin{align*}
 	M' &= \left\{ x \in \R : \left( \begin{array}{c}
@@ -2560,7 +2566,433 @@ Dann gilt für jede Funktion \(f \in C^1(\overline{M})\) (falls \(M,M',M(x)\) me
 	\end{array}\right) \in \Rzwei : x^2 + y^2 \leqslant 1\right\} \)
 \end{enumerate}
 
+\subsection{Definition von messbaren Mengen}
+Eine beschränkte Menge \(M \subset \Rn\) heißt (Jordan-)\textbf{messbar}, wenn \( \int_M 1 ~ dx \) existiert. Ist dies der Fall, so nennt man 
+\begin{align*}
+	\vol(M)  = \vol_n(M) = \int_M 1 ~ dx
+\end{align*}
+das \(n\)-dimensionale Volumen von \(M\). Gilt 
+\begin{align*}
+	\vol(N) = 0 \quad\Leftrightarrow\quad \int_N 1 = 0
+\end{align*}
+so nennt man \(N\) eine \textbf{Nullmenge}.\\
 
+\noindent
+\textit{Beispiele}:
+\begin{enumerate}[(i)]
+	\item \(M = \left\{ \left( \begin{array}{c} x \\ y \end{array}\right) : x^2 + y^2 = 1 \right\} \subset \Rzwei \quad\Rightarrow\quad \vol(M)=0 \) \\
+	(der Kreisrand des Einheitskreises ist eine Nullmenge)
+	\item Der Rand der Mandelbrotmenge ist \underline{keine} Nullmenge (der Rand ist \(\infty\) lang)
+\end{enumerate}
+
+\subsection{Integrationsregeln}
+Betrachtet man die Riemann-Summen, so kann man folgende Regeln herleiten:
+\begin{enumerate}[(i)]
+	\item Ist \(M\) beschränkt, dann gilt (sofern alle Integrale existieren):
+	\begin{align*}
+		\int_M f+g = \int_M f + \int_M g
+	\end{align*}
+	\item Die Funktionen \(f \cdot g\) und \(\frac{f}{g}\) sind integrierbar, falls \(f\) und \(g\) integrierbar sind und \(g(x) \neq 0 ~\forall~ x\in M\) gilt.
+	\item Ist \(f\) stetig und \(M\) beschränkt, so existiert das Integral \(\int_M f\).\\
+	\(\Rightarrow\quad\) besteht \(f\) aus einer Verkettung stetiger Funktionen so existiert eine Stammfunktion \(F\).
+\end{enumerate}
+
+\subsection{Substitutionsformel für Bereichsintegrale}
+\label{sec:subst_fuer_bereich}
+Sei \(M \subset G \subset \Rn\) und \(M\) eine messbare Menge, sowie \(G\) ein Gebiet. Sei \(T: G \subset \Rn \rightarrow \Rn, T \in C^1(G;\Rn)\) und gilt \(\det T'(x) \neq 0\) (\(T'(x)\) ist invertierbar und heißt \textbf{Funktionaldeterminante}) sowie \(T\) injektiv auf \(M \setminus N\) mit einer Nullmenge \(N\), dann gilt:
+\begin{align*}
+	\int_{T(M)} f &= \int_{T(M)} f(x_1, ..., x_n) ~d(x_1, ..., x_n) \\
+	&= \int_M f\left(T\left(u_1, ..., u_n\right)\right) ~ \det T'(u_1, ..., u_n) ~d(u_1, ..., u_n)
+\end{align*} 
+
+\Beweis[Bedeutung der Funktionaldeterminante]
+	% TODO: Anschauungsbild für die Menge A und deren Transformation T(A) siehe Vorlesung vom 18. Juni
+	Sei \(M \subset \Rzwei\) eine messbare Menge und
+	seien \(x,y \in M\) zwei Punkte, welche jeweils um die entsprechenden Vektoren \(dx,dy \in \Rzwei\) vom Punkt \(a \in M\) entfernt sind:
+	\begin{align*}
+		x - a = dx \qquad
+		y - a = dy
+	\end{align*}
+	Für die Fläche der Menge \(A\) welche vom Punkt \(a\) aus von den Vektoren \(dx,dy\) umschlossen wird gilt
+	\begin{align*}
+		\vol(A) = \det \underbrace{\left( \begin{array}{cc}
+			dx & dy
+		\end{array} \right)}_{\in \R^{2 \times 2}}
+	\end{align*}	
+	Wird nun die Menge \(A \subset M\) mittels einer Transformation \(T: M \subset \Rzwei \rightarrow \Rzwei \) bijektiv und differenzierbar und \(T'\) bijektiv (bis auf eine Nullmenge \(N\)) transformiert, so gilt mit dem Satz von Taylor:
+	\begin{align*}
+		T(x) \approx T(a) + T'(a)(x - a)
+		\quad&\Leftrightarrow\quad
+		T(x) - T(a) \approx T'(a)\underbrace{(x - a)}_{dx} \\
+		T(y) \approx T(a) + T'(a)(y - a)
+		\quad&\Leftrightarrow\quad
+		T(y) - T(a) \approx T'(a)\underbrace{(y - a)}_{dy} \\
+		\Rightarrow\quad
+		\underbrace{\left( \begin{array}{cc}
+			\underbrace{T(x) - T(a)}_{\in \R^2} & 
+			\underbrace{T(y) - T(a)}_{\in \R^2}
+		\end{array} \right)}_{\in \R^{2 \times 2}}
+		\quad&\approx\quad
+		\underbrace{T'(a)}_{\in \R^{2 \times 2}}
+		\underbrace{\left( \begin{array}{cc}
+			dx & dy		
+		\end{array} \right)}_{\in \R^{2 \times 2}}
+	\end{align*}	
+	und die von den Vektoren \( T(x) - T(a), T(x) - T(a) \) umschlossene Fläche kann wie folgt berechnet werden:
+	\begin{align*}
+		\det \left(
+		\begin{array}{cc}
+			T(x) - T(a) &
+			T(y) - T(a)
+		\end{array}
+		\right)
+		&\approx~
+		\det \left(
+		T'(a)
+		\left( \begin{array}{cc}
+			dx & dy		
+		\end{array} \right) \right) \\
+		&=~
+		\det T'(a) \cdot \det \left( \begin{array}{cc}
+			dx & dy		
+		\end{array} \right)
+	\end{align*}
+	Also verändert sich der Wert für die Fläche \(A\) in der Transformierten Menge \(T(M)\) um den Faktor \(T'(a)\). Weiter gilt mittels des Zusammenhangs zu den Riemann-Summen:
+	\begin{align*}
+		\begin{array}{ccc}
+			\int_{T(M)} f(\tilde{x},\tilde{y}) & = & 
+			\int_{M} f(T(x,y)) \left\vert \det T'(a) \right\vert ~d(x,y) \\
+			\\
+			\downarrow \substack{\textrm{Riemann-}\\\textrm{Summen}}
+			& &
+			\uparrow \substack{\textrm{Riemann-}\\\textrm{Summen}} \\
+			\\
+			\sum f(\tilde{\xi_k}) ~ \vol(\tilde{dx},\tilde{dy}) & = &
+			\sum f(T(\xi_k)) ~ \underbrace{\vol( T(x) - T(a), T(y) - T(a) )}
+			_{\substack{
+				\left\vert \det \left( \begin{array}{cc}
+					T(x)-T(a) & T(y)-T(a)			
+				\end{array} \right) \right\vert \\
+				\approx
+				\left\vert \det T'(a) \right\vert \cdot 
+				\underbrace{\left\vert \det \left( \begin{array}{cc}
+					dx & dy		
+				\end{array} \right) \right\vert}
+				_{\vol( dx,dy ) = d(x,y)}
+			}}
+		\end{array}
+	\end{align*}
+	Dabei sind \(\tilde{x},\tilde{y},\tilde{dx},\tilde{dy},\tilde{\xi_k} \in T(M)\) (aus dem Bild von von \(T\)).
+\QED
+
+\subsection{Beispiele}
+\begin{align*}
+	& T : [0,\infty) \times [-\pi,\pi) \rightarrow \Rzwei 
+	\quad\mitt\quad
+	T(r,\varphi) = r \left( \begin{array}{c}
+		\cos \varphi \\
+		\sin \varphi
+	\end{array} \right)\\
+	& T \textrm{ ist injektiv auf}
+	\underbrace{ [0,\infty) \times [-\pi,\pi)}_{M}
+	\setminus \underbrace{ \{0\} \times [-\pi,\pi) }_{N} \\
+	&T'(r,\varphi) = \left( \begin{array}{cc}
+		\cos \varphi & -r \sin \varphi \\
+		\sin \varphi & r \cos \varphi		
+	\end{array} \right) \quad\Rightarrow\quad
+	\det T'(r,\varphi) = r \cos^2 \varphi + r \sin^2 \varphi = r \neq 0
+\end{align*}	
+\begin{enumerate}[(i)]
+	\item \(M = [0,1] \times [0,\pi) \quad\Rightarrow\quad T(M) = \tilde{M} = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) : x^2 + y^2 \leqslant 1, y \geqslant 0 \right\}\) \\
+	und \(N = \{0\} \times [-\pi,\pi)\)
+	\begin{align*}
+		&\int_{\tilde{M}} xy ~d(x,y) =
+		\int_{T(M)} \underbrace{xy}_{f(x,y)} ~d(x,y)
+		\stackrel{\ref{sec:subst_fuer_bereich}}{=} 
+		\int_M \underbrace{(r \cos \varphi)(r \sin \varphi)}_{f(T(u_1,u_2))} \underbrace{r}_{\det T'} ~d(r,\varphi) \\
+		&\stackrel{\substack{\textrm{Fubini und}\\\textrm{Cavalieri}\\\ref{sec:fubini_cavalieri}}}{=} \int_0^1 \int_0^\pi r^3 \cos\varphi \sin\varphi ~d\varphi ~dr =
+		\int_0^1 r^3 \int_0^\pi \cos\varphi \sin\varphi ~d\varphi ~dr \\		
+		\mitt &
+		\int_0^\pi \cos\varphi \sin\varphi ~d\varphi
+		= \int_0^{\frac{\pi}{2}} \cos\varphi \sin\varphi ~d\varphi +
+		\int_{\frac{\pi}{2}}^\pi \cos\varphi \sin\varphi ~d\varphi \\
+		&\stackrel{\substack{
+			u = \sin\varphi \\
+			\frac{du}{d\varphi} = \cos\varphi \\
+			\Rightarrow d\varphi = \frac{du}{\cos\varphi}
+		}}{=}
+		\int_0^1 u ~du + \int_1^0 u ~du = 
+		\int_0^1 u ~du - \int_0^1 u ~du = 0 \\
+		\Rightarrow& \int_0^1 r^3 \cdot 0 ~dr = 0
+	\end{align*}
+	\item \(M = [0,1] \times [-\pi,\pi] \quad\Rightarrow\quad T(M) = \tilde{M} = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) : x^2 + y^2 \leqslant 1 \right\}\) \\
+	und \( N = \{0\} \times [-\pi,\pi] \cup [0,1] \times \{\pi\}\)
+	\begin{align*}
+		&\int_{\tilde{M}} 1 = \int_{T(M)} 1 = \int_M 1 \cdot r ~d(r,\varphi) = \int_{[0,1]\times[-\pi,\pi]} r ~d(r,\varphi) \\
+		&\stackrel{\substack{\textrm{Fubini und}\\\textrm{Cavalieri}\\\ref{sec:fubini_cavalieri}}}{=}
+		\int_0^1 \int_{-\pi}^\pi r ~d\varphi ~dr =
+		\int_0^1 r \left[ \varphi \right]_{-\pi}^\pi ~dr =
+		2\pi \left[ \frac{1}{2} r^2 \right]_0^1 = \pi
+	\end{align*}
+\end{enumerate}
+
+\Beispiel Eindimensionales Problem wird lösbar in zwei Dimensionen.
+\begin{align*}
+	& I = \int_{-\infty}^\infty e^{-x^2} ~dx \stackrel{\textrm{sym.}}{=} 2 \int_0^\infty e^{-x^2} ~dx \\
+	\Rightarrow\quad& I^2 = 
+	\underbrace{\left( \int_{-\infty}^\infty e^{-x^2} ~dx \right)}_{\substack{\textrm{Skalar}}{=}I} \left( \int_{-\infty}^\infty e^{-y^2} ~dy \right) = \int_{-\infty}^\infty \left( \int_{-\infty}^\infty e^{-x^2} ~dx \right) e^{-y^2} ~dy \\
+	&\stackrel{\ref{sec:fubini_fuer_uneigtl_int}} = \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-x^2}e^{-y^2} ~dy ~dx = 
+	4 \int_0^\infty e^{-(x^2 + y^2)} ~dx ~dy \\
+	&\stackrel{\substack{\textrm{Cavalieri}\\\textrm{und Fubini}\\\textrm{rückwärts}}}{=} 4 \int_{[0,\infty)\times[0,\infty)} e^{-(x^2 + y^2)} ~d(x,y) \\
+	&\stackrel{\substack{\textrm{Subst. mit}\\\textrm{Polar-}\\\textrm{koordinaten}}}{=}
+	4 \int_{[0,\infty)\times\left[0,\frac{\pi}{2}\right)} e^{-(r^2 \cos^2\varphi + r^2\sin^2\varphi)} \underbrace{r}_{\textrm{Funkt.Det.}} ~d(r,\varphi) \\
+	&= 4 \int_{[0,\infty)\times\left[0,\frac{\pi}{2}\right)} r e^{-r^2} ~d(r,\varphi) \stackrel{\substack{\textrm{Cavalieri}\\\textrm{und Fubini}}}{=} 4 \int_0^\infty \int_0^{\frac{\pi}{2}} r e^{-r^2} ~d\varphi ~dr \\
+	&= 2\pi \int_0^\infty re^{-r^2} ~dr
+	= -\pi \int_0^\infty -2r e^{-r^2} ~dr
+	= -\pi \left[ e^{-r^2} \right]_0^\infty = -\pi (0 - 1) = \pi \\
+	\Rightarrow I = \sqrt{\pi}
+\end{align*}
+\textit{Bemerkung}: Die Substitution mittels Polarkoordinaten funktioniert nur weil über die gesamten positiven reellen Zahlen integriert wird (uneigentliches Integral). Für die Integration bis zu einem bestimmten Wert funktioniert diese Methode nicht.	
+\Beispielende
+
+\section{Integralsätze in der Ebene}
+\subsection{Definition positiv berandeter Mengen}
+Eine beschränkte Menge \(B \subset \Rzwei\) heißt \textbf{positiv berandet} durch eine Kurve \(\Kurve\), wenn \(\Gamma(\Kurve) = \partial B\) ist und wenn \(\Kurve\) eine stückweise stetig differenzierbare Parameterdarstellung \(x:[a,b] \rightarrow \Rzwei\) besitzt mit:
+\begin{enumerate}
+	\item \(\dot{x}(t) \neq 0\) für fast alle (bis auf endliche viele Ausnahmen) \(t \in [a,b]\).
+	\item der Normalvektor \(n\) zeigt nach \textit{außen}.
+\end{enumerate}
+
+\subsection{Definition von Normalbereichen}
+Eine Menge \(B \subset \Rzwei\) heißt Normalbereich bezüglich der \(x\)-Achse (\(y\)-Achse), wenn es ein Intervall \([a,b]\) und zwei Funktionen \(\varphi,\psi \in C^1([a,b])\) gibt, mit:
+\begin{align*}
+	B = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) : a \leqslant x \leqslant b, \varphi(x) \leqslant y \leqslant \psi(x) \right\}
+\end{align*}
+\textit{Bemerkung}: Die Menge \(B\) wird oben durch die Funktion \(\psi(x)\) und unten durch \(\varphi(x)\) beschränkt (oder links und rechts, falls bezüglich der \(y\)-Achse).\\
+\noindent
+\textit{Bemerkung}: Eine beliebige Menge im \(\Rzwei\) kann in der Praxis oft in disjunkte Normalbereiche unterteilt werden.
+
+\subsection{Satz von Green}
+Sei \(B \subset \Rzwei\) ein positiv berandeter Normalbereich, so gilt \(\forall~ f \in C^1(B;\Rzwei)\):
+\begin{align*}
+	\int_B \frac{\partial f_2(x,y)}{\partial x} - \frac{\partial f_1 (x,y)}{\partial y} ~d(x,y) &=
+	\int_B \left( \frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y}\right)(x,y) ~d(x,y) \\
+	&= \int_{\partial B} f(\vec{x}) \cdot d\vec{x} =
+	\int_{\partial B} f
+\end{align*}
+
+\Beweis
+%TODO
+\QED
+
+\subsection{Beispiel}
+\begin{align*}
+	B = \left\{ \left( \begin{array}{c} x \\ y \end{array} \right) : x^2 + y^2 \leqslant r^2 \right\} \quad
+	\partial B : x(t) = r \left( \begin{array}{c}
+		\cos t \\ \sin t
+	\end{array} \right) \mitt 0 \leqslant t \leqslant 2\pi
+\end{align*}
+%TODO
+
+\subsection{Green'sche Formel}
+Sei \(B\) ein positiv berandeter Bereich im \(\Rzwei\) und \(f \in C^1(B;\Rzwei)\) mit einer nach außen gerichteten Normale \(n\) auf \(\partial B\). Dann gelten folgende Integralsätze
+\begin{enumerate}[(i)]
+	\item \begin{align*}
+		\int\int_B (\divergenz f)(x,y) ~d(x,y) = \int\int_B \divergenz f = 
+		\int_{\partial B} f \cdot n = \int_{\partial B} f(x(t)) \cdot n(t) ~ds
+	\end{align*}
+	\Beweis
+		%TODO
+	\QED
+	\item \textit{Bemerkung}: Der \textbf{Laplace-Operator }ist definiert durch:
+	\begin{align*}
+		\Delta = \nabla \cdot \nabla =
+	\left( \begin{array}{c} \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \end{array} \right) \cdot
+	\left( \begin{array}{c} \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \end{array} \right) = 
+	\left(\frac{\partial}{\partial x}\right)^2 + 
+	\left(\frac{\partial}{\partial y}\right)^2
+	\end{align*}
+	Gilt nun zusätzlich \(f_1, f_2 \in C^2(B;\R)\), dann gilt \\
+	\begin{align*}
+		\int\int_B \left( f_1 ~ \Delta f_2 - f_2 ~ \Delta f_1 \right)(x,y) ~d(x,y) = 
+		\int_{\partial B} \left( f_1 \frac{\partial f_2}{\partial n}  - f_2 \frac{\partial f_1}{\partial n} \right) ~ds
+	\end{align*}
+\end{enumerate}
+
+
+\section{Oberflächenintegrale und Integralsätze im Raum}
+\subsection{Definition von regulären Flächen im Raum}
+Sei \(B \subset \Rzwei\) kompakt (beschränkt und abgeschlossen) und sei \(x:B\rightarrow \Rdrei\) eine stetig differenzierbare Funktion mit
+\begin{align*}
+	x(u,v) = \left(\begin{array}{c}
+x_1(u,v) \\ x_2(u,v) \\ x_3(u,v) \end{array} \right)
+	\quad
+	\frac{\partial x(u,v)}{\partial u} = x_u = \left(\begin{array}{c}
+\frac{\partial x_1}{\partial u} \\ \frac{\partial x_2}{\partial u} \\ \frac{\partial x_3}{\partial u} \end{array} \right)
+	\quad
+	\frac{\partial x(u,v)}{\partial v} = x_v = \left(\begin{array}{c}
+\frac{\partial x_1}{\partial v} \\ \frac{\partial x_2}{\partial v} \\ \frac{\partial x_3}{\partial v} \end{array} \right)
+\end{align*}
+Dabei sind \(x_u, x_v\) linear unabhängig: \(\alpha x_u + \beta x_v = 0 \quad\Leftrightarrow\quad \alpha = \beta = 0\), denn ansonsten würden sie ja gar keine Fläche aufspannen.\\
+Dann heißt das Bild \(A = \{x(u,v) : (u,v) \in B\} = x(B)\) die \textbf{reguläre Fläche} \(A\) von \(x\) unter \(B\). Die Funktion \(x\) heißt dabei die Parameterdarstellung von \(A\).
+\begin{enumerate}[(i)]
+	\item \(x_u, x_v\) heißen die \textbf{Tangentialvektoren} und
+	\item \(n = \frac{x_u \times x_v}{\left\Vert x_u \times x_v \right\Vert}\) heißt der \textbf{normierte Normalenvektor} bei \(x(u,v)\).
+\end{enumerate}
+
+\Bemerkung Ist \(B\) positiv berandet durch \(\Kurve : y(t), a \leqslant t \leqslant b\) dann ist A auch positiv berandet mit \(\mathcal{L} : x(y(t)), a \leqslant t \leqslant b\).
+
+\subsection{Definition von Oberflächenintegralen}
+Sei \(A\) eine reguläre Fläche in \(\Rdrei\) mit Parameterdarstellung \(x: B \subset \Rdrei \rightarrow \Rdrei\) und \(x\) sei injektiv auf \(B \setminus N\) für eine Nullmenge \(N\) dann heißt für ein \(f \in C^1(A;\R)\) (skalarwertige Funktion):
+\begin{enumerate}[(i)]
+	\item 
+	\begin{align*}
+		\int\int_A f ~do = \int\int_B f(x(u,v)) \underbrace{\left\Vert (x_u \times x_v)(u,v) \right\Vert}_{\substack{\textrm{Inhalt der Fläche die von}\\x_u,x_v\textrm{ aufgespannt wird}}} ~d(u,v)
+	\end{align*}
+	das \textbf{Oberflächenintegral} von \(f\) über \(A\).
+	\item \(O(A) = \int\int_A 1 ~do\) heißt die \textbf{Oberfläche} von \(A\)
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[(i)]
+\item  Kugeloberfläche: Sei \(R>0\) beliebig aber fest und \(x(\varphi,\theta) : \Rzwei \rightarrow \Rdrei\) eine Parameterdarstellung mit \((\varphi,\theta) \in [0,2\pi]\times\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)
+\begin{align*}
+	&x(\varphi,\theta) = R \left( \begin{array}{c}
+		\cos\varphi \cos\theta \\
+		\sin\varphi \cos\theta \\
+		\sin\theta
+	\end{array} \right) \quad
+	x_\varphi = R \left( \begin{array}{c}
+		-\sin\varphi \cos\theta \\
+		\cos\varphi \cos\theta \\
+		0
+	\end{array} \right) \quad
+	x_\theta = R \left( \begin{array}{c}
+		-\cos\varphi \sin\theta \\
+		-\sin\varphi \sin\theta \\
+		\cos\theta
+	\end{array} \right) \\
+	&x_\varphi \times x_\theta = R^2 \cos\theta \left( \begin{array}{c}
+		\cos\varphi \cos\theta \\
+		\sin\varphi \cos\theta \\
+		\sin^2\varphi \sin\theta + \cos^2\varphi \sin\theta = \sin\theta
+	\end{array} \right) = R \cos\theta ~ x(\varphi,\theta) \\
+	&\Rightarrow\quad \left\Vert x_\varphi \times x_\theta \right\Vert = R^2 \vert \cos\theta \vert \stackrel{\theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]}{=} R^2 \cos\theta
+\end{align*}
+\begin{align*}
+	O(A) &= \int\int_{[0,2\pi] \times \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]} 1 \cdot R^2 \cos\theta ~d(\theta,\varphi)
+	\stackrel{\substack{\textrm{Cavalieri}\\\textrm{und Fubini}}}{=}
+	\int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R^2 \cos\theta ~d\theta ~d\varphi \\
+	&= R^2 \int_0^{2\pi} 
+	\underbrace{\left[\sin\theta\right]_{-\frac{\pi}{2}}^{\frac{\pi}{2}}}_{1-(-1)=2} ~d\varphi = 2R^2 \left[ \varphi \right]_0^{2\pi} = 4R^2\pi
+\end{align*}
+\item Fläche eines Graphen: Sei \(f: B \subset \Rzwei \rightarrow \R\) eine stetig differenzierbare skalarwertige Funktion auf dem kompakten Bereich \(B\) und sei 
+\begin{align*}
+	&F(u,v) = \left\{ \left( \begin{array}{c}
+		u \\ v \\ f(u,v)	
+	\end{array} \right) : (u,v) \in B\right\} \quad
+	F_u = \left( \begin{array}{c}
+		1 \\ 0 \\ f_u
+	\end{array} \right) \quad
+	F_v = \left( \begin{array}{c}
+		0 \\ 1 \\ f_v
+	\end{array} \right) \\
+	&\quad \left\Vert F_u \times F_v \right\Vert = \sqrt{1 + f_u^2 + f_v^2}
+\end{align*}
+\begin{align*}
+	O(F) = \int\int_B 1 \cdot \sqrt{1 + f_u^2 + f_v^2} d(u,v)
+\end{align*}
+\end{enumerate}
+
+\subsection{Satz von Stokes}
+Sei \(A\) eine reguläre Fläche im \(\Rdrei\) und eine positive Randkurve \(\partial A\) berandet. Dann gilt für \(f \in C^1(A;\Rdrei)\)
+\begin{align*}
+	\int\int_A \rotation f \cdot n ~do = \int_{\partial A} f
+\end{align*}
+also
+\begin{align*}
+	\int\int_B \rotation f(x(u,v)) \cdot \frac{(x_u \times x_v)(u,v)}{\Vert (x_u \times x_v)(u,v) \Vert} \Vert (x_u \times x_v)(u,v) \Vert ~d(u,v) &= \\
+	\int\int_B \rotation f(x(u,v)) \cdot (x_u \times x_v)(u,v) ~d(u,v)
+	&= \int_{\partial A} f
+\end{align*}
+mit einer Parameterdarstellung \(x: B \rightarrow \Rdrei\)
+
+\subsection{Beispiel}
+Kugelkappe:
+\begin{align*}
+	A = \left\{ \left( \begin{array}{c}
+		x \\ y \\ z	
+	\end{array} \right) \in \Rdrei : x^2 + y^2 + z^2 = R^2, z \geqslant r \right\}
+\end{align*}
+Sei \(s = \sqrt{R^2 - r^2}\) dann erhält man eine Parameterdarstellung für die Randkurve:
+\begin{align*}
+	\partial A : \left( \begin{array}{c}
+		s \cos t \\
+		s \sin t \\
+		r
+	\end{array} \right) \mitt 0 \leqslant t \leqslant 2\pi
+\end{align*}
+nach dem Satz von Stokes gilt:
+\begin{align*}
+	\int\int_A \rotation f \cdot n ~do = \int_{\partial A} f
+\end{align*}
+sei \(f(x,y,z) = \left( \begin{array}{c}
+	-y \\ xz \\ yz
+\end{array} \right)\) und die nach außen gerichtete \\
+Normale \(n(\varphi,\theta) = \left( \begin{array}{c}
+	\cos\varphi \cos\theta \\
+	\sin\varphi \cos\theta \\
+	\sin\theta
+\end{array} \right) \mitt \varphi \in [0,2\pi], \theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]\):
+\begin{align*}
+	\int\int_A \rotation f \cdot n ~do = \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} ... = \textrm{wird kompliziert...}
+\end{align*}
+einfacher zu rechnen ist:
+\begin{align*}
+	\int_{\partial A} f = \int_0^{2\pi} \underbrace{\left( \begin{array}{c}
+		-s \sin t \\
+		s \cos t ~ r
+		s \sin t ~ r 
+	\end{array} \right)}_{f(x(t))}
+	\cdot
+	\underbrace{\left( \begin{array}{c}
+		-s \sin t \\
+		s \cos t \\
+		0
+	\end{array} \right)}_{\dot{x}(t)}
+	~ dt = ... = s^2 \pi + r s^2 \pi
+\end{align*}
+
+
+\subsection{Gauß'scher Integralsatz oder Divergenzsatz}
+Sei \(M \subset \Rdrei\) kompakt und die Oberfläche \(\partial M\) konstruiert durch Vereinigungen von endlich vielen regulären Flächen mit einem nach außen gerichtetem Normalenvektor \(n\), dann gilt für eine Funktion \(f \in C^1(M;\Rdrei)\):
+\begin{align*}
+	\int\int\int_M \divergenz f = \int\int_{\partial M} f \cdot n ~do
+\end{align*}
+
+\subsection{Beispiel}
+\begin{align*}
+	M &= \left\{ \left( \begin{array}{c}
+		x \\ y \\ z	
+	\end{array} \right) : x^2 + y^2 + z^2 \leqslant 1 \right\} \\
+	f(x,y,z) &= \left( \begin{array}{c}
+		x^3 \\ y^3 \\ z^3	
+	\end{array} \right) \quad\Rightarrow\quad
+	\divergenz f  = 3(x^2 + y^2 + z^2)
+\end{align*}
+wiederum zu kompliziert:
+\begin{align*}
+	\int\int_{\partial M} f \cdot n ~do = ...
+\end{align*}
+einfacher so:
+\begin{align*}
+	\int\int\int_M \divergenz f 
+	&\stackrel{\substack{\textrm{Kugel-}\\\textrm{koord.}}}{=}
+	\int_0^1 \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 
+	\underbrace{\divergenz f(r\cos\varphi\cos\theta, r\sin\varphi\cos\theta, r\sin\theta)}_{= 3r^2}
+	\underbrace{ r^2 \cos\theta }_{\textrm{Funkt.Det.}} ~d\theta ~d\varphi ~dr \\
+	&= ... = \frac{12}{5} \pi
+\end{align*}
 
 \end{document}
 
